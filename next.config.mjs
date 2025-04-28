@@ -1,0 +1,37 @@
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337",
+      },
+      {
+        protocol: "https",
+        hostname: "localhost",
+        port: "1337",
+      },
+      {
+        protocol: "https",
+        hostname: "*",
+        port: "",
+      },
+      {
+        protocol: "http",
+        hostname: "*",
+        port: "",
+      },
+    ],
+  },
+  reactStrictMode: true,
+  env: {
+    STRAPI_BE_URL: process.env.STRAPI_BE_URL,
+    STRAPI_ACCESS_TOKEN: process.env.STRAPI_ACCESS_TOKEN,
+    STRAPI_POST_TOKEN: process.env.STRAPI_POST_TOKEN,
+    WAWCD_URL: process.env.WAWCD_URL,
+  },
+  trailingSlash: true,
+  reactStrictMode: false,
+};
+
+export default nextConfig;

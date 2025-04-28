@@ -1,0 +1,1 @@
+export { default as PrivcayPolicy } from "./privacy_policy";
