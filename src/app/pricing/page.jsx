@@ -46,7 +46,7 @@ const Page = async () => {
     const geoRes = await fetch(`https://ipapi.co/${userIp}/json/`);
     const geoData = await geoRes.json();
     region = geoData.region;
-    console.log(geoData);
+    console.log("geoData location=================>", geoData);
   } catch (e) {
     region = "Unknown";
   }
@@ -66,6 +66,7 @@ const Page = async () => {
       getServerSideData(urls.tableData, true),
       getServerSideData(urls.enterpriseSection),
     ]);
+  console.log("pricing=================>", pricing);
 
   const updatedPricing = {
     ...pricing,
