@@ -2,6 +2,7 @@ import Layout from "@/layout/page";
 import { getServerSideData } from "@/utils/get_api";
 import dynamic from "next/dynamic";
 import { Pricing } from "@/views/home";
+import { headers } from "next/headers";
 
 const BulkPurchase = dynamic(
   () => import("@/views/pricing").then((mod) => mod.BulkPurchase),
@@ -36,6 +37,20 @@ export async function metadata() {
 }
 
 const Page = async () => {
+  const forwardedFor = headers().get("x-forwarded-for");
+  const ip = forwardedFor ? forwardedFor.split(",")[0] : null;
+  const userIp = ip || "8.8.8.8"; // fallback for local dev
+
+  let region = null;
+  try {
+    const geoRes = await fetch(`https://ipapi.co/${userIp}/json/`);
+    const geoData = await geoRes.json();
+    region = geoData.region;
+    console.log(geoData);
+  } catch (e) {
+    region = "Unknown";
+  }
+
   const urls = {
     pricing: `api/price/?populate=*`,
     faq: `api/faq`,
