@@ -2,7 +2,7 @@ import Layout from "@/layout/page";
 import { getServerSideData } from "@/utils/get_api";
 import dynamic from "next/dynamic";
 import { Pricing } from "@/views/home";
-import { headers } from "next/headers";
+import Mensen from "@/views/pricing/test";
 
 const BulkPurchase = dynamic(
   () => import("@/views/pricing").then((mod) => mod.BulkPurchase),
@@ -37,20 +37,6 @@ export async function metadata() {
 }
 
 const Page = async () => {
-  const forwardedFor = headers().get("x-forwarded-for");
-  const ip = forwardedFor ? forwardedFor.split(",")[0] : null;
-  const userIp = ip || "8.8.8.8"; // fallback for local dev
-
-  let region = null;
-  try {
-    const geoRes = await fetch(`https://ipapi.co/${userIp}/json/`);
-    const geoData = await geoRes.json();
-    region = geoData.region;
-    console.log("geoData location=================>", geoData);
-  } catch (e) {
-    region = "Unknown";
-  }
-
   const urls = {
     pricing: `api/price/?populate=*`,
     faq: `api/faq`,
@@ -66,7 +52,6 @@ const Page = async () => {
       getServerSideData(urls.tableData, true),
       getServerSideData(urls.enterpriseSection),
     ]);
-  console.log("pricing=================>", pricing);
 
   const updatedPricing = {
     ...pricing,
@@ -119,6 +104,7 @@ const Page = async () => {
           <div className="px-12 lg:px-36">
             <Cta data={faq} isPage={true} />
           </div>
+          <Mensen />
         </div>
       </Layout>
     </>
