@@ -56,7 +56,7 @@ const PricePlan = ({ i, item, isMonthly }) => {
   const [country, setCountry] = useState("");
 
   useEffect(() => {
-    // Fetch the user's public IP address
+    // Fetch the user's country
     fetch(
       `https://ipinfo.io/json?token=${process.env.NEXT_PUBLIC_IPINFO_TOKEN}`
     )
