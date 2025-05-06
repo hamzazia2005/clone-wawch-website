@@ -2,8 +2,80 @@
 import { CheckBox } from "@/icons";
 import { Button } from ".";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const countryPriceMap = {
+  AE: {
+    priceMonthly: "aed_price_monthly",
+    priceYearly: "aed_price_yearly",
+    currency: "AED",
+  },
+  BR: {
+    priceMonthly: "brl_price_monthly",
+    priceYearly: "brl_price_yearly",
+    currency: "BRL",
+  },
+  EG: {
+    priceMonthly: "egp_price_monthly",
+    priceYearly: "egp_price_yearly",
+    currency: "EGP",
+  },
+  ID: {
+    priceMonthly: "idr_price_monthly",
+    priceYearly: "idr_price_yearly",
+    currency: "IDR",
+  },
+  IN: {
+    priceMonthly: "inr_price_monthly",
+    priceYearly: "inr_price_yearly",
+    currency: "INR",
+  },
+  MY: {
+    priceMonthly: "myr_price_monthly",
+    priceYearly: "myr_price_yearly",
+    currency: "MYR",
+  },
+  PK: {
+    priceMonthly: "pkr_price_monthly",
+    priceYearly: "pkr_price_yearly",
+    currency: "PKR",
+  },
+  QA: {
+    priceMonthly: "qar_price_monthly",
+    priceYearly: "qar_price_yearly",
+    currency: "QAR",
+  },
+  SA: {
+    priceMonthly: "sar_price_monthly",
+    priceYearly: "sar_price_yearly",
+    currency: "SAR",
+  },
+};
 
 const PricePlan = ({ i, item, isMonthly }) => {
+  const [country, setCountry] = useState("");
+
+  useEffect(() => {
+    // Fetch the user's public IP address
+    fetch(
+      `https://ipinfo.io/json?token=${process.env.NEXT_PUBLIC_IPINFO_TOKEN}`
+    )
+      .then((res) => res.json())
+      .then((data) => setCountry(data.country))
+      .catch((err) => setCountry("")); // fallback to default
+  }, []);
+
+  // Determine price and currency based on country
+  const countryConfig = countryPriceMap[country];
+  const price = countryConfig
+    ? isMonthly
+      ? item?.[countryConfig.priceMonthly]
+      : item?.[countryConfig.priceYearly]
+    : isMonthly
+    ? item?.price_monthly
+    : item?.price_yearly;
+  const currency = countryConfig ? countryConfig.currency : item?.currency;
+
   return (
     <div
       data-aos="zoom-in"
@@ -21,12 +93,10 @@ const PricePlan = ({ i, item, isMonthly }) => {
         </div>
         {item?.price_monthly && (
           <div className="text-primary font-poppins mt-6 flex items-start">
-            <p className="text-sm font-semibold">$</p>
-            <p className="text-3xl font-semibold leading-7 mr-2">
-              {isMonthly ? item?.price_monthly : item?.price_yearly}
-            </p>
+            {/* <p className="text-sm font-semibold">$</p> */}
+            <p className="text-3xl font-semibold leading-7 mr-2">{price}</p>
             <div className="text-gray1 text-xs">
-              <p className="leading-4">{item?.currency}</p>
+              <p className="leading-4">{currency}</p>
               <p className="leading-4">/{item?.month}</p>
             </div>
           </div>

@@ -2,7 +2,6 @@ import Layout from "@/layout/page";
 import { getServerSideData } from "@/utils/get_api";
 import dynamic from "next/dynamic";
 import { Pricing } from "@/views/home";
-import Mensen from "@/views/pricing/test";
 
 const BulkPurchase = dynamic(
   () => import("@/views/pricing").then((mod) => mod.BulkPurchase),
@@ -104,7 +103,6 @@ const Page = async () => {
           <div className="px-12 lg:px-36">
             <Cta data={faq} isPage={true} />
           </div>
-          <Mensen />
         </div>
       </Layout>
     </>
