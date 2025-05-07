@@ -35,11 +35,11 @@ const TableCollapse = ({ data = [], title, head = [] }) => {
               {head?.map((x, index) => (
                 <thead key={index}>
                   <tr className="bg-white">
-                    <th className="px-4 py-2 text-center w-1/5 ">{x.empty}</th>
-                    <th className="px-4 py-2 text-center w-1/5">{x.free}</th>
-                    <th className="px-4 py-2 text-center w-1/5">{x.basic}</th>
-                    <th className="px-4 py-2 text-center w-1/5">{x.pro}</th>
-                    <th className="px-4 py-2 text-center w-1/5">{x.premium}</th>
+                    <th className="px-4 text-center w-1/5 ">{x.empty}</th>
+                    <th className="px-4 text-center w-1/5">{x.free}</th>
+                    <th className="px-4 text-center w-1/5">{x.basic}</th>
+                    <th className="px-4 text-center w-1/5">{x.pro}</th>
+                    <th className="px-4 text-center w-1/5">{x.premium}</th>
                   </tr>
                 </thead>
               ))}
