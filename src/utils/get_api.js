@@ -5,6 +5,8 @@ export async function getServerSideData(url = "", check = false) {
     const res = await fetch(`${BASE_URL}/${url}`, {
       headers: {
         Authorization: `Bearer ${getToken}`,
+        "x-saif-ali-usman-zain-umar":
+          "$2y$19$9igxaQU0lPf2HTm35SS3A.dUlGLoMx7orpH3IL/p7HZNI8Cwmzsnu",
       },
       cache: "no-cache",
     });
