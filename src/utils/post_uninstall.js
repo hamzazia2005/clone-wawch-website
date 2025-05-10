@@ -1,31 +1,21 @@
-import { BASE_URL, postToken } from "@/utils/axios_instance";
+import { clientAxios } from '@/utils/axios_clients';
 
 export async function postUninsallForm(url = "", check, item, difficulty) {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${postToken}`,
-    },
-    body: JSON.stringify({
+  try {
+    const payload = {
       data: {
         email: item.email,
         difficulty: difficulty,
         detail: item.details,
       },
-    }),
-  };
+    };
 
-  const res = await fetch(`${BASE_URL}/${url}`, requestOptions);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const repo = await res.json();
-  if (check) {
-    return repo;
-  } else {
-    return repo?.data?.attributes;
+    const response = await clientAxios.post(url, payload);
+    const repo = response.data;
+    
+    return check ? repo : repo?.data?.attributes;
+  } catch (error) {
+    console.error("Error posting uninstall form:", error);
+    throw new Error("Failed to submit uninstall form");
   }
 }

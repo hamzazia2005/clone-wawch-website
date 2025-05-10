@@ -10,6 +10,7 @@ import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import { Button, BlocksRender } from "@/components";
 import { BASE_URL, postToken } from "@/utils/axios_instance";
+import { clientAxios, createFormDataConfig } from '@/utils/axios_clients';
 
 const ImageUploader = ({ index, handleImageUpload, handleImageRemove }) => {
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -125,20 +126,14 @@ const Offers = ({ open, handleOpen, data, offer, isContact }) => {
     const formData = new FormData();
     formData.append("files", image);
 
-    const response = await fetch(`${BASE_URL}/api/upload`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${postToken}`,
-      },
-      body: formData,
-    });
-
-    if (!response.ok) {
+    try {
+      const config = createFormDataConfig(postToken);
+      const response = await clientAxios.post('/api/upload', formData, config);
+      return response.data[0];
+    } catch (error) {
+      console.error("Image upload failed:", error);
       throw new Error("Image upload failed");
     }
-
-    const data = await response.json();
-    return data[0];
   };
 
   const handleSubmit = async (event) => {
@@ -206,35 +201,37 @@ const Offers = ({ open, handleOpen, data, offer, isContact }) => {
         : "/api/avail-offer-applications";
 
       // Create the main entry
-      const response = await fetch(`${BASE_URL}${url}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${postToken}`,
-        },
-        body: JSON.stringify(isContact ? contactSaverPayload : payload),
-      });
-
-      if (!response.ok) {
+      try {
+        const response = await clientAxios.post(
+          url, 
+          isContact ? contactSaverPayload : payload
+        );
+        
+        if (!response.status === 200) {
+          setLoading(false);
+          throw new Error("Data submission failed");
+        }
+        
+        handleOpen();
+        toast.success(<BlocksRender data={data?.success} />, {
+          style: {
+            border: "2px solid #22c55d",
+            borderRadius: "10px",
+            padding: "12px 40px",
+            color: "#17552f",
+            backgroundColor: "#dcfce7",
+          },
+          iconTheme: {
+            primary: "#44a047",
+            secondary: "#dcfce7",
+          },
+        });
         setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error("Error submitting form:", error);
         throw new Error("Data submission failed");
       }
-
-      handleOpen();
-      toast.success(<BlocksRender data={data?.success} />, {
-        style: {
-          border: "2px solid #22c55d",
-          borderRadius: "10px",
-          padding: "12px 40px",
-          color: "#17552f",
-          backgroundColor: "#dcfce7",
-        },
-        iconTheme: {
-          primary: "#44a047",
-          secondary: "#dcfce7",
-        },
-      });
-      setLoading(false);
     } catch (error) {
       setLoading(false);
       console.error("Error uploading files:", error);

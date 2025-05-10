@@ -1,13 +1,8 @@
-import { BASE_URL, postToken } from "@/utils/axios_instance";
+import { clientAxios } from '@/utils/axios_clients';
 
 export async function postAffiliateForm(url = "", check, item, promote) {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${postToken}`,
-    },
-    body: JSON.stringify({
+  try {
+    const payload = {
       data: {
         first_name: item?.fName,
         last_name: item?.lName,
@@ -18,19 +13,14 @@ export async function postAffiliateForm(url = "", check, item, promote) {
         promote: promote,
         message: item?.note ? item?.note : "",
       },
-    }),
-  };
+    };
 
-  const res = await fetch(`${BASE_URL}/${url}`, requestOptions);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const repo = await res.json();
-  if (check) {
-    return repo;
-  } else {
-    return repo?.data?.attributes;
+    const response = await clientAxios.post(url, payload);
+    const repo = response.data;
+    
+    return check ? repo : repo?.data?.attributes;
+  } catch (error) {
+    console.error("Error posting affiliate form:", error);
+    throw new Error("Failed to submit affiliate form");
   }
 }

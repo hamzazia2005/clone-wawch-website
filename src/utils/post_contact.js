@@ -1,13 +1,8 @@
-import { BASE_URL, postToken } from "@/utils/axios_instance";
+import { clientAxios } from '@/utils/axios_clients';
 
 export async function postContactForm(url = "", check, item, size) {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${postToken}`,
-    },
-    body: JSON.stringify({
+  try {
+    const payload = {
       data: {
         first_name: item.fName,
         last_name: item.lName,
@@ -19,19 +14,14 @@ export async function postContactForm(url = "", check, item, size) {
         email: item.email,
         message: item.message,
       },
-    }),
-  };
+    };
 
-  const res = await fetch(`${BASE_URL}/${url}`, requestOptions);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const repo = await res.json();
-  if (check) {
-    return repo;
-  } else {
-    return repo?.data?.attributes;
+    const response = await clientAxios.post(url, payload);
+    const repo = response.data;
+    
+    return check ? repo : repo?.data?.attributes;
+  } catch (error) {
+    console.error("Error posting contact form:", error);
+    throw new Error("Failed to submit contact form");
   }
 }

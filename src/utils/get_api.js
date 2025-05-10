@@ -1,21 +1,11 @@
-import { BASE_URL, getToken } from "@/utils/axios_instance";
+import { serverAxios } from '@/utils/axios_clients';
 
 export async function getServerSideData(url = "", check = false) {
   try {
-    const res = await fetch(`${BASE_URL}/${url}`, {
-      headers: {
-        Authorization: `Bearer ${getToken}`,
-        "x-saif-ali-usman-zain-umar":
-          "$2y$19$9igxaQU0lPf2HTm35SS3A.dUlGLoMx7orpH3IL/p7HZNI8Cwmzsnu",
-      },
-      cache: "no-cache",
-    });
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data: ${res.statusText}`);
-    }
-    const repo = await res.json();
+    const response = await serverAxios.get(url);
+    const repo = response.data;
     const data = check ? repo : repo?.data?.attributes;
-
+    
     return data;
   } catch (error) {
     console.error(`Error fetching ${url}:`, error);
