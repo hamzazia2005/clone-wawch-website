@@ -8,7 +8,7 @@ export const serverAxios = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Authorization': `Bearer ${process.env.STRAPI_ACCESS_TOKEN || ''}`,
-    'x-server-security-key': process.env.SERVER_SECURITY_KEY || '$2y$19$9igxaQU0lPf2HTm35SS3A.dUlGLoMx7orpH3IL/p7HZNI8Cwmzsnu',
+    'x-server-security-key': process.env.SERVER_SECURITY_KEY || '',
     'x-server-request': process.env.SERVER_REQUEST_SIGNATURE || '',
     'Content-Type': 'application/json',
   },
@@ -76,7 +76,7 @@ export const createFormDataConfig = (token, isServer = false) => {
   };
   
   if (isServer) {
-    headers['x-server-security-key'] = process.env.SERVER_SECURITY_KEY || '$2y$19$9igxaQU0lPf2HTm35SS3A.dUlGLoMx7orpH3IL/p7HZNI8Cwmzsnu';
+    headers['x-server-security-key'] = process.env.SERVER_SECURITY_KEY || '';
     headers['x-server-request'] = process.env.SERVER_REQUEST_SIGNATURE || '';
   } else {
     headers['x-client-request'] = process.env.CLIENT_REQUEST_SIGNATURE || '';
