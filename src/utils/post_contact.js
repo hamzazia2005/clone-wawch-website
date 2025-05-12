@@ -1,6 +1,6 @@
 import { clientAxios } from '@/utils/axios_clients';
 
-export async function postContactForm(url = "", check, item, size) {
+export async function postContactForm(url = '', check, item, size) {
   try {
     const payload = {
       data: {
@@ -10,7 +10,7 @@ export async function postContactForm(url = "", check, item, size) {
         job_title: item.job,
         company_size: size,
         no_of_salespeople: item.salespeople,
-        phone: item?.phone ? item?.phone : "",
+        phone: item?.phone ? item?.phone : '',
         email: item.email,
         message: item.message,
       },
@@ -21,7 +21,7 @@ export async function postContactForm(url = "", check, item, size) {
     
     return check ? repo : repo?.data?.attributes;
   } catch (error) {
-    console.error("Error posting contact form:", error);
-    throw new Error("Failed to submit contact form");
+    console.error('Error posting contact form:', error);
+    throw new Error('Failed to submit contact form');
   }
 }

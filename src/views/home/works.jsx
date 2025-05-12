@@ -1,6 +1,6 @@
 "use client";
 import { Accordion } from "@/components";
-import { FadeIn, PopUp } from "@/animations";
+// import { FadeIn, PopUp } from "@/animations";
 import Image from "next/image";
 
 const Works = ({ data }) => {

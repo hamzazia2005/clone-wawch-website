@@ -1,6 +1,6 @@
 "use client";
 import { ReviewContainer } from "@/components";
-import { FadeIn } from "@/animations";
+// import { FadeIn } from "@/animations";
 import { useRef } from "react";
 import Image from "next/image";
 import { BASE_URL, isLocal } from "@/utils/axios_instance";

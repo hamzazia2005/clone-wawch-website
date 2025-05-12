@@ -1,6 +1,6 @@
 "use client";
 import { PricePlan, Button } from "@/components";
-import { PopUp, FadeIn } from "@/animations";
+// import { PopUp, FadeIn } from "@/animations";
 import { useAppContext } from "@/context";
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { Tabs, TabsHeader, Tab } from "@material-tailwind/react";

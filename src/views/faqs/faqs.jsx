@@ -1,16 +1,17 @@
-"use client";
-import { FaqQuestion } from "@/components";
-import { FadeIn, PopUp } from "@/animations";
-import { useState } from "react";
+'use client';
+import { FaqQuestion } from '@/components';
+import { FadeIn, PopUp } from '@/animations';
+import { useState } from 'react';
 
 const Faq = ({ data }) => {
+  // eslint-disable-next-line no-undef
   const titles = [...new Set(data?.map((item) => item.attributes.title))];
-  const [selectedTitle, setSelectedTitle] = useState("All");
+  const [selectedTitle, setSelectedTitle] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 10;
   const filteredData =
-    selectedTitle === "All"
+    selectedTitle === 'All'
       ? data
       : data.filter((item) => item?.attributes?.title === selectedTitle);
 
@@ -27,17 +28,17 @@ const Faq = ({ data }) => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="sm:max-w-[900px] w-full px-5 sm:px-12 pt-16">
-        <div className="flex items-center justify-between sm:justify-center gap-5 mb-6 overflow-x-scroll sm:overflow-hidden">
+    <div className='flex justify-center items-center'>
+      <div className='sm:max-w-[900px] w-full px-5 sm:px-12 pt-16'>
+        <div className='flex items-center justify-between sm:justify-center gap-5 mb-6 overflow-x-scroll sm:overflow-hidden'>
           <FadeIn key={-1} duration={1}>
             <h2
               className={`text-xl font-poppins cursor-pointer ${
-                selectedTitle === "All"
-                  ? "text-secondary font-semibold"
-                  : "text-primary"
+                selectedTitle === 'All'
+                  ? 'text-secondary font-semibold'
+                  : 'text-primary'
               }`}
-              onClick={() => handleTitleSelection("All")}
+              onClick={() => handleTitleSelection('All')}
             >
               All
             </h2>
@@ -47,8 +48,8 @@ const Faq = ({ data }) => {
               <h2
                 className={`text-xl font-poppins cursor-pointer ${
                   selectedTitle === title
-                    ? "text-secondary font-semibold"
-                    : "text-primary"
+                    ? 'text-secondary font-semibold'
+                    : 'text-primary'
                 }`}
                 onClick={() => handleTitleSelection(title)}
               >
@@ -57,7 +58,7 @@ const Faq = ({ data }) => {
             </FadeIn>
           ))}
         </div>
-        <div className="mb-12">
+        <div className='mb-12'>
           {currentData.map((item, index) => (
             <div key={index}>
               <PopUp duration={1}>
@@ -68,16 +69,16 @@ const Faq = ({ data }) => {
         </div>
         {/* Pagination Controls*/}
         {totalPages > 1 && filteredData.length > 0 && (
-          <div className="flex justify-center items-center gap-2 my-4">
+          <div className='flex justify-center items-center gap-2 my-4'>
             {currentPage > 1 && (
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
-                className="w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded"
+                className='w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded'
               >
                 <span>&lt;</span>
               </button>
             )}
-            <div className="flex items-center gap-2">
+            <div className='flex items-center gap-2'>
               {Array.from({ length: totalPages }).map((_, index) => {
                 const pageNumber = index + 1;
                 if (
@@ -92,8 +93,8 @@ const Faq = ({ data }) => {
                       onClick={() => setCurrentPage(pageNumber)}
                       className={`w-8 h-8 flex justify-center items-center rounded ${
                         currentPage === pageNumber
-                          ? "bg-[#47B772] text-white"
-                          : "bg-gray-200 hover:bg-gray-300"
+                          ? 'bg-[#47B772] text-white'
+                          : 'bg-gray-200 hover:bg-gray-300'
                       }`}
                     >
                       {pageNumber}
@@ -109,7 +110,7 @@ const Faq = ({ data }) => {
                   return (
                     <span
                       key={pageNumber}
-                      className="w-8 h-8 flex justify-center items-center"
+                      className='w-8 h-8 flex justify-center items-center'
                     >
                       ...
                     </span>
@@ -122,7 +123,7 @@ const Faq = ({ data }) => {
             {currentPage < totalPages && (
               <button
                 onClick={() => setCurrentPage(currentPage + 1)}
-                className="w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded"
+                className='w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded'
               >
                 <span>&gt;</span>
               </button>

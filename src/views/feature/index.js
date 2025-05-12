@@ -1,2 +1,2 @@
-export { default as Feature } from "./feature";
-export { default as Details } from "./details";
+export { default as Feature } from './feature';
+export { default as Details } from './details';

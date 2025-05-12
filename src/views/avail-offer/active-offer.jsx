@@ -1,9 +1,9 @@
-"use client";
-import { useState } from "react";
-import { BASE_URL, isLocal } from "@/utils/axios_instance";
-import { Toaster } from "react-hot-toast";
-import Offers from "./pop-up";
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
+import { BASE_URL, isLocal } from '@/utils/axios_instance';
+import { Toaster } from 'react-hot-toast';
+import Offers from './pop-up';
+import Image from 'next/image';
 
 const ActiveOffer = ({ data, offer, isContact }) => {
   const [open, setOpen] = useState(0);
@@ -13,9 +13,9 @@ const ActiveOffer = ({ data, offer, isContact }) => {
     isPopUpOpen((cur) => !cur);
   };
   return (
-    <div className="flex justify-center items-center bg-[#222923] px-4 py-16">
-      <div className="sm:max-w-[1440px] w-full">
-        <Toaster position="bottom-center" />
+    <div className='flex justify-center items-center bg-[#222923] px-4 py-16'>
+      <div className='sm:max-w-[1440px] w-full'>
+        <Toaster position='bottom-center' />
         <Offers
           open={popUpOpen}
           handleOpen={handleOpen}
@@ -25,24 +25,24 @@ const ActiveOffer = ({ data, offer, isContact }) => {
         />
         <h3
           className={`text-white text-[40px] sm:text-[56px] font-medium ${
-            isContact ? "mb-32" : "mb-16"
+            isContact ? 'mb-32' : 'mb-16'
           } font-poppins text-center mt-2 mx-3`}
         >
           {data?.heading}
-          <span className="ml-2 text-transparent bg-gradient-to-r from-[#DCF6D4] to-[#49B974] bg-clip-text">
+          <span className='ml-2 text-transparent bg-gradient-to-r from-[#DCF6D4] to-[#49B974] bg-clip-text'>
             {data?.heading2}
           </span>
         </h3>
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="md:w-[40%] flex justify-center">
+        <div className='flex flex-col md:flex-row gap-8'>
+          <div className='md:w-[40%] flex justify-center'>
             <div>
               {offer.map((item, index) => (
                 <div
                   key={index}
                   className={`bg-gradient-to-r ${
                     open === index
-                      ? "from-[#caf9bb] to-[#49B974]"
-                      : "from-[#38a763d4] to-[#066E39]"
+                      ? 'from-[#caf9bb] to-[#49B974]'
+                      : 'from-[#38a763d4] to-[#066E39]'
                   } w-[300px] rounded-md p-4 my-4 cursor-pointer flex justify-between`}
                   onClick={() => {
                     setOpen(index);
@@ -51,7 +51,7 @@ const ActiveOffer = ({ data, offer, isContact }) => {
                 >
                   <p
                     className={`${
-                      open === index ? "text-black" : "text-white"
+                      open === index ? 'text-black' : 'text-white'
                     } text-sm font-poppins`}
                   >
                     {item?.attributes?.title}
@@ -59,7 +59,7 @@ const ActiveOffer = ({ data, offer, isContact }) => {
                   {item?.attributes?.discount && (
                     <p
                       className={`${
-                        open === index ? "text-black" : "text-white"
+                        open === index ? 'text-black' : 'text-white'
                       }  text-sm font-poppins`}
                     >
                       {item?.attributes?.discount}% off
@@ -69,33 +69,33 @@ const ActiveOffer = ({ data, offer, isContact }) => {
               ))}
             </div>
           </div>
-          <div className="md:w-[60%] flex items-center justify-center order-first md:order-last">
-            <div className="sm:w-[90%]">
+          <div className='md:w-[60%] flex items-center justify-center order-first md:order-last'>
+            <div className='sm:w-[90%]'>
               {detail && (
-                <div className="flex flex-col xs:flex-row justify-between xs:gap-5 w-full xs:items-center">
+                <div className='flex flex-col xs:flex-row justify-between xs:gap-5 w-full xs:items-center'>
                   <Image
                     src={
                       detail?.logo?.data?.attributes?.url
                         ? isLocal
                           ? BASE_URL + detail?.logo?.data?.attributes?.url
                           : detail?.logo?.data?.attributes?.url
-                        : "/assets/placeholder.png"
+                        : '/assets/placeholder.png'
                     }
-                    alt="logo"
+                    alt='logo'
                     width={202}
                     height={50}
-                    className="object-contain"
+                    className='object-contain'
                   />
                   <a
                     href={detail?.link?.link}
-                    target="_blank"
-                    className="text-white w-fit font-medium font-poppins order-first xs:order-last text-right"
+                    target='_blank'
+                    className='text-white w-fit font-medium font-poppins order-first xs:order-last text-right'
                   >
                     {detail?.link?.title}
                   </a>
                 </div>
               )}
-              <p className="text-white break-words font-medium font-poppins text-[32px] sm:text-[48px] my-4 leading-snug">
+              <p className='text-white break-words font-medium font-poppins text-[32px] sm:text-[48px] my-4 leading-snug'>
                 {detail?.description}
               </p>
               <button
@@ -107,8 +107,8 @@ const ActiveOffer = ({ data, offer, isContact }) => {
             </div>
           </div>
         </div>
-        <div className="mt-16 mx-2 sm:mx-12 md:mx-24 px-2 sm:px-12 py-12 bg-white bg-opacity-10 rounded-lg flex flex-col items-center">
-          <p className="text-white text-center font-medium font-poppins text-[36px] sm:text-[48px] my-4 leading-snug">
+        <div className='mt-16 mx-2 sm:mx-12 md:mx-24 px-2 sm:px-12 py-12 bg-white bg-opacity-10 rounded-lg flex flex-col items-center'>
+          <p className='text-white text-center font-medium font-poppins text-[36px] sm:text-[48px] my-4 leading-snug'>
             {data?.combine_discount}
           </p>
           <button

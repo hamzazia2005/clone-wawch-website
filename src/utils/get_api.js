@@ -1,6 +1,6 @@
 import { serverAxios } from '@/utils/axios_clients';
 
-export async function getServerSideData(url = "", check = false) {
+export async function getServerSideData(url = '', check = false) {
   try {
     const response = await serverAxios.get(url);
     const repo = response.data;

@@ -1,6 +1,6 @@
 import { clientAxios } from '@/utils/axios_clients';
 
-export async function postUninsallForm(url = "", check, item, difficulty) {
+export async function postUninsallForm(url = '', check, item, difficulty) {
   try {
     const payload = {
       data: {
@@ -15,7 +15,7 @@ export async function postUninsallForm(url = "", check, item, difficulty) {
     
     return check ? repo : repo?.data?.attributes;
   } catch (error) {
-    console.error("Error posting uninstall form:", error);
-    throw new Error("Failed to submit uninstall form");
+    console.error('Error posting uninstall form:', error);
+    throw new Error('Failed to submit uninstall form');
   }
 }

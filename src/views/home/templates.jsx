@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { FadeIn, PopUp } from "@/animations";
+// import { FadeIn, PopUp } from "@/animations";
 import { BASE_URL, isLocal } from "@/utils/axios_instance";
 
 const Templates = ({ data, isImageRight }) => {

@@ -1,8 +1,8 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useParams, useRouter, usePathname } from "next/navigation";
-import { useAppContext } from "@/context";
-import Link from "next/link";
+'use client';
+import { useState, useEffect } from 'react';
+import { useParams, useRouter, usePathname } from 'next/navigation';
+import { useAppContext } from '@/context';
+import Link from 'next/link';
 
 const NavbarLinks = ({ navLinks }) => {
   const { lang } = useAppContext();
@@ -10,17 +10,17 @@ const NavbarLinks = ({ navLinks }) => {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(
-    pathname === `/${params.lang}/` || pathname === `/`
+    pathname === `/${params.lang}/` || pathname === '/'
       ? 0
-      : pathname.includes("/pricing/" || "/pricing/")
+      : pathname.includes('/pricing/' || '/pricing/')
       ? 1
-      : pathname.includes("/faqs/" || "/faq/")
+      : pathname.includes('/faqs/' || '/faq/')
       ? 2
-      : pathname.includes("/features/")
+      : pathname.includes('/features/')
       ? 3
-      : pathname.includes("/blog/")
+      : pathname.includes('/blog/')
       ? 4
-      : pathname.includes("/contact-us/")
+      : pathname.includes('/contact-us/')
       ? 5
       : -1
   );
@@ -29,15 +29,15 @@ const NavbarLinks = ({ navLinks }) => {
     setOpen(
       pathname === `/${params.lang}/` || pathname === `/`
         ? 0
-        : pathname.includes("/pricing/" || "/pricing/")
+        : pathname.includes('/pricing/' || '/pricing/')
         ? 1
-        : pathname.includes("/faqs/" || "/faq/")
+        : pathname.includes('/faqs/' || '/faq/')
         ? 2
-        : pathname.includes("/features/")
+        : pathname.includes('/features/')
         ? 3
-        : pathname.includes("/blog/")
+        : pathname.includes('/blog/')
         ? 4
-        : pathname.includes("/contact-us/")
+        : pathname.includes('/contact-us/')
         ? 5
         : -1
     );
@@ -51,7 +51,7 @@ const NavbarLinks = ({ navLinks }) => {
       const offsetTop = section.offsetTop + offset;
       window.scrollTo({
         top: offsetTop,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
       setOpen(index);
     }
@@ -60,7 +60,7 @@ const NavbarLinks = ({ navLinks }) => {
   const handleNavigate = (item, index) => {
     if (
       (pathname === `/${params.lang}/` || pathname === `/`) &&
-      item?.link === "/"
+      item?.link === '/'
     ) {
       scrollToSection(index.toString(), index);
     } else {
@@ -73,7 +73,7 @@ const NavbarLinks = ({ navLinks }) => {
   };
 
   return (
-    <div className="flex lg:items-center flex-col lg:flex-row gap-x-8 gap-y-8">
+    <div className='flex lg:items-center flex-col lg:flex-row gap-x-8 gap-y-8'>
       {navLinks?.map((item, index) => (
         // (index !== 0 && index !== 1) ||
         // ((index === 0 || index === 1) &&
@@ -81,18 +81,18 @@ const NavbarLinks = ({ navLinks }) => {
         //   pathname !== `/`) ? (
         <Link
           key={index}
-          // target={item?.link[0] === "/" ? "" : "_blank"}
+          // target={item?.link[0] === '/' ? '' : '_blank'}
           href={
-            !item?.link.includes("/author") && !item?.link.includes("/blog")
-              ? item?.link === "/"
+            !item?.link.includes('/author') && !item?.link.includes('/blog')
+              ? item?.link === '/'
                 ? `/${lang}`
-                : item?.link[0] === "/"
+                : item?.link[0] === '/'
                 ? `${item?.link}/${lang}`
                 : item?.link
               : item?.link
           }
           className={`${
-            open === index ? "text-secondary font-semibold" : "text-primary"
+            open === index ? 'text-secondary font-semibold' : 'text-primary'
           } font-medium font-poppins cursor-pointer hover:text-secondary`}
           onClick={() => handleNavigate(item, index)}
         >

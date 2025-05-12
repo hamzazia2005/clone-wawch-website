@@ -1,9 +1,9 @@
-import { BASE_URL, isLocal } from "@/utils/axios_instance";
-import { getServerSideData } from "@/utils/get_api";
-import Language from "@/components/language_page";
+import { BASE_URL, isLocal } from '@/utils/axios_instance';
+import { getServerSideData } from '@/utils/get_api';
+import Language from '@/components/language_page';
 
 export async function metadata() {
-  const resp = await getServerSideData("api/home-meta/?populate=*");
+  const resp = await getServerSideData('api/home-meta/?populate=*');
   const faviconUrl = isLocal
     ? BASE_URL + resp?.favicon.data.attributes.url
     : resp?.favicon.data.attributes.url;
@@ -11,7 +11,7 @@ export async function metadata() {
     title: resp?.title,
     description: resp?.description,
     verification: {
-      google: "Aahq02UlpbJw3PbuUBWCiXqueMvK4qN0fZNrO4wUWcE",
+      google: 'Aahq02UlpbJw3PbuUBWCiXqueMvK4qN0fZNrO4wUWcE',
     },
     icons: {
       icon: [
@@ -22,11 +22,11 @@ export async function metadata() {
       ],
     },
     openGraph: {
-      url: `https://wawcd.com/`,
+      url: 'https://wawcd.com/',
       title: resp?.title,
       description: resp?.description,
-      siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
-      locale: "en_EN",
+      siteName: 'WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more',
+      locale: 'en_EN',
       images: [
         {
           url: faviconUrl,
@@ -37,23 +37,23 @@ export async function metadata() {
       ],
     },
     alternates: {
-      canonical: "https://wawcd.com/",
+      canonical: 'https://wawcd.com/',
     },
   };
 }
 
 const Page = async () => {
   const urls = {
-    getStarted: `api/get-started`,
-    about: `api/about`,
-    work: `api/work`,
-    template: `api/template/?populate[template][populate]=*`,
-    review1: `api/review`,
-    review2: `api/customer-reviews/?populate=*`,
-    review3: "api/reviews-platforms/?populate=*",
-    faq: `api/faq`,
-    faqs: `api/faq-sections`,
-    meta: `api/home-meta/?populate=*`,
+    getStarted: 'api/get-started',
+    about: 'api/about',
+    work: 'api/work',
+    template: 'api/template/?populate[template][populate]=*',
+    review1: 'api/review',
+    review2: 'api/customer-reviews/?populate=*',
+    review3: 'api/reviews-platforms/?populate=*',
+    faq: 'api/faq',
+    faqs: 'api/faq-sections',
+    meta: 'api/home-meta/?populate=*',
   };
   const [
     getStarted,
@@ -66,6 +66,7 @@ const Page = async () => {
     faq,
     faqs,
     meta,
+  // eslint-disable-next-line no-undef
   ] = await Promise.all([
     getServerSideData(urls.getStarted),
     getServerSideData(urls.about),
@@ -79,14 +80,14 @@ const Page = async () => {
     getServerSideData(urls.meta),
   ]);
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
     name: meta?.title,
     image: isLocal
       ? BASE_URL + template?.image?.data?.attributes?.url
       : template?.image?.data?.attributes?.url,
     description: meta?.description,
-    url: "https://wawcd.com/",
+    url: 'https://wawcd.com/',
   };
   return (
     <div>
