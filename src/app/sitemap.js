@@ -358,6 +358,8 @@ async function getServerSideData(url = "") {
   const res = await fetch(`${process.env.STRAPI_BE_URL}/${url}`, {
     headers: {
       Authorization: `Bearer ${process.env.STRAPI_ACCESS_TOKEN}`,
+      "x-server-security-key": process.env.SERVER_SECURITY_KEY,
+      "x-server-request": process.env.SERVER_REQUEST_SIGNATURE, 
     },
     cache: "no-cache",
   });
