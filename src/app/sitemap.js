@@ -1,6 +1,8 @@
 // app/sitemap.js
 
 // import { getSortedPostsData } from "../lib/posts";
+
+import { serverAxios } from '@/utils/axios_clients';
 const getSortedPostsData = [
   {
     id: "",
@@ -355,21 +357,14 @@ const getSortedPostsData = [
 const URL = process.env.WAWCD_URL;
 
 async function getServerSideData(url = "") {
-  const res = await fetch(`${process.env.STRAPI_BE_URL}/${url}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.STRAPI_ACCESS_TOKEN}`,
-      "x-server-security-key": process.env.SERVER_SECURITY_KEY,
-      "x-server-request": process.env.SERVER_REQUEST_SIGNATURE, 
-    },
-    cache: "no-cache",
-  });
-
-  if (!res.ok) {
+  try {
+    const response = await serverAxios.get(url);
+    
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching data from ${url}:`, error.message || 'Unknown error');
     throw new Error("Failed to fetch data");
   }
-
-  const repo = await res.json();
-  return repo?.data;
 }
 
 export default async function sitemap() {
