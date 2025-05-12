@@ -1,18 +1,18 @@
-import Layout from "@/layout/page";
-import { About, GetStarted } from "@/views/home";
-import dynamic from "next/dynamic";
+import Layout from '@/layout/page';
+import { About, GetStarted } from '@/views/home';
+import dynamic from 'next/dynamic';
 
-const Works = dynamic(() => import("@/views/home").then((mod) => mod.Works), {
+const Works = dynamic(() => import('@/views/home').then((mod) => mod.Works), {
   ssr: false,
 });
 const Templates = dynamic(
-  () => import("@/views/home").then((mod) => mod.Templates),
+  () => import('@/views/home').then((mod) => mod.Templates),
   { ssr: false }
 );
-const Review = dynamic(() => import("@/views/home").then((mod) => mod.Review), {
+const Review = dynamic(() => import('@/views/home').then((mod) => mod.Review), {
   ssr: false,
 });
-const Faq = dynamic(() => import("@/views/home").then((mod) => mod.Faq), {
+const Faq = dynamic(() => import('@/views/home').then((mod) => mod.Faq), {
   ssr: false,
 });
 

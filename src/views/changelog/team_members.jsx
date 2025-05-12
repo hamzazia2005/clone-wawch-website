@@ -1,9 +1,9 @@
-"use client";
-import { useState } from "react";
-import { BASE_URL, isLocal } from "@/utils/axios_instance";
-import Image from "next/image";
-import { BlocksRender } from "@/components";
-import { FadeIn } from "@/animations";
+'use client';
+import { useState } from 'react';
+import { BASE_URL, isLocal } from '@/utils/axios_instance';
+import Image from 'next/image';
+import { BlocksRender } from '@/components';
+import { FadeIn } from '@/animations';
 
 const TeamMembers = ({ heading, data, version }) => {
   // Pagination
@@ -28,16 +28,16 @@ const TeamMembers = ({ heading, data, version }) => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="max-w-[1440px] w-full px-4 sm:px-12 py-12">
-        <h2 className="text-black text-center leading-snug text-[30px] sm:text-[48px] mb-8 font-poppins font-semibold">
+    <div className='flex justify-center items-center'>
+      <div className='max-w-[1440px] w-full px-4 sm:px-12 py-12'>
+        <h2 className='text-black text-center leading-snug text-[30px] sm:text-[48px] mb-8 font-poppins font-semibold'>
           {heading?.heading2}
         </h2>
-        <div className="my-16 flex gap-4 justify-center md:justify-between flex-wrap">
+        <div className='my-16 flex gap-4 justify-center md:justify-between flex-wrap'>
           {data?.map((item, index) => (
             <div
               key={index}
-              className="flex gap-2 py-2 px-2 border rounded-lg items-center min-w-[280px] bg-white shadow-[0px_4px_10px_0px_#dcdcdc]"
+              className='flex gap-2 py-2 px-2 border rounded-lg items-center min-w-[280px] bg-white shadow-[0px_4px_10px_0px_#dcdcdc]'
             >
               <Image
                 src={
@@ -45,20 +45,20 @@ const TeamMembers = ({ heading, data, version }) => {
                     ? isLocal
                       ? BASE_URL +
                         item?.attributes?.image?.data?.attributes?.url
-                      : "" + item?.attributes?.image?.data?.attributes?.url
-                    : "/assets/profile_pic.png"
+                      : '' + item?.attributes?.image?.data?.attributes?.url
+                    : '/assets/profile_pic.png'
                 }
                 width={50}
                 height={50}
-                alt="numbers"
-                style={{ color: "black" }}
-                className="rounded-full"
+                alt='numbers'
+                style={{ color: 'black' }}
+                className='rounded-full'
               />
               <div>
-                <h3 className="mt-2 md:mt-0 text-black font-plus text-xl font-semibold">
+                <h3 className='mt-2 md:mt-0 text-black font-plus text-xl font-semibold'>
                   {item?.attributes?.name}
                 </h3>
-                <p className="font-poppins font-medium text-[#606060]">
+                <p className='font-poppins font-medium text-[#606060]'>
                   {item?.attributes?.role}
                 </p>
               </div>
@@ -69,11 +69,11 @@ const TeamMembers = ({ heading, data, version }) => {
         {currentVersions?.map((item, index) => (
           <div key={index}>
             <FadeIn>
-              <div className="flex gap-2 mb-2 mt-10 bg-gray-300 p-2 rounded-md">
-                <p className="text-lg font-poppins leading-[160%] font-semibold text-black">
+              <div className='flex gap-2 mb-2 mt-10 bg-gray-300 p-2 rounded-md'>
+                <p className='text-lg font-poppins leading-[160%] font-semibold text-black'>
                   {item?.attributes?.version}
                 </p>
-                <p className="text-base font-poppins leading-[160%] font-semibold text-black">
+                <p className='text-base font-poppins leading-[160%] font-semibold text-black'>
                   ({item?.attributes?.date})
                 </p>
               </div>
@@ -84,11 +84,11 @@ const TeamMembers = ({ heading, data, version }) => {
           </div>
         ))}
 
-        <div className="flex justify-center items-center gap-2 my-4">
+        <div className='flex justify-center items-center gap-2 my-4'>
           {currentPage > 1 && (
             <button
               onClick={handlePrevPage}
-              className="w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded"
+              className='w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded'
             >
               <span>&lt;</span>
             </button>
@@ -108,8 +108,8 @@ const TeamMembers = ({ heading, data, version }) => {
                   onClick={() => setCurrentPage(pageNumber)}
                   className={`w-8 h-8 flex justify-center items-center rounded ${
                     currentPage === pageNumber
-                      ? "bg-[#47B772] text-white"
-                      : "bg-gray-200 hover:bg-gray-300"
+                      ? 'bg-[#47B772] text-white'
+                      : 'bg-gray-200 hover:bg-gray-300'
                   }`}
                 >
                   {pageNumber}
@@ -123,7 +123,7 @@ const TeamMembers = ({ heading, data, version }) => {
               return (
                 <span
                   key={pageNumber}
-                  className="w-8 h-8 flex justify-center items-center"
+                  className='w-8 h-8 flex justify-center items-center'
                 >
                   ...
                 </span>
@@ -136,7 +136,7 @@ const TeamMembers = ({ heading, data, version }) => {
           {currentPage < totalPages && (
             <button
               onClick={handleNextPage}
-              className="w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded"
+              className='w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded'
             >
               <span>&gt;</span>
             </button>

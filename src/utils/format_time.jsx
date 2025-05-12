@@ -10,22 +10,22 @@ const FormatTime = (dateString) => {
   const yearMs = 365 * dayMs;
 
   if (diffMs < minuteMs) {
-    return "Just now";
+    return 'Just now';
   } else if (diffMs < hourMs) {
     const minutes = Math.floor(diffMs / minuteMs);
-    return `${minutes} minute${minutes === 1 ? "" : "s"}`;
+    return `${minutes} minute${minutes === 1 ? '' : 's'}`;
   } else if (diffMs < dayMs) {
     const hours = Math.floor(diffMs / hourMs);
-    return `${hours} hour${hours === 1 ? "" : "s"}`;
+    return `${hours} hour${hours === 1 ? '' : 's'}`;
   } else if (diffMs < monthMs) {
     const days = Math.floor(diffMs / dayMs);
-    return `${days} day${days === 1 ? "" : "s"}`;
+    return `${days} day${days === 1 ? '' : 's'}`;
   } else if (diffMs < yearMs) {
     const months = Math.floor(diffMs / monthMs);
-    return `${months} month${months === 1 ? "" : "s"}`;
+    return `${months} month${months === 1 ? '' : 's'}`;
   } else {
     const years = Math.floor(diffMs / yearMs);
-    return `${years} year${years === 1 ? "" : "s"}`;
+    return `${years} year${years === 1 ? '' : 's'}`;
   }
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import { IconButton } from "@/components";
-import { FadeIn } from "@/animations";
+// import { FadeIn } from "@/animations";
 import Image from "next/image";
 
 const Cta = ({ data }) => {

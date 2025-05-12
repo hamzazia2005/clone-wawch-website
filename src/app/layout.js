@@ -1,39 +1,40 @@
-import React from "react";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import "./globals.css";
-import { AppWrapper } from "@/context";
-import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
-import Script from "next/script";
-import AOSinit from "@/animations/AOSinit";
-import NextTopLoader from "nextjs-toploader";
-import Head from "next/head";
-import { Suspense } from "react";
-import Loader from "@/components/loader";
-import WhatsAppButton from "@/components/whatsapp-button";
+/* eslint-disable @next/next/inline-script-id */
+import React from 'react';
+import { Plus_Jakarta_Sans, Poppins } from 'next/font/google';
+import './globals.css';
+import { AppWrapper } from '@/context';
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
+import AOSinit from '@/animations/AOSinit';
+import NextTopLoader from 'nextjs-toploader';
+// import Head from 'next/head';
+import { Suspense } from 'react';
+import Loader from '@/components/loader';
+import WhatsAppButton from '@/components/whatsapp-button';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal"],
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  style: ['normal'],
+  display: 'swap',
 });
 
 const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
 });
 
 export const metadata = {
-  title: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
+  title: 'WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more',
   description:
-    "Maximize Your Impact with the Most Powerful WhatsApp Solution! Enjoy Privacy Features, Zero Inbox, Contact Saver for WhatsApp, Broadcasting, and Seamless Integration with ChatGPT, Hubspot, and More – All in One WhatsApp Solution.",
+    'Maximize Your Impact with the Most Powerful WhatsApp Solution! Enjoy Privacy Features, Zero Inbox, Contact Saver for WhatsApp, Broadcasting, and Seamless Integration with ChatGPT, Hubspot, and More – All in One WhatsApp Solution.',
   icons: {
     icon: [
       {
-        url: "/assets/logo.svg",
-        href: "/assets/logo.svg",
+        url: '/assets/logo.svg',
+        href: '/assets/logo.svg',
       },
     ],
   },

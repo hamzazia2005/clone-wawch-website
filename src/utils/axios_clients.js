@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import axios from 'axios';
 
 // Base URL from environment variables
@@ -12,7 +13,7 @@ export const serverAxios = axios.create({
     'x-server-request': process.env.SERVER_REQUEST_SIGNATURE || '',
     'Content-Type': 'application/json',
   },
-  cache: "no-cache",
+  cache: 'no-cache',
 //   timeout: 30000, // 30 seconds timeout
 });
 
@@ -44,8 +45,7 @@ clientAxios.interceptors.request.use(
     config.headers['x-request-timestamp'] = Date.now().toString();
     return config;
   },
-  (error) => Promise.reject(error)
-);
+  (error) => Promise.reject(error));
 
 const responseInterceptor = (response) => {
   return response;
@@ -66,7 +66,22 @@ const errorInterceptor = (error) => {
   return Promise.reject(error);
 };
 
-serverAxios.interceptors.response.use(responseInterceptor, errorInterceptor);
+serverAxios.interceptors.response.use(
+  (response) => {
+    // Ensure data structure is consistent
+    if (!response.data) {
+      response.data = { data: [] };
+    } else if (!response.data.data && !Array.isArray(response.data)) {
+      response.data = { data: [] };
+    }
+    return response;
+  },
+  (error) => {
+    console.error('API Request Error:', error.message || 'Unknown error');
+    // Return a consistent error response
+    return Promise.reject(error);
+  }
+);
 clientAxios.interceptors.response.use(responseInterceptor, errorInterceptor);
 
 export const createFormDataConfig = (token, isServer = false) => {

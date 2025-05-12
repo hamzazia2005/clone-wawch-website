@@ -1,7 +1,7 @@
 "use client";
 import { IconButton, SiteContainer } from "@/components";
 import { useState } from "react";
-import { FadeIn, PopUp } from "@/animations";
+// import { FadeIn, PopUp } from "@/animations";
 import Image from "next/image";
 
 const GetStarted = ({ data }) => {
