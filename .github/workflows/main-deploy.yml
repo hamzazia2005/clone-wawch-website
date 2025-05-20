@@ -1,0 +1,28 @@
+name: Deploy to AWS Frontend Peach
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-aws:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build and test NextJS Frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Get SSH key and set permissions for wawcd-frontend-peach
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY_FRONTEND_PEACH }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
+      - name: Deploy to wawcd-frontend-peach
+        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_FRONTEND_PEACH }}@${{ secrets.SSH_HOST_FRONTEND_PEACH }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
