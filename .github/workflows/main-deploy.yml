@@ -37,4 +37,4 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY_STRAPI_AVACADO }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
       - name: Deploy to wawcd-strapi-avacado
-        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_STRAPI_AVACADO }}@${{ secrets.SSH_HOST_STRAPI_AVACADO }} "cd ~/wawcd-strapi && git pull origin main --no-rebase && ./deploy.sh prod"
+        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_STRAPI_AVACADO }}@${{ secrets.SSH_HOST_STRAPI_AVACADO }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
