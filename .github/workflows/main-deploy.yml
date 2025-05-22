@@ -10,7 +10,7 @@ jobs:
     env:
       WAWCD_URL: https://wawcd.com/
       STRAPI_BE_URL_SERVER: https://strapi.wawcd.com
-      STRAPI_BE_URL_CLIENT: https://strapi.wawcd.com
+      NEXT_PUBLIC_STRAPI_BE_URL_CLIENT: https://strapi.wawcd.com
       STRAPI_ACCESS_TOKEN: ${{ secrets.STRAPI_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
