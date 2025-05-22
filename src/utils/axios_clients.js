@@ -10,8 +10,8 @@ export const serverAxios = axios.create({
   baseURL: BASE_URL_SERVER,
   headers: {
     Authorization: `Bearer ${process.env.STRAPI_ACCESS_TOKEN || ""}`,
-    "x-server-security-key": process.env.SERVER_SECURITY_KEY || "",
-    "x-server-request": process.env.SERVER_REQUEST_SIGNATURE || "",
+    // "x-server-security-key": process.env.SERVER_SECURITY_KEY || "",
+    // "x-server-request": process.env.SERVER_REQUEST_SIGNATURE || "",
     "Content-Type": "application/json",
   },
   cache: "no-cache",
@@ -23,8 +23,8 @@ export const clientAxios = axios.create({
   baseURL: BASE_URL_CLIENT,
   headers: {
     Authorization: `Bearer ${process.env.STRAPI_POST_TOKEN || ""}`,
-    "x-client-request": process.env.NEXT_PUBLIC_CLIENT_REQUEST_SIGNATURE || "",
-    "x-client-security-key": process.env.NEXT_PUBLIC_CLIENT_SECURITY_KEY || "",
+    // "x-client-request": process.env.NEXT_PUBLIC_CLIENT_REQUEST_SIGNATURE || "",
+    // "x-client-security-key": process.env.NEXT_PUBLIC_CLIENT_SECURITY_KEY || "",
     "Content-Type": "application/json",
   },
   //   timeout: 30000, // 30 seconds timeout
