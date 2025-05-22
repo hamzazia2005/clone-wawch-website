@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WAWCD_URL: https://wawcd.com/
-      STRAPI_BE_URL: https://strapi.wawcd.com
+      STRAPI_BE_URL_SERVER: https://strapi.wawcd.com
+      STRAPI_BE_URL_CLIENT: https://strapi.wawcd.com
       STRAPI_ACCESS_TOKEN: ${{ secrets.STRAPI_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -38,3 +39,19 @@ jobs:
 
       - name: Deploy to wawcd-strapi-avacado
         run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_STRAPI_AVACADO }}@${{ secrets.SSH_HOST_STRAPI_AVACADO }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
+
+      - name: Get SSH key and set permissions for wawcd-strapi-coconut
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY_STRAPI_COCONUT }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
+      - name: Deploy to wawcd-strapi-coconut
+        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_STRAPI_COCONUT }}@${{ secrets.SSH_HOST_STRAPI_COCONUT }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
+
+      # - name: Get SSH key and set permissions for wawcd-adminjs-server
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     echo "${{ secrets.SSH_PRIVATE_KEY_ADMINJS_SERVER }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
+      # - name: Deploy to wawcd-adminjs-server
+      #   run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_ADMINJS_SERVER }}@${{ secrets.SSH_HOST_ADMINJS_SERVER }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
