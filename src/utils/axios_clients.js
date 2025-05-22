@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Base URL from environment variables
 const BASE_URL_SERVER = process.env.STRAPI_BE_URL_SERVER || "";
-const BASE_URL_CLIENT = process.env.STRAPI_BE_URL_CLIENT || "";
+const BASE_URL_CLIENT = process.env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT || "";
 
 // Server-side Axios instance
 export const serverAxios = axios.create({
