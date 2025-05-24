@@ -231,7 +231,7 @@ export default function WhatsAppButton() {
 
   return (
     <FloatingWhatsApp
-      phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
+      phoneNumber="+923087547136"
       accountName="WAWCD Support"
       statusMessage="Replies in 15 minutes"
       chatMessage={chatMessage}
