@@ -1,5 +1,3 @@
-import { clientAxios } from '@/utils/axios_clients';
-
 export async function postAffiliateForm(url = '', check, item, promote) {
   const requestOptions = {
     method: "POST",
@@ -20,19 +18,14 @@ export async function postAffiliateForm(url = '', check, item, promote) {
     }),
   };
 
-  try {
-    console.log('Posting to /api/affiliate with data:', requestOptions.body);
-    
+  try {    
     const res = await fetch('/api/affiliate', requestOptions);
     if (!res.ok) {
       const errorData = await res.json();
-      console.error('Affiliate API Error:', errorData);
       throw new Error(errorData.message || "Failed to submit affiliate form");
     }
     const repo = await res.json();
-    
-    console.log('Affiliate form response:', repo);
-    
+        
     return check ? repo : repo?.data?.attributes;
   } catch (error) {
     console.error('Error posting affiliate form:', error);

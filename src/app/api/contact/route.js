@@ -9,11 +9,7 @@ export async function POST(request) {
     
     return NextResponse.json(response.data);
   } catch (error) {
-    console.error('Error submitting contact form:', error);
-    
-    // Handle axios error response
     if (error.response) {
-      console.error('Strapi error:', error.response.data);
       return NextResponse.json(
         { 
           message: 'Failed to submit contact form', 
@@ -23,7 +19,6 @@ export async function POST(request) {
       );
     }
     
-    // Handle network or other errors
     return NextResponse.json(
       { message: 'Failed to submit contact form', error: error.message },
       { status: 500 }

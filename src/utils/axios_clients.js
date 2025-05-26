@@ -5,10 +5,6 @@ import axios from "axios";
 const BASE_URL_SERVER = process.env.STRAPI_BE_URL_SERVER || process.env.STRAPI_BE_URL || "https://strapi.wawcd.com";
 const BASE_URL_CLIENT = process.env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT || "https://strapi.wawcd.com";
 
-// Debug logging
-console.log('Server Base URL:', BASE_URL_SERVER);
-console.log('Client Base URL:', BASE_URL_CLIENT);
-
 // Server-side Axios instance
 export const serverAxios = axios.create({
   baseURL: BASE_URL_SERVER,

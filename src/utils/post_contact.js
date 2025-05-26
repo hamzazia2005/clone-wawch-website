@@ -19,26 +19,19 @@ export async function postContactForm(url = "", check, item, size) {
     }),
   };
 
-  try {
-    console.log('Posting to /api/contact with data:', requestOptions.body);
-    
+  try {    
     const res = await fetch('/api/contact', requestOptions);
     if (!res.ok) {
       const errorData = await res.json();
-      console.error('API Error:', errorData);
       throw new Error(errorData.message || "Failed to fetch data");
     }
-    const repo = await res.json();
-    
-    console.log('Contact form response:', repo);
-    
+    const repo = await res.json();    
     if (check) {
       return repo;
     } else {
       return repo?.data?.attributes;
     }
   } catch (error) {
-    console.error("Error posting contact form:", error);
     throw new Error("Failed to submit contact form");
   }
 }

@@ -13,22 +13,15 @@ export async function postUninsallForm(url = '', check, item, difficulty) {
     }),
   };
 
-  try {
-    console.log('Posting to /api/uninstall with data:', requestOptions.body);
-    
+  try {    
     const res = await fetch('/api/uninstall', requestOptions);
     if (!res.ok) {
       const errorData = await res.json();
-      console.error('Uninstall API Error:', errorData);
       throw new Error(errorData.message || "Failed to submit uninstall form");
     }
     const repo = await res.json();
-    
-    console.log('Uninstall form response:', repo);
-    
     return check ? repo : repo?.data?.attributes;
   } catch (error) {
-    console.error('Error posting uninstall form:', error);
     throw new Error('Failed to submit uninstall form');
   }
 }
