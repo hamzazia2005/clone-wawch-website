@@ -27,7 +27,7 @@ const nextConfig = {
   env: {
     STRAPI_BE_URL: process.env.STRAPI_BE_URL,
     STRAPI_ACCESS_TOKEN: process.env.STRAPI_ACCESS_TOKEN,
-    STRAPI_POST_TOKEN: process.env.STRAPI_POST_TOKEN,
+    STRAPI_POST_TOKEN: process.env.NEXT_PUBLIC_STRAPI_POST_TOKEN,
     WAWCD_URL: process.env.WAWCD_URL,
   },
   trailingSlash: true,
