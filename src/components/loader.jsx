@@ -8,6 +8,7 @@ const Loader = () => {
         alt='Loading...'
         width={300}
         height={300}
+        unoptimized
         priority
       />
     </div>
