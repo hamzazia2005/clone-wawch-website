@@ -1,4 +1,4 @@
-import { serverAxios } from '@/utils/axios_clients';
+import { serverAxios } from "@/utils/axios_clients";
 
 const getSortedPostsData = [
   {
@@ -358,7 +358,10 @@ async function getServerSideData(url = "") {
     const response = await serverAxios.get(url);
     return response.data?.data || [];
   } catch (error) {
-    console.error(`Error fetching data from ${url}:`, error.message || 'Unknown error');
+    console.error(
+      `Error fetching data from ${url}:`,
+      error.message || "Unknown error"
+    );
     return [];
   }
 }
@@ -369,75 +372,107 @@ export default async function sitemap() {
     const resp2 = await getServerSideData("api/features");
     const resp3 = await getServerSideData("api/faq-sections");
 
-    const routes = getSortedPostsData.map(({ id, date, priority, frequency }) => ({
-      url: `${URL}${id}`,
-      lastModified: date,
-      priority: priority,
-      changeFrequency: frequency,
-    }));
+    const routes = getSortedPostsData.map(
+      ({ id, date, priority, frequency }) => ({
+        url: `${URL}${id}`.replace(/&/g, "&amp;"),
+        lastModified: date,
+        priority: priority,
+        changeFrequency: frequency,
+      })
+    );
 
-    const blogs = Array.isArray(resp) ? resp.map((blog) => ({
-      url: `${URL}blog/${blog?.attributes?.slug}/`,
-      lastModified: `${blog?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const blogs = Array.isArray(resp)
+      ? resp.map((blog) => ({
+          url: `${URL}blog/${blog?.attributes?.slug}/`.replace(/&/g, "&amp;"),
+          lastModified: `${blog?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const features = Array.isArray(resp2) ? resp2.map((feature) => ({
-      url: `${URL}feature/${feature?.attributes?.slug}/`,
-      lastModified: `${feature?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const features = Array.isArray(resp2)
+      ? resp2.map((feature) => ({
+          url: `${URL}feature/${feature?.attributes?.slug}/`.replace(
+            /&/g,
+            "&amp;"
+          ),
+          lastModified: `${feature?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const featuresAr = Array.isArray(resp2) ? resp2.map((feature) => ({
-      url: `${URL}feature/${feature?.attributes?.slug}/ar/`,
-      lastModified: `${feature?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const featuresAr = Array.isArray(resp2)
+      ? resp2.map((feature) => ({
+          url: `${URL}feature/${feature?.attributes?.slug}/ar/`.replace(
+            /&/g,
+            "&amp;"
+          ),
+          lastModified: `${feature?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const featuresPt = Array.isArray(resp2) ? resp2.map((feature) => ({
-      url: `${URL}feature/${feature?.attributes?.slug}/pt/`,
-      lastModified: `${feature?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const featuresPt = Array.isArray(resp2)
+      ? resp2.map((feature) => ({
+          url: `${URL}feature/${feature?.attributes?.slug}/pt/`.replace(
+            /&/g,
+            "&amp;"
+          ),
+          lastModified: `${feature?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const featuresFr = Array.isArray(resp2) ? resp2.map((feature) => ({
-      url: `${URL}feature/${feature?.attributes?.slug}/fr/`,
-      lastModified: `${feature?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const featuresFr = Array.isArray(resp2)
+      ? resp2.map((feature) => ({
+          url: `${URL}feature/${feature?.attributes?.slug}/fr/`.replace(
+            /&/g,
+            "&amp;"
+          ),
+          lastModified: `${feature?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const faqs = Array.isArray(resp3) ? resp3.map((faq) => ({
-      url: `${URL}faq/${faq?.attributes?.slug}/`,
-      lastModified: `${faq?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const faqs = Array.isArray(resp3)
+      ? resp3.map((faq) => ({
+          url: `${URL}faq/${faq?.attributes?.slug}/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const faqsAr = Array.isArray(resp3) ? resp3.map((faq) => ({
-      url: `${URL}faq/${faq?.attributes?.slug}/ar/`,
-      lastModified: `${faq?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const faqsAr = Array.isArray(resp3)
+      ? resp3.map((faq) => ({
+          url: `${URL}faq/${faq?.attributes?.slug}/ar/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const faqsPt = Array.isArray(resp3) ? resp3.map((faq) => ({
-      url: `${URL}faq/${faq?.attributes?.slug}/pt/`,
-      lastModified: `${faq?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const faqsPt = Array.isArray(resp3)
+      ? resp3.map((faq) => ({
+          url: `${URL}faq/${faq?.attributes?.slug}/pt/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
-    const faqsFr = Array.isArray(resp3) ? resp3.map((faq) => ({
-      url: `${URL}faq/${faq?.attributes?.slug}/fr/`,
-      lastModified: `${faq?.attributes?.updatedAt}`,
-      priority: 0.8,
-      changeFrequency: "daily",
-    })) : [];
+    const faqsFr = Array.isArray(resp3)
+      ? resp3.map((faq) => ({
+          url: `${URL}faq/${faq?.attributes?.slug}/fr/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.attributes?.updatedAt}`,
+          priority: 0.8,
+          changeFrequency: "daily",
+        }))
+      : [];
 
     return [
       ...routes,
@@ -452,10 +487,10 @@ export default async function sitemap() {
       ...faqsFr,
     ];
   } catch (error) {
-    console.error('Error generating sitemap:', error);
+    console.error("Error generating sitemap:", error);
     // Return at least the static routes if there's an error
     return getSortedPostsData.map(({ id, date, priority, frequency }) => ({
-      url: `${URL}${id}`,
+      url: `${URL}${id}`.replace(/&/g, "&amp;"),
       lastModified: date,
       priority: priority,
       changeFrequency: frequency,
