@@ -151,7 +151,9 @@ const PricePlan = ({ i, item, isMonthly }) => {
             <p className="text-primary text-[13px] font-poppins">
               {content}{" "}
               <span className="text-primary text-[11px] font-poppins">
-                {item?.isComing && item?.isComing[index] !== ""
+                {item?.isComing &&
+                item?.isComing[index] !== "" &&
+                item?.isComing[index] !== undefined
                   ? `(${item?.isComing[index]})`
                   : ""}
               </span>
