@@ -54,7 +54,9 @@ const Page = async () => {
 
   const updatedPricing = {
     ...pricing,
-    prices: pricing.prices.filter((plan) => plan.price_yearly !== undefined),
+    prices: pricing.prices.filter(
+      (plan) => plan.new_price_yearly !== undefined
+    ),
   };
   const jsonLd = {
     "@context": "https://schema.org",
@@ -72,7 +74,7 @@ const Page = async () => {
       "@type": "Offer",
       name: plan.title,
       description: plan.desc,
-      price: plan.price_yearly,
+      price: plan.new_price_yearly,
       priceCurrency: plan.currency || "USD",
       availability: "https://schema.org/InStock",
     })),
