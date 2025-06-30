@@ -1,3 +1,4 @@
+"use client";
 import { BASE_URL, isLocal } from "@/utils/axios_instance";
 import Image from "next/image";
 import Link from "next/link";

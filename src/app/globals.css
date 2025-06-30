@@ -132,21 +132,21 @@
 }
 
 .test-class a {
-  color: #0000ee;
+  color: #38b36c;
   text-decoration: underline;
 }
 
 .test-class a:hover {
-  color: darkblue;
+  color: #47b772;
 }
 
 .blocks-class a {
-  color: #0000ee !important;
+  color: #38b36c !important;
   text-decoration: underline;
 }
 
 .blocks-class a:hover {
-  color: darkblue !important;
+  color: #47b772 !important;
 }
 
 strong {

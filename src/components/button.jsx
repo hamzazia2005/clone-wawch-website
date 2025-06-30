@@ -1,11 +1,18 @@
 "use client";
 
-const Button = ({ isPrimary, text, background, isborder, isDisable }) => {
+const Button = ({
+  isPrimary,
+  text,
+  background,
+  isborder,
+  isDisable,
+  isWrap,
+}) => {
   return (
     <button
       type="submit"
       disabled={isDisable}
-      className={`w-full text-nowrap sm:transition-all sm:duration-300 py-3 rounded-[8px] px-4 sm:scale-1 sm:hover:scale-[1.025]  ${
+      className={`w-full sm:transition-all sm:duration-300 py-3 rounded-[8px] px-4 sm:scale-1 sm:hover:scale-[1.025]  ${
         isPrimary
           ? `text-primary font-semibold font-poppins sm:hover:bg-primary sm:hover:text-white ${
               isborder ? "border" : ""
@@ -15,7 +22,7 @@ const Button = ({ isPrimary, text, background, isborder, isDisable }) => {
                 ? "bg-secondary sm:hover:bg-primary"
                 : "bg-primary sm:hover:bg-secondary"
             }`
-      }`}
+      } ${isWrap ? "text-wrap" : "text-nowrap"}`}
     >
       {isDisable ? (
         <div className="flex justify-center min-w-[120px]">
