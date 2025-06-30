@@ -108,7 +108,11 @@ const PricePlan = ({ i, item, isMonthly }) => {
       data-aos="zoom-in"
       data-aos-delay={i * 600}
       data-aos-duration="600"
-      className={`flex flex-col justify-between border-2 sm:min-h-full p-4 pb-0 transition-all sm:hover:shadow-[0px_0px_14px_3px_#dcdcdc] border-secondary border-opacity-50 mt-10 rounded-[20px]`}
+      className={`flex flex-col justify-between border-2 min-h-full p-4 pb-0 transition-all hover:shadow-[0px_0px_14px_3px_#dcdcdc] ${
+        item?.tag
+          ? "border-[#5FD78D] rounded-b-[20px]"
+          : "border-secondary border-opacity-50 mt-10 rounded-[20px]"
+      }`}
     >
       <div>
         <div className="flex items-center justify-between gap-2">
@@ -116,15 +120,15 @@ const PricePlan = ({ i, item, isMonthly }) => {
             <h3 className="text-primary font-poppins font-semibold text-2xl">
               {item?.title}
             </h3>
-            {item?.sale_tag && (
+            {/* {item?.sale_tag && (
               <p className="bg-secondary text-white text-xs font-poppins font-semibold px-2 py-1 animate-pulse" style={{clipPath: 'polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%)'}}>
                 {item?.sale_tag}
               </p>
-            )}
+            )} */}
           </div>
-          {item?.tag && (
-            <p className="bg-secondary text-white text-xs font-poppins font-semibold px-2 py-1 rounded-md">
-              {item?.tag}
+          {item?.sale_tag && (
+            <p className="bg-secondary text-white text-[14px] font-poppins font-semibold px-2 py-1 rounded-md">
+              {item?.sale_tag}
             </p>
           )}
         </div>

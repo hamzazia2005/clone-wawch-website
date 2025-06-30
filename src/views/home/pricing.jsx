@@ -1,6 +1,5 @@
 "use client";
 import { PricePlan, Button } from "@/components";
-// import { PopUp, FadeIn } from "@/animations";
 import { useAppContext } from "@/context";
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { Tabs, TabsHeader, Tab } from "@material-tailwind/react";
@@ -93,24 +92,22 @@ const Pricing = ({ data, isPage }) => {
           </>
         )}
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-y-16 max-w-[300px] w-full sm:max-w-[650px] lg:max-w-full">
+          <div className="sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-y-16 max-w-[300px] w-full sm:max-w-[650px] lg:max-w-full mt-10">
             {data?.prices?.map((item, index) => (
-              // <PopUp
-              //   key={index}
-              //   delay={index * 0.6}
-              //   duration={0.6}
-              //   isBounce={true}
-              //   check={true}
-              //   check2={true}
-              // >
-              <PricePlan
-                key={index}
-                i={index}
-                item={item}
-                isMonthly={isMonthly}
-              />
+              <div key={index} className="flex flex-col">
+                {item?.tag && (
+                  <p className="text-white font-semibold text-center font-poppins p-2 bg-secondary rounded-t-[16px] mt-8 sm:mt-0">
+                    {item?.tag}
+                  </p>
+                )}
+                <PricePlan
+                  key={index}
+                  i={index}
+                  item={item}
+                  isMonthly={isMonthly}
+                />
+              </div>
             ))}
-            {/* </PopUp> */}
           </div>
         </div>
         {!isPage && (
@@ -138,7 +135,7 @@ const Pricing = ({ data, isPage }) => {
                   data?.image?.data?.attributes?.url
                     ? isLocal
                       ? BASE_URL + data?.image?.data?.attributes?.url
-                      : "" + data?.image?.data?.attributes?.url
+                      : data?.image?.data?.attributes?.url
                     : "/assets/placeholder.png"
                 }
                 alt="avail-offer"
