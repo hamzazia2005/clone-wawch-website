@@ -112,9 +112,16 @@ const PricePlan = ({ i, item, isMonthly }) => {
     >
       <div>
         <div className="flex items-center justify-between gap-2">
-          <h3 className="text-primary font-poppins font-semibold text-2xl">
-            {item?.title}
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="text-primary font-poppins font-semibold text-2xl">
+              {item?.title}
+            </h3>
+            {item?.sale_tag && (
+              <p className="bg-secondary text-white text-xs font-poppins font-semibold px-2 py-1 animate-pulse" style={{clipPath: 'polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%)'}}>
+                {item?.sale_tag}
+              </p>
+            )}
+          </div>
           {item?.tag && (
             <p className="bg-secondary text-white text-xs font-poppins font-semibold px-2 py-1 rounded-md">
               {item?.tag}
