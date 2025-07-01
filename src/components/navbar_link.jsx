@@ -82,10 +82,13 @@ const NavbarLinks = ({ navLinks }) => {
                   <Link
                     key={subIndex}
                     href={
-                      subItem?.link === "/"
-                        ? `/${lang}`
-                        : subItem?.link?.[0] === "/"
-                        ? `${subItem?.link}/${lang}`
+                      !subItem?.link?.includes("/partner") &&
+                      !subItem?.link?.includes("/affiliates")
+                        ? subItem?.link === "/"
+                          ? `/${lang}`
+                          : subItem?.link?.[0] === "/"
+                          ? `${subItem?.link}/${lang}`
+                          : subItem?.link
                         : subItem?.link
                     }
                     className="block px-4 py-2 text-sm text-primary hover:text-secondary hover:bg-gray-100 whitespace-nowrap"
@@ -99,10 +102,13 @@ const NavbarLinks = ({ navLinks }) => {
           ) : (
             <Link
               href={
-                item?.link === "/"
-                  ? `/${lang}`
-                  : item?.link?.[0] === "/"
-                  ? `${item?.link}/${lang}`
+                !item?.link?.includes("/author") &&
+                !item?.link?.includes("/blog")
+                  ? item?.link === "/"
+                    ? `/${lang}`
+                    : item?.link?.[0] === "/"
+                    ? `${item?.link}/${lang}`
+                    : item?.link
                   : item?.link
               }
               className={`${
