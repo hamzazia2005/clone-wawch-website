@@ -31,11 +31,15 @@ const Page = async ({ searchParams }) => {
     meta: `api/blog-meta`,
   };
 
-  const [blog, detail, meta] = await Promise.all([
-    getServerSideData(urls.blog),
-    getServerSideData(urls.detail, true),
-    getServerSideData(urls.meta),
-  ]);
+  // const [blog, detail, meta] = await Promise.all([
+  //   getServerSideData(urls.blog),
+  //   getServerSideData(urls.detail, true),
+  //   getServerSideData(urls.meta),
+  // ]);
+
+  const blog = await getServerSideData(urls.blog);
+  const detail = await getServerSideData(urls.detail, true);
+  const meta = await getServerSideData(urls.meta);
 
   const totalPages = Math.ceil(detail?.meta?.pagination?.total / pageSize);
 
