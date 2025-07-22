@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
       title: resp?.data[0]?.attributes?.meta_title,
       description: resp?.data[0]?.attributes?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
-      locale: "en_EN",
+      locale: "en_US",
       images: [
         {
           url: resp?.data[0]?.attributes?.image?.data[0]?.attributes?.url,

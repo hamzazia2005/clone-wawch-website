@@ -54,7 +54,7 @@ const Page = async ({ params }) => {
   const urls = {
     getStarted: `api/get-started/?locale=${paramLanguage}`,
     about: `api/about/?locale=${paramLanguage}`,
-    work: `api/work/?locale=${paramLanguage}`,
+    // work: `api/work/?locale=${paramLanguage}`,
     template: `api/template/?populate[template][populate]=*&locale=${paramLanguage}`,
     review1: `api/review/?locale=${paramLanguage}`,
     review2: `api/customer-reviews/?locale=${paramLanguage}&populate=*`,
@@ -68,7 +68,7 @@ const Page = async ({ params }) => {
   const [
     getStarted,
     about,
-    work,
+    // work,
     template,
     review1,
     review2,
@@ -80,7 +80,7 @@ const Page = async ({ params }) => {
   ] = await Promise.all([
     getServerSideData(urls.getStarted),
     getServerSideData(urls.about),
-    getServerSideData(urls.work),
+    // getServerSideData(urls.work),
     getServerSideData(urls.template),
     getServerSideData(urls.review1),
     getServerSideData(urls.review2, true),
@@ -110,7 +110,7 @@ const Page = async ({ params }) => {
         params={params}
         getStarted={getStarted}
         about={about}
-        work={work}
+        // work={work}
         template={template?.template}
         review1={review1}
         review2={review2}

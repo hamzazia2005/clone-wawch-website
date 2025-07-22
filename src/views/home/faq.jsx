@@ -49,12 +49,11 @@ const Faq = ({ data, faqs, isPage }) => {
               {/* </FadeIn> */}
             </div>
             <div className="md:w-[60%] pt-12 md:pt-0 md:pl-10">
-              {faqs.slice(0, 6).map(
+              {faqs?.map(
                 (item, index) =>
                   index !== 4 && (
                     <div key={index}>
                       {/* <PopUp duration={1}> */}
-
                       <FaqQuestion item={item?.attributes} flag={false} />
                       {/* </PopUp> */}
                     </div>

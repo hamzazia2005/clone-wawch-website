@@ -12,7 +12,7 @@ export async function metadata() {
       title: resp?.meta_title,
       description: resp?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
-      locale: "en_EN",
+      locale: "en_US",
     },
     alternates: {
       canonical: "https://wawcd.com/affiliate/",
