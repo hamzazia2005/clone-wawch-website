@@ -61,7 +61,7 @@ const Page = async ({ params }) => {
     review3: "api/reviews-platforms/?populate=*",
     pricing: `api/price/?populate=*&locale=${paramLanguage}`,
     faq: `api/faq/?locale=${paramLanguage}`,
-    faqs: `api/faq-sections/?locale=${paramLanguage}`,
+    faqs: `api/faq-sections/?filters[is_home_page][$eq]=${true}&locale=${paramLanguage}`,
     meta: `api/home-meta/?locale=${paramLanguage}&populate=*`,
   };
 
@@ -90,6 +90,7 @@ const Page = async ({ params }) => {
     getServerSideData(urls.faqs, true),
     getServerSideData(urls.meta),
   ]);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
