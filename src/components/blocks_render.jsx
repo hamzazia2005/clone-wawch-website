@@ -1,6 +1,6 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
-import { FadeIn, PopUp } from "@/animations";
+import { PopUp } from "@/animations";
 
 const BlocksRender = ({ data }) => {
   return (

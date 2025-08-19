@@ -1,7 +1,6 @@
 import { FaqCall } from "@/views/faqs";
 import { getServerSideData } from "@/utils/get_api";
 import Layout from "@/layout/page";
-import Link from "next/link";
 
 export async function metadata() {
   const resp = await getServerSideData("api/faq-meta");

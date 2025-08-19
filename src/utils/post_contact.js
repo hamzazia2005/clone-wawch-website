@@ -1,4 +1,4 @@
-export async function postContactForm(url = "", check, item, size) {
+export async function postContactForm(check, item, size) {
   const requestOptions = {
     method: "POST",
     headers: {
@@ -12,20 +12,20 @@ export async function postContactForm(url = "", check, item, size) {
         job_title: item.job,
         company_size: size,
         no_of_salespeople: item.salespeople,
-        phone: item?.phone ? item?.phone : '',
+        phone: item?.phone ? item?.phone : "",
         email: item.email,
         message: item.message,
       },
     }),
   };
 
-  try {    
-    const res = await fetch('/api/contact', requestOptions);
+  try {
+    const res = await fetch("/api/contact", requestOptions);
     if (!res.ok) {
       const errorData = await res.json();
       throw new Error(errorData.message || "Failed to fetch data");
     }
-    const repo = await res.json();    
+    const repo = await res.json();
     if (check) {
       return repo;
     } else {

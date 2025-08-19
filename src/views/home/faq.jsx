@@ -1,11 +1,10 @@
 "use client";
 import { Button, FaqQuestion } from "@/components";
 import { useAppContext } from "@/context";
-// import { FadeIn, PopUp } from "@/animations";
 import { Cta } from "@/views/home";
 import Link from "next/link";
 
-const Faq = ({ data, faqs, isPage }) => {
+const Faq = ({ data, faqs }) => {
   const { lang } = useAppContext();
 
   return (

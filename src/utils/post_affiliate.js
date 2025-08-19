@@ -1,4 +1,4 @@
-export async function postAffiliateForm(url = '', check, item, promote) {
+export async function postAffiliateForm(check, item, promote) {
   const requestOptions = {
     method: "POST",
     headers: {
@@ -10,25 +10,25 @@ export async function postAffiliateForm(url = '', check, item, promote) {
         last_name: item?.lName,
         email: item?.email,
         whatsapp_number: item?.whatsapp,
-        company_name: item?.company ? item?.company : '',
-        url: item?.url ? item?.url : '',
+        company_name: item?.company ? item?.company : "",
+        url: item?.url ? item?.url : "",
         promote: promote,
-        message: item?.note ? item?.note : '',
+        message: item?.note ? item?.note : "",
       },
     }),
   };
 
-  try {    
-    const res = await fetch('/api/affiliate', requestOptions);
+  try {
+    const res = await fetch("/api/affiliate", requestOptions);
     if (!res.ok) {
       const errorData = await res.json();
       throw new Error(errorData.message || "Failed to submit affiliate form");
     }
     const repo = await res.json();
-        
+
     return check ? repo : repo?.data?.attributes;
   } catch (error) {
-    console.error('Error posting affiliate form:', error);
-    throw new Error('Failed to submit affiliate form');
+    console.error("Error posting affiliate form:", error);
+    throw new Error("Failed to submit affiliate form");
   }
 }

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Checkbox } from ".";
-import { FadeIn } from "@/animations";
 
 const AboutContainer = ({ item }) => {
   return (

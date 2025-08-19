@@ -17,7 +17,7 @@ const BulkCard = ({ enterpriseSection, isMonthly }) => {
   };
 
   useEffect(() => {
-    const initialPrices = enterpriseSection.enterprise.map((card, index) =>
+    const initialPrices = enterpriseSection.enterprise.map((card) =>
       (
         getPricePerItem(card.pricingTiers, initialQuantity) * initialQuantity
       ).toFixed(2)

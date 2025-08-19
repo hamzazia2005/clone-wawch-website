@@ -1,4 +1,4 @@
-export async function postUninsallForm(url = '', check, item, difficulty) {
+export async function postUninsallForm(check, item, difficulty) {
   const requestOptions = {
     method: "POST",
     headers: {
@@ -13,8 +13,8 @@ export async function postUninsallForm(url = '', check, item, difficulty) {
     }),
   };
 
-  try {    
-    const res = await fetch('/api/uninstall', requestOptions);
+  try {
+    const res = await fetch("/api/uninstall", requestOptions);
     if (!res.ok) {
       const errorData = await res.json();
       throw new Error(errorData.message || "Failed to submit uninstall form");
@@ -22,6 +22,6 @@ export async function postUninsallForm(url = '', check, item, difficulty) {
     const repo = await res.json();
     return check ? repo : repo?.data?.attributes;
   } catch (error) {
-    throw new Error('Failed to submit uninstall form');
+    throw new Error("Failed to submit uninstall form");
   }
 }

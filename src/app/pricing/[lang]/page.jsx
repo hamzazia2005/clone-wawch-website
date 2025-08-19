@@ -1,7 +1,7 @@
 import { Pricing, Cta } from "@/views/home";
 import Layout from "@/layout/page";
 import { getServerSideData } from "@/utils/get_api";
-import { TableCollapse, BulkPurchase, PricingPage } from "@/views/pricing";
+import { TableCollapse, BulkPurchase } from "@/views/pricing";
 
 export async function metadata({ params }) {
   const languages = ["en", "fr", "ar", "pt", "ru"];

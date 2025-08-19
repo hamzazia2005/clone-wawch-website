@@ -80,7 +80,7 @@ const PricePlan = ({ i, item, isMonthly }) => {
     )
       .then((res) => res.json())
       .then((data) => setCountry(data.country))
-      .catch((err) => setCountry("")); // fallback to default
+      .catch(() => setCountry("")); // fallback to default
   }, []);
 
   // Determine price and currency based on country
