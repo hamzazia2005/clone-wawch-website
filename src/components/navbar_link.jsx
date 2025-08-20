@@ -83,7 +83,9 @@ const NavbarLinks = ({ navLinks }) => {
                     key={subIndex}
                     href={
                       !subItem?.link?.includes("/partner") &&
-                      !subItem?.link?.includes("/affiliates")
+                      !subItem?.link?.includes("/affiliates") &&
+                      !subItem?.link?.includes("/blog") &&
+                      !subItem?.link?.includes("/author")
                         ? subItem?.link === "/"
                           ? `/${lang}`
                           : subItem?.link?.[0] === "/"
@@ -103,7 +105,9 @@ const NavbarLinks = ({ navLinks }) => {
             <Link
               href={
                 !item?.link?.includes("/author") &&
-                !item?.link?.includes("/blog")
+                !item?.link?.includes("/blog") &&
+                !item?.link?.includes("/partner") &&
+                !item?.link?.includes("/affiliates")
                   ? item?.link === "/"
                     ? `/${lang}`
                     : item?.link?.[0] === "/"
