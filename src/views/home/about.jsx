@@ -95,14 +95,14 @@ const About = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row gap-4">
+          {/* <div className="flex flex-col md:flex-row gap-4">
             <div className="md:w-[40%]">
               <AboutContainer item={data?.privacy} />
             </div>
             <div className="md:w-[60%] md:min-h-full">
               <AboutContainer item={data?.time_saving} />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
