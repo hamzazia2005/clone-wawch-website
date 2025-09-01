@@ -11,14 +11,14 @@ export async function metadata({ params }) {
     title: resp?.meta_title,
     description: resp?.meta_description,
     openGraph: {
-      url: `https://wawcd.com/${paramLanguage}/pricing`,
+      url: `https://wawcd.com/${paramLanguage}/pricing/`,
       title: resp?.title,
       description: resp?.description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: `${paramLanguage}_${paramLanguage.toUpperCase()}`,
     },
     alternates: {
-      canonical: `https://wawcd.com/${paramLanguage}/pricing`,
+      canonical: `https://wawcd.com/${paramLanguage}/pricing/`,
     },
   };
 }
