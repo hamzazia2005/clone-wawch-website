@@ -10,6 +10,7 @@ const NavbarLinks = ({ navLinks }) => {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(-1);
+  console.log("NavLinks", navLinks)
 
   useEffect(() => {
     setOpen(

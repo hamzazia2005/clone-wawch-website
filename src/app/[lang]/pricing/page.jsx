@@ -55,7 +55,7 @@ const Page = async ({ params }) => {
     name: pricing?.meta_title || "WAWCD Pricing",
     description:
       pricing?.meta_description || "Choose the best plan for your needs.",
-    url: `https://wawcd.com/pricing/${paramLanguage}`,
+    url: `https://wawcd.com/${paramLanguage}/pricing/`,
     provider: {
       "@type": "Organization",
       name: "WAWCD",

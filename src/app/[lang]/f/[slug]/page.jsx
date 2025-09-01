@@ -46,7 +46,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: bulkMessages?.meta_title,
     description: bulkMessages?.meta_description,
-    url: `https://wawcd.com/f/${params.slug}/${paramLanguage}`,
+    url: `https://wawcd.com/${paramLanguage}/f/${params.slug}`,
     datePublished: bulkMessages?.createdAt,
   };
   return (

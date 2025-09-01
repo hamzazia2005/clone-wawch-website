@@ -48,7 +48,7 @@ const Page = async ({ params }) => {
     name: detail?.data[0]?.attributes?.meta_title,
     description: detail?.data[0]?.attributes?.meta_description,
     image: detail?.data[0]?.attributes?.image?.data[0]?.attributes?.url,
-    url: `https://wawcd.com/feature/${params.slug}/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/feature/${params.slug}/`,
     datePublished: detail?.data[0]?.attributes?.createdAt,
     dateModified: detail?.data[0]?.attributes?.updatedAt,
     publisher: {

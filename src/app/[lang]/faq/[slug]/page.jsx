@@ -44,7 +44,7 @@ const Page = async ({ params }) => {
     "@type": "FAQPage",
     name: faq?.data[0]?.attributes?.meta_title,
     description: faq?.data[0]?.attributes?.meta_description,
-    url: `https://wawcd.com/faq/${params.slug}/${params.lang}/`,
+    url: `https://wawcd.com/${params.lang}/faq/${params.slug}/`,
     datePublished: faq?.data[0]?.attributes?.createdAt,
     dateModified: faq?.data[0]?.attributes?.updatedAt,
     author: {
