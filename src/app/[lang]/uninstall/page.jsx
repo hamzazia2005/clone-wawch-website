@@ -43,7 +43,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: meta?.title,
     description: meta?.description,
-    url: `https://wawcd.com/uninstall/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/uninstall/`,
     datePublished: meta?.createdAt,
   };
   return (

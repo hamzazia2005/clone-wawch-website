@@ -43,7 +43,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: contactStarter?.meta_title,
     description: contactStarter?.meta_description,
-    url: `https://wawcd.com/avail-offer-contact-saver/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/avail-offer-contact-saver/`,
     datePublished: contactStarter?.createdAt,
   };
   return (

@@ -42,7 +42,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: testimonialStarter?.meta_title,
     description: testimonialStarter?.meta_description,
-    url: `https://wawcd.com/testimonial/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/testimonial/`,
     datePublished: testimonialStarter?.createdAt,
   };
   return (

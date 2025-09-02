@@ -69,7 +69,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: comparisonStarter?.meta_title,
     description: comparisonStarter?.meta_description,
-    url: `https://wawcd.com/comparison/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/comparison/`,
     datePublished: comparisonStarter?.createdAt,
   };
   return (

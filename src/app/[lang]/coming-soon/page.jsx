@@ -38,7 +38,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: meta?.title,
     description: meta?.description,
-    url: `https://wawcd.com/coming-soon/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/coming-soon/`,
     datePublished: meta?.createdAt,
   };
   return (

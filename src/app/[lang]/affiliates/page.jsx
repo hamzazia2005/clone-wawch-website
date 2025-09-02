@@ -52,7 +52,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: banner?.meta_title,
     description: banner?.meta_description,
-    url: `https://wawcd.com/affiliates/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/affiliates/`,
     datePublished: banner?.createdAt,
   };
   return (

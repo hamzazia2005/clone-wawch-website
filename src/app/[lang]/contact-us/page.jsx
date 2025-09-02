@@ -43,7 +43,7 @@ const Page = async ({ params }) => {
     "@type": "ContactPage",
     name: meta?.title,
     description: meta?.description,
-    url: `https://wawcd.com/contact-us/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/contact-us/`,
     datePublished: meta?.createdAt,
     mainEntity: {
       "@type": "Organization",

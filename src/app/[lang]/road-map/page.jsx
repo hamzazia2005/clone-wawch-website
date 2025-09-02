@@ -42,7 +42,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: roadmapStarter?.meta_title,
     description: roadmapStarter?.meta_description,
-    url: `https://wawcd.com/road-map/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/road-map/`,
     datePublished: roadmapStarter?.createdAt,
   };
   return (

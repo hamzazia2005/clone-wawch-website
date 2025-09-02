@@ -41,7 +41,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: contactStarter?.meta_title,
     description: contactStarter?.meta_description,
-    url: `https://wawcd.com/affiliate/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/affiliate/`,
     datePublished: contactStarter?.createdAt,
   };
   return (

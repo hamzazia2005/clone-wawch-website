@@ -44,7 +44,7 @@ const Page = async ({ params }) => {
     "@type": "WebPage",
     name: changelogStarter?.meta_title,
     description: changelogStarter?.meta_description,
-    url: `https://wawcd.com/changelog/${paramLanguage}/`,
+    url: `https://wawcd.com/${paramLanguage}/changelog/`,
     datePublished: changelogStarter?.createdAt,
   };
   return (
