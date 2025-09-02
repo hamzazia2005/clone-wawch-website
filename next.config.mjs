@@ -23,22 +23,6 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: "/features",
-        has: [
-          {
-            type: "query",
-            key: "page",
-            value: "1|2|3", 
-          },
-        ],
-        destination: "/features", 
-        permanent: true, // 301
-      },
-    ];
-  },
   env: {
     STRAPI_BE_URL: process.env.STRAPI_BE_URL,
     STRAPI_ACCESS_TOKEN: process.env.STRAPI_ACCESS_TOKEN,
