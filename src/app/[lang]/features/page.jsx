@@ -30,8 +30,8 @@ const Page = async ({ params}) => {
   const paramLanguage = languages?.includes(params?.lang) ? params?.lang : "en";
 
   const urls = {
-    feature: `api/features/?populate=*&sort=createdAt:DESC`, 
-    meta: `api/features-meta`,
+    feature: `api/features/?populate=*&sort=createdAt:DESC&locale=${paramLanguage}`, 
+    meta: `api/features-meta/?locale=${paramLanguage}`,
   };
 
   const [feature, meta] = await Promise.all([
