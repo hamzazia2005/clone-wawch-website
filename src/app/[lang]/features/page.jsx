@@ -1,7 +1,7 @@
 import { Feature } from "@/views/feature";
 import { getServerSideData } from "@/utils/get_api";
 import Layout from "@/layout/page";
-import Link from "next/link";
+
 
 export async function generateMetadata({ params }) {
   const languages = ["en", "fr", "ar", "pt", "ru"];
@@ -30,7 +30,7 @@ const Page = async ({ params}) => {
   const paramLanguage = languages?.includes(params?.lang) ? params?.lang : "en";
 
   const urls = {
-    feature: `api/features/?populate=*&sort=createdAt:DESC`, // removed pagination params
+    feature: `api/features/?populate=*&sort=createdAt:DESC`, 
     meta: `api/features-meta`,
   };
 
