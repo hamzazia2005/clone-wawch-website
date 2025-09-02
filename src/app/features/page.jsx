@@ -1,7 +1,7 @@
 import { Feature } from "@/views/feature";
 import { getServerSideData } from "@/utils/get_api";
 import Layout from "@/layout/page";
-import Link from "next/link";
+//import Link from "next/link";
 
 export async function metadata() {
   const resp = await getServerSideData("api/features-meta");
@@ -21,13 +21,17 @@ export async function metadata() {
   };
 }
 
-const Page = async ({ searchParams }) => {
-  const page = Number(searchParams?.page) || 1;
-  const pageSize = 5;
-  const urls = {
-    feature: `api/features/?populate=*&sort=createdAt:DESC&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
-    meta: `api/features-meta`,
-  };
+const Page = async () => {
+  //const page = Number(searchParams?.page) || 1;
+  //const pageSize = 5;
+const urls = {
+  feature: `api/features/?populate=*&sort=createdAt:DESC`, // removed pagination params
+  meta: `api/features-meta`,
+};
+  // const urls = {
+  //   feature: `api/features/?populate=*&sort=createdAt:DESC&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+  //   meta: `api/features-meta`,
+  // };
   const [feature, meta] = await Promise.all([
     getServerSideData(urls.feature, true),
     getServerSideData(urls.meta),
@@ -49,8 +53,8 @@ const Page = async ({ searchParams }) => {
     })),
   };
 
-  const totalFeatures = feature?.meta?.pagination?.total || 0;
-  const totalPages = Math.ceil(totalFeatures / pageSize);
+// const totalFeatures = feature?.meta?.pagination?.total || 0;
+// const totalPages = Math.ceil(totalFeatures / pageSize);
 
   return (
     <div>
@@ -63,7 +67,7 @@ const Page = async ({ searchParams }) => {
           data={feature?.data}
           heading={meta?.heading ? meta?.heading : ""}
         />
-        <div className="flex justify-center items-center gap-2 my-4">
+        {/* <div className="flex justify-center items-center gap-2 my-4">
           {page > 1 && (
             <Link href={`?page=${page - 1}`}>
               <button className="w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded">
@@ -117,7 +121,7 @@ const Page = async ({ searchParams }) => {
               </button>
             </Link>
           )}
-        </div>
+        </div> */}
       </Layout>
     </div>
   );
