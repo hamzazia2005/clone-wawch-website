@@ -1,7 +1,6 @@
 import { Feature } from "@/views/feature";
 import { getServerSideData } from "@/utils/get_api";
 import Layout from "@/layout/page";
-import Link from "next/link";
 
 export async function metadata() {
   const resp = await getServerSideData("api/features-meta");
@@ -21,13 +20,12 @@ export async function metadata() {
   };
 }
 
-const Page = async ({ searchParams }) => {
-  const page = Number(searchParams?.page) || 1;
-  const pageSize = 5;
-  const urls = {
-    feature: `api/features/?populate=*&sort=createdAt:DESC&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
-    meta: `api/features-meta`,
-  };
+const Page = async () => {
+const urls = {
+  feature: `api/features/?populate=*&sort=createdAt:DESC`,
+  meta: `api/features-meta`,
+};
+
   const [feature, meta] = await Promise.all([
     getServerSideData(urls.feature, true),
     getServerSideData(urls.meta),
@@ -49,9 +47,6 @@ const Page = async ({ searchParams }) => {
     })),
   };
 
-  const totalFeatures = feature?.meta?.pagination?.total || 0;
-  const totalPages = Math.ceil(totalFeatures / pageSize);
-
   return (
     <div>
       <script
@@ -63,61 +58,6 @@ const Page = async ({ searchParams }) => {
           data={feature?.data}
           heading={meta?.heading ? meta?.heading : ""}
         />
-        <div className="flex justify-center items-center gap-2 my-4">
-          {page > 1 && (
-            <Link href={`?page=${page - 1}`}>
-              <button className="w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded">
-                <span>&lt;</span>
-              </button>
-            </Link>
-          )}
-
-          {Array.from({ length: totalPages }).map((_, index) => {
-            const pageNumber = index + 1;
-
-            if (
-              pageNumber === 1 ||
-              pageNumber === totalPages ||
-              (pageNumber >= page - 1 && pageNumber <= page + 1)
-            ) {
-              return (
-                <Link key={pageNumber} href={`?page=${pageNumber}`}>
-                  <button
-                    className={`w-8 h-8 flex justify-center items-center rounded ${
-                      page === pageNumber
-                        ? "bg-[#47B772] text-white"
-                        : "bg-gray-200 hover:bg-gray-300"
-                    }`}
-                  >
-                    {pageNumber}
-                  </button>
-                </Link>
-              );
-            }
-            if (
-              (pageNumber === page - 2 && page > 3) ||
-              (pageNumber === page + 2 && page < totalPages - 2)
-            ) {
-              return (
-                <span
-                  key={pageNumber}
-                  className="w-8 h-8 flex justify-center items-center"
-                >
-                  ...
-                </span>
-              );
-            }
-
-            return null;
-          })}
-          {page < totalPages && (
-            <Link href={`?page=${page + 1}`}>
-              <button className="w-8 h-8 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded">
-                <span>&gt;</span>
-              </button>
-            </Link>
-          )}
-        </div>
       </Layout>
     </div>
   );

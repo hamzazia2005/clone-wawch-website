@@ -23,7 +23,6 @@ const nextConfig = {
       },
     ],
   },
-  reactStrictMode: true,
   env: {
     STRAPI_BE_URL: process.env.STRAPI_BE_URL,
     STRAPI_ACCESS_TOKEN: process.env.STRAPI_ACCESS_TOKEN,
