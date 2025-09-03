@@ -18,7 +18,7 @@ const Detail = ({ data, heading }) => {
         {data?.map((item, index) => (
           <PopUp key={index} isBounce={true} duration={1}>
             <Link
-              href={`/feature/${item?.attributes?.slug}/${lang}`}
+              href={`/${lang}/feature/${item?.attributes?.slug}`}
               className='flex flex-col md:flex-row gap-8 p-2 sm:p-4 mb-8 border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] transition-all rounded-lg'
             >
               <div>

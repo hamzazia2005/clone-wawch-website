@@ -82,14 +82,12 @@ const NavbarLinks = ({ navLinks }) => {
                   <Link
                     key={subIndex}
                     href={
-                      !subItem?.link?.includes("/partner") &&
-                      !subItem?.link?.includes("/affiliates") &&
                       !subItem?.link?.includes("/blog") &&
                       !subItem?.link?.includes("/author")
                         ? subItem?.link === "/"
                           ? `/${lang}`
                           : subItem?.link?.[0] === "/"
-                          ? `${subItem?.link}/${lang}`
+                          ? lang?`/${lang}${subItem?.link}`:`${lang}${subItem?.link}`
                           : subItem?.link
                         : subItem?.link
                     }
@@ -111,7 +109,7 @@ const NavbarLinks = ({ navLinks }) => {
                   ? item?.link === "/"
                     ? `/${lang}`
                     : item?.link?.[0] === "/"
-                    ? `${item?.link}/${lang}`
+                    ? lang?`/${lang}${item?.link}`:`${lang}${item?.link}`
                     : item?.link
                   : item?.link
               }

@@ -15,10 +15,11 @@ const FooterCol = ({ title, items }) => {
           <Link
             key={index}
             href={
-              !item?.link.includes("/author") && !item?.link.includes("/blog")
+              !item?.link?.includes("/author") &&
+              !item?.link?.includes("/blog") 
                 ? item?.link === "/"
                   ? `/${lang}`
-                  : `${item?.link}/${lang}`
+                  : lang?`/${lang}${item?.link}`:`${lang}${item?.link}`
                 : item?.link
             }
             className="cursor-pointer block text-third font-poppins leading-6 font-medium mb-3 text-wrap hover:text-secondary"

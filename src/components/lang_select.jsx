@@ -54,22 +54,20 @@ const LangSelect = () => {
       >
         {data.map((option) => (
           <Link
-            href={`${
-              pathname.includes('/blog/') || pathname.includes('/author/')
-                ? pathname
-                : cleanPathname(pathname) === '/'
-                ? cleanPathname(pathname) + option
-                : cleanPathname(pathname) + '/' + option
-            }`}
-            key={option}
+          href={`${
+            pathname.includes('/blog/') || pathname.includes('/author/')
+              ? pathname
+              : '/' + option + (cleanPathname(pathname) === '/' ? '' : cleanPathname(pathname))
+          }`}
+          key={option}
+        >
+          <li
+            onClick={() => handleOptionClick(option)}
+            className='px-4 py-2 hover:bg-[#647867c0] cursor-pointer'
           >
-            <li
-              onClick={() => handleOptionClick(option)}
-              className='px-4 py-2 hover:bg-[#647867c0] cursor-pointer'
-            >
-              {option}
-            </li>
-          </Link>
+            {option}
+          </li>
+        </Link>        
         ))}
       </ul>
     </div>
