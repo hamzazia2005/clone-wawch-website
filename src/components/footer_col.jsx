@@ -16,9 +16,7 @@ const FooterCol = ({ title, items }) => {
             key={index}
             href={
               !item?.link?.includes("/author") &&
-              !item?.link?.includes("/blog") &&
-              !item?.link?.includes("/partner") &&
-              !item?.link?.includes("/affiliates")
+              !item?.link?.includes("/blog") 
                 ? item?.link === "/"
                   ? `/${lang}`
                   : lang?`/${lang}${item?.link}`:`${lang}${item?.link}`
