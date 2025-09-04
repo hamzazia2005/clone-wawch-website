@@ -2,8 +2,10 @@
 import axios from "axios";
 
 // Base URL from environment variables with fallbacks
-const BASE_URL_SERVER = process.env.STRAPI_BE_URL_SERVER || process.env.STRAPI_BE_URL || "https://strapi.wawcd.com";
-const BASE_URL_CLIENT = process.env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT || "https://strapi.wawcd.com";
+const BASE_URL_SERVER =  'http://localhost:1337' ;//process.env.STRAPI_BE_URL_SERVER || process.env.STRAPI_BE_URL || "https://strapi.wawcd.com";
+const BASE_URL_CLIENT = 'http://localhost:1337' ;//process.env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT || "https://strapi.wawcd.com";
+console.log('BASE_URL_SERVER', BASE_URL_SERVER);
+console.log('BASE_URL_CLIENT', BASE_URL_CLIENT);
 
 // Server-side Axios instance
 export const serverAxios = axios.create({
@@ -86,13 +88,13 @@ export const createFormDataConfig = (token, isServer = false) => {
     "Content-Type": "multipart/form-data",
   };
 
-  if (isServer) {
-    headers["x-server-security-key"] = process.env.SERVER_SECURITY_KEY || "";
-    headers["x-server-request"] = process.env.SERVER_REQUEST_SIGNATURE || "";
-  } else {
-    headers["x-client-request"] = process.env.NEXT_PUBLIC_CLIENT_REQUEST_SIGNATURE || "";
-    headers["x-client-security-key"] = process.env.NEXT_PUBLIC_CLIENT_SECURITY_KEY || "";
-  }
+  // if (isServer) {
+  //   headers["x-server-security-key"] = process.env.SERVER_SECURITY_KEY || "";
+  //   headers["x-server-request"] = process.env.SERVER_REQUEST_SIGNATURE || "";
+  // } else {
+  //   headers["x-client-request"] = process.env.NEXT_PUBLIC_CLIENT_REQUEST_SIGNATURE || "";
+  //   headers["x-client-security-key"] = process.env.NEXT_PUBLIC_CLIENT_SECURITY_KEY || "";
+  // }
 
   return { headers };
 };

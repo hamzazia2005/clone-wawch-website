@@ -4,9 +4,10 @@ import Language from "@/components/language_page";
 
 export async function metadata() {
   const resp = await getServerSideData("api/home-meta/?populate=*");
+
   const faviconUrl = isLocal
-    ? BASE_URL + resp?.favicon.data.attributes.url
-    : resp?.favicon.data.attributes.url;
+    ? BASE_URL + resp?.favicon.url
+    : resp?.favicon.url;
   return {
     title: resp?.title,
     description: resp?.description,
@@ -79,6 +80,15 @@ const Page = async () => {
     getServerSideData(urls.faqs, true),
     getServerSideData(urls.meta),
   ]);
+  console.log('meta', meta);
+  console.log('template', template); 
+  console.log('getStarted', getStarted);
+  console.log('about', about);
+  console.log('review1', review1);
+  console.log('review2', review2);
+  console.log('review3', review3);
+  console.log('faq', faq);
+  console.log('faqs', faqs);
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -21,11 +21,10 @@ export async function metadata() {
 }
 
 const Page = async () => {
-const urls = {
-  feature: `api/features/?populate=*&sort=createdAt:DESC`,
-  meta: `api/features-meta`,
-};
-
+  const urls = {
+    feature: `api/features/?populate=*&sort=createdAt:DESC`,
+    meta: `api/features-meta`,
+  };
   const [feature, meta] = await Promise.all([
     getServerSideData(urls.feature, true),
     getServerSideData(urls.meta),
@@ -40,10 +39,10 @@ const urls = {
     datePublished: meta?.createdAt,
     mainEntity: feature?.data?.map((feature) => ({
       "@type": "WebPage",
-      headline: feature?.attributes?.meta_title,
-      image: feature?.attributes?.image?.data[0]?.attributes?.url,
-      datePublished: feature?.attributes?.createdAt,
-      dateModified: feature?.attributes?.updatedAt,
+      headline: feature?.meta_title,
+      image: feature?.image?.url,
+      datePublished: feature?.createdAt,
+      dateModified: feature?.updatedAt,
     })),
   };
 

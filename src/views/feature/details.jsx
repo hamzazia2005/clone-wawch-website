@@ -35,10 +35,10 @@ const Detail = ({ data }) => {
           data-aos-duration='800'
           data-aos-delay='300'
           src={
-            data?.image?.data?.attributes?.url
+            data?.image?.url
               ? isLocal
-                ? BASE_URL + data?.image?.data?.attributes?.url
-                : data?.image?.data?.attributes?.url
+                ? BASE_URL + data?.image?.url
+                : data?.image?.url
               : '/assets/placeholder.png'
           }
           alt='img'

@@ -10,8 +10,8 @@ const Author = ({ author, handleAuthorSelection }) => {
         <div className='relative flex-1'>
           <Image
             src={
-              author?.attributes?.image?.data?.length > 0
-                ? author.attributes.image.data[0]?.attributes?.url
+              author?.image?.length > 0
+                ? author?.image?.url
                 : '/assets/author-fallback.svg'
             }
             alt="Author's Image"
@@ -22,9 +22,9 @@ const Author = ({ author, handleAuthorSelection }) => {
 
           <div className='absolute top-8 left-6 bg-white p-3 rounded-lg shadow-md hidden md:block'>
             <Progress />
-            <p className='text-base font-semibold mt-2'>{`${author?.attributes?.skills}%`}</p>
+            <p className='text-base font-semibold mt-2'>{`${author?.skills}%`}</p>
             <p className='text-xs text-gray-600'>
-              {author?.attributes?.skill_label}
+              {author?.skill_label}
             </p>
           </div>
           <div className='absolute top-1/3 right-8 bg-white p-3 rounded-lg shadow-md hidden md:block'>
@@ -35,56 +35,56 @@ const Author = ({ author, handleAuthorSelection }) => {
               height={20}
             />
             <p className='text-base font-semibold mt-2'>
-              {`${author?.attributes?.languages}+`}
+              {`${author?.languages}+`}
             </p>
             <p className='text-xs text-gray-600'>
-              {author?.attributes?.languages_label}
+              {author?.languages_label}
             </p>
           </div>
           <div className='absolute bottom-8 left-6 bg-white p-3 rounded-lg shadow-md hidden md:block'>
             <Count />
             <p className='text-base font-semibold mt-2'>
-              {`${author?.attributes?.words}K`}
+              {`${author?.words}K`}
             </p>
             <p className='text-xs text-gray-600'>
-              {author?.attributes?.words_label}
+              {author?.words_label}
             </p>
           </div>
         </div>
 
         <div className='flex-1 p-8'>
           <h2 className='font-plus text-xl sm:text-2xl font-bold text-center sm:text-left'>
-            {author?.attributes?.title}
+            {author?.title}
           </h2>
           <p className='text-gray-600 mt-2 text-sm sm:text-base font-poppins'>
-            {author?.attributes?.description}
+            {author?.description}
           </p>
 
           <div className='mt-6 space-y-3'>
             <div className='w-full py-3 bg-gray-200 text-left px-4 rounded-lg '>
               <h1 className='font-semibold text-sm sm:text-lg'>
                 {' '}
-                {author?.attributes?.education_label?.toLocaleUpperCase()}
+                {author?.education_label?.toLocaleUpperCase()}
               </h1>
               <p className='text-xs sm:text-sm'>
-                {author?.attributes?.education}
+                {author?.education}
               </p>
             </div>
             <div className='w-full py-3 bg-gray-200 text-left px-4 rounded-lg'>
               <h1 className='font-semibold  text-sm sm:text-lg'>
                 {' '}
-                {author?.attributes?.designation_label?.toLocaleUpperCase()}
+                {author?.designation_label?.toLocaleUpperCase()}
               </h1>
               <p className='text-xs sm:text-sm'>
-                {author?.attributes?.designation}
+                {author?.designation}
               </p>
             </div>
             <div className='w-full py-3 bg-gray-200 text-left px-4 rounded-lg'>
               <h1 className='font-semibold  text-sm sm:text-lg'>
-                {author?.attributes?.specialization_label?.toLocaleUpperCase()}
+                {author?.specialization_label?.toLocaleUpperCase()}
               </h1>
               <p className='text-xs sm:text-sm'>
-                {author?.attributes?.specialization}
+                {author?.specialization}
               </p>
             </div>
             <div className='flex justify-center sm:justify-start'>
@@ -92,7 +92,7 @@ const Author = ({ author, handleAuthorSelection }) => {
                 onClick={() => handleAuthorSelection(author?.id)}
                 className='text-black font-medium border-b-2 hover:bg-primary hover:text-white hover:px-4 hover:py-2 hover:border-none hover:shadow-lg hover:rounded-lg border-black py-2 duration-200 transition-all'
               >
-                {author?.attributes?.btn_tx}
+                {author?.btn_tx}
               </button>
             </div>
           </div>

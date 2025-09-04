@@ -15,20 +15,20 @@ const PopularArticles = ({ details, articles_banner }) => {
     <div className='flex flex-col lg:flex-row justify-center items-center overflow-hidden w-full my-3 sm:my-10 p-4 bg-neutral-50 gap-4'>
       <div className='w-full max-w-3xl lg:w-1/3 mb-6 sm:mb-0 text-center lg:text-start'>
         <h2 className='text-2xl sm:text-3xl font-bold font-plus'>
-          {articles_banner?.data?.attributes?.title}
+          {articles_banner?.data?.title}
         </h2>
         <p className='text-sm sm:text-base text-gray-500 mt-2 font-poppins'>
-          {articles_banner?.data?.attributes?.description}
+          {articles_banner?.data?.description}
         </p>
         <Link
           href={
-            articles_banner?.data?.attributes?.btn_link ||
+            articles_banner?.data?.btn_link ||
             'https://wawcd.com/blog/'
           }
         >
           <button className='font-poppins mt-4 text-black font-medium border-b-2 hover:bg-primary hover:text-white hover:px-4 hover:py-2 hover:border-none hover:shadow-lg hover:rounded-lg border-black py-2 duration-200 transition-all'>
             {`${
-              articles_banner?.data?.attributes?.btn_name || 'Learn More'
+              articles_banner?.data?.btn_name || 'Learn More'
             } → `}
           </button>
         </Link>

@@ -18,13 +18,15 @@ const AuthorPage = ({
   const [selectedAuthorId, setSelectedAuthorId] = React.useState(null);
   const authorBlogsRef = useRef(null);
 
+  console.log('DETAILS ==========>', details);
+
   const handleAuthorSelection = (authorId) => {
     setSelectedAuthorId(authorId);
   };
 
   const filteredBlogs = selectedAuthorId
     ? (details?.data || []).filter(
-        (blog) => blog?.attributes?.author?.data?.id === selectedAuthorId
+        (blog) => blog?.author?.id === selectedAuthorId
       )
     : [];
   setTimeout(() => {

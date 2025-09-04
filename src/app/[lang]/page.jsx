@@ -10,8 +10,8 @@ export async function generateMetadata({ params }) {
   );
 
   const faviconUrl = isLocal
-    ? BASE_URL + resp?.favicon.data.attributes.url
-    : resp?.favicon.data.attributes.url;
+    ? BASE_URL + resp?.favicon.url
+    : resp?.favicon.url;
 
   return {
     title: resp?.title,
