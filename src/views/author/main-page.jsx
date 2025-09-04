@@ -18,8 +18,6 @@ const AuthorPage = ({
   const [selectedAuthorId, setSelectedAuthorId] = React.useState(null);
   const authorBlogsRef = useRef(null);
 
-  console.log('DETAILS ==========>', details);
-
   const handleAuthorSelection = (authorId) => {
     setSelectedAuthorId(authorId);
   };
@@ -71,7 +69,7 @@ const AuthorPage = ({
           {selectedAuthorId && filteredBlogs.length > 0 && (
             <AuthorBlogs
               detail={filteredBlogs}
-              page_title={reviews_banner?.data?.attributes?.blog_title}
+              page_title={reviews_banner?.data?.blog_title}
             />
           )}
         </div>

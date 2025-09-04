@@ -9,17 +9,17 @@ export async function generateMetadata({ params }) {
   );
 
   return {
-    title: resp?.data[0]?.attributes?.meta_title,
-    description: resp?.data[0]?.attributes?.meta_description,
+    title: resp?.meta_title,
+    description: resp?.data?.meta_description,
     openGraph: {
       url: `https://wawcd.com/blog/${params.slug}/`,
-      title: resp?.data[0]?.attributes?.meta_title,
-      description: resp?.data[0]?.attributes?.meta_description,
+      title: resp?.data?.meta_title,
+      description: resp?.data?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
       images: [
         {
-          url: resp?.data[0]?.attributes?.image?.data[0]?.attributes?.url,
+          url: resp?.data?.image?.url,
           width: 800,
           height: 600,
           alt: resp?.title,
@@ -48,15 +48,15 @@ const Page = async ({ params }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: blog?.data[0]?.attributes?.meta_title,
-    description: blog?.data[0]?.attributes?.meta_description,
-    image: blog?.data[0]?.attributes?.image?.data[0]?.attributes?.url,
+    name: blog?.data?.meta_title,
+    description: blog?.data?.meta_description,
+    image: blog?.data?.image?.url,
     url: `https://wawcd.com/blog/${params.slug}/`,
-    datePublished: blog?.data[0]?.attributes?.createdAt,
-    dateModified: blog?.data[0]?.attributes?.updatedAt,
+    datePublished: blog?.data?.createdAt,
+    dateModified: blog?.data?.updatedAt,
     author: {
       "@type": "Person",
-      name: blog?.data[0]?.attributes?.author,
+      name: blog?.data?.author,
     },
     publisher: {
       "@type": "Organization",
@@ -71,7 +71,7 @@ const Page = async ({ params }) => {
       />
       <Layout>
         <Detail
-          data={blog?.data[0]?.attributes}
+          data={blog?.data}
           detail={detail}
           blog_headings={blog_headings}
         />

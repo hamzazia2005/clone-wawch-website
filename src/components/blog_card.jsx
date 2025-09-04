@@ -33,9 +33,8 @@ const BlogCard = ({ item, flag }) => {
               //   ? isLocal
               //     ? BASE_URL + data?.image?.url
               //     : "" + data?.image?.url
-              //   : 
-                
-                "/assets/placeholder.png"
+              //   :
+                 "/assets/placeholder.png"
             }
             alt="blog"
             //priority={true}

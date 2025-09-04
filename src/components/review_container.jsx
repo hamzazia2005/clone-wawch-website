@@ -52,10 +52,10 @@ const ReviewContainer = ({ item, index }) => {
       >
         <Image
           src={
-            item?.profile_picF?.url
+            item?.profile_pic?.url
               ? isLocal
-                ? BASE_URL + item?.profile_pic?.data?.attributes?.url
-                : "" + item?.profile_pic?.data?.attributes?.url
+                ? BASE_URL + item?.profile_pic?.url
+                : "" + item?.profile_pic?.url
               : "/assets/placeholder.png"
           }
           width={50}

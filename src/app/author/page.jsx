@@ -58,8 +58,7 @@ const page = async () => {
       },
     })),
   };
-
-  console.log('AUTHOR ==========>', authors);
+  
   return (
     <>
       <script

@@ -12,7 +12,8 @@ const Author = ({ author, handleAuthorSelection }) => {
             src={
               author?.image?.length > 0
                 ? author?.image?.url
-                : '/assets/author-fallback.svg'
+                : 
+                '/assets/author-fallback.svg'
             }
             alt="Author's Image"
             className='w-full h-full object-cover sm:min-h-[600px] p-0 sm:p-4 md:p-8 rounded-lg'

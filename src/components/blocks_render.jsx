@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PopUp } from "@/animations";
 
 const BlocksRender = ({ data }) => {
+  console.log('Block Render data =========>', data);
   return (
     <div className="blocks-class">
       <BlocksRenderer

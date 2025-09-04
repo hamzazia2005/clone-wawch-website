@@ -21,39 +21,39 @@ const Blogs = ({ data, detail }) => {
           <FadeIn delay={1.5}>
             <div className='flex gap-6  p-4 md:p-6 flex-col md:flex-row md:items-center border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] transition-all duration-300 rounded-lg'>
               <div className='md:w-[50%]'>
-                {detail?.data[0]?.attributes?.category && (
+                {detail?.data?.category && (
                   <Category
-                    text={detail?.data[0]?.attributes?.category}
-                    color={detail?.data[0]?.attributes?.catagory_color}
+                    text={detail?.data?.category}
+                    color={detail?.data?.catagory_color}
                   />
                 )}
-                <Link href={GenerateUrl(detail?.data[0]?.attributes?.slug)}>
+                <Link href={GenerateUrl(detail?.data?.slug)}>
                   <h2 className='text-xl sm:text-2xl md:text-3xl text-black1 hover:text-secondary font-plus font-semibold mt-4 mb-8 cursor-pointer'>
-                    {detail?.data[0]?.attributes?.title}
+                    {detail?.data?.title}
                   </h2>
                 </Link>
                 <div className='flex md:flex-col justify-between items-center md:justify-start md:items-start'>
                   <p className='text-[#929EB8] md:mb-6'>
-                    {FormatDate(detail?.data[0]?.attributes?.publishedAt)}
+                    {FormatDate(detail?.data?.publishedAt)}
                   </p>
-                  <Link href={GenerateUrl(detail?.data[0]?.attributes?.slug)}>
+                  <Link href={GenerateUrl(detail?.data?.slug)}>
                     <button className='text-black font-medium border-b-2 hover:bg-primary hover:text-white hover:p-2 hover:border-none hover:hover:shadow-[6px_4px_14px_1px_#dcdcdc] scale-1 hover:scale-[1.025] hover:rounded-lg border-black py-2 transition-all duration-200'>
-                      {detail?.data[0]?.attributes?.read_now}
+                      {detail?.data?.read_now}
                     </button>
                   </Link>
                 </div>
               </div>
               <Link
                 className={`md:w-[50%] order-first md:order-last min-h-[200px] sm:min-h-[280px] w-full rounded-lg`}
-                href={GenerateUrl(detail?.data[0]?.attributes?.slug)}
+                href={GenerateUrl(detail?.data?.slug)}
                 style={{
                   backgroundImage: `url(${
                     isLocal
                       ? BASE_URL +
-                        detail?.data[0]?.attributes?.image?.data[0]?.attributes
+                        detail?.data?.image
                           ?.url
                       : '' +
-                        detail?.data[0]?.attributes?.image?.data[0]?.attributes
+                        detail?.data?.image
                           ?.url
                   })`,
                   backgroundPosition: 'center',

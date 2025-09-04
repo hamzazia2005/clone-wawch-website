@@ -55,7 +55,7 @@ const Page = async ({ params }) => {
     faqs,
   ] = await Promise.all([
     getServerSideData(urls.comparisonStarter),
-    getServerSideData(urls.whyWawcd, true),
+    getServerSideData(urls.whyWawcd),
     getServerSideData(urls.review1),
     getServerSideData(urls.review2, true),
     getServerSideData(urls.review3, true),
@@ -85,7 +85,7 @@ const Page = async ({ params }) => {
         <Links data={comparisonStarter} />
         <Comparisons data={comparison} />
         <Titles data={comparisonStarter} />
-        <WhyWawcd data={whyWawcd?.data} />
+        <WhyWawcd data={whyWawcd} />
         <Review
           data={review1}
           reviews={review2}

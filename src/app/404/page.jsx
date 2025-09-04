@@ -16,7 +16,7 @@ export async function metadata() {
       locale: "en_US",
       images: [
         {
-          url: data?.image?.data?.attributes?.url,
+          url: data?.image?.data?.url,
           width: 800,
           height: 600,
           alt: resp?.title,
@@ -38,7 +38,7 @@ const Page = async () => {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: meta?.title,
-    image: data?.image?.data?.attributes?.url,
+    image: data?.image?.url,
     description: meta?.description,
     url: "https://wawcd.com/404/",
     datePublished: meta?.createdAt,

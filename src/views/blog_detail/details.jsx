@@ -6,6 +6,7 @@ import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import { FadeIn, PopUp } from '@/animations';
 
 const Detail = ({ data, detail, blog_headings }) => {
+  console.log('data =========>', data);
   const params = useParams();
   const router = useRouter();
 
@@ -13,9 +14,9 @@ const Detail = ({ data, detail, blog_headings }) => {
     router.push('/404');
     return <div></div>;
   }
-  const author = data?.author?.data?.attributes;
+  const author = data?.author?.data;
   const profileImage =
-    author?.image?.data[0]?.attributes?.url || '/assets/profile_pic.png';
+    author?.image?.url || '/assets/profile_pic.png';
 
   return (
     <div className='flex justify-center items-center mt-20'>
@@ -38,11 +39,12 @@ const Detail = ({ data, detail, blog_headings }) => {
         {/* <PopUp> */}
         <Image
           src={
-            data?.image?.data[0]?.attributes?.url
-              ? isLocal
-                ? BASE_URL + data?.image?.data[0]?.attributes?.url
-                : data?.image?.data[0]?.attributes?.url
-              : '/assets/placeholder.png'
+            // data?.image?.url
+            //   ? isLocal
+            //     ? BASE_URL + data?.image?.url
+            //     : data?.image?.url
+            //   :
+               '/assets/placeholder.png'
           }
           priority={true}
           alt='blog'
@@ -74,7 +76,7 @@ const Detail = ({ data, detail, blog_headings }) => {
         </div>
         <div className='flex justify-center pb-16'>
           <div className='md:w-[90%]'>
-            {data?.author?.data?.attributes?.title && (
+            {data?.author?.title && (
               <>
                 <div className='border-t border-b py-6 space-y-6'>
                   <Heading text={blog_headings?.author_heading} />
@@ -110,7 +112,7 @@ const Detail = ({ data, detail, blog_headings }) => {
             <Heading text={data?.more_blog} />
             <div className='my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {detail?.data
-                ?.filter((item) => item?.attributes?.slug !== params.slug)
+                ?.filter((item) => item?.slug !== params.slug)
                 ?.slice(0, 3)
                 ?.map((item, index) => (
                   <PopUp

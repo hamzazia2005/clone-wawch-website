@@ -7,6 +7,9 @@ import Link from "next/link";
 const Faq = ({ data, faqs }) => {
   const { lang } = useAppContext();
 
+  console.log('============>FAQ PAGE=========>', faqs);
+  console.log('============>data =========>', data);
+
   return (
     <div className="flex justify-center items-center">
       <div className="max-w-[1440px] w-full px-5 sm:px-12 py-12">

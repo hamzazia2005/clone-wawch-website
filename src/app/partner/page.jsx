@@ -31,7 +31,7 @@ const Page = async () => {
   };
   const [banner, whyWawcd, benefits, boost, testimonial] = await Promise.all([
     getServerSideData(urls.banner),
-    getServerSideData(urls.whyWawcd, true),
+    getServerSideData(urls.whyWawcd),
     getServerSideData(urls.benefits),
     getServerSideData(urls.boost),
     getServerSideData(urls.testimonial),
@@ -53,7 +53,7 @@ const Page = async () => {
       />
       <Layout>
         <GetStarted data={banner} />
-        <WhyWawcd data={whyWawcd?.data} />
+        <WhyWawcd data={whyWawcd} />
         <Benefits data={benefits} />
         <Boost data={boost} isPartner={true} />
         <Review data={testimonial?.testimonial} />

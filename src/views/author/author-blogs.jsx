@@ -13,7 +13,7 @@ const AuthorBlogs = ({ detail, page_title }) => {
       <h2 className="text-3xl font-bold text-center font-plus">
         {page_title}{" "}
         <span className="hover:text-secondary">
-          {featuredBlog?.author?.data?.title}
+          {featuredBlog?.author?.title}
         </span>
       </h2>
       <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6 max-w-4xl py-10 mx-auto">
