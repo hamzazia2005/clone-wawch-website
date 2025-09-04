@@ -22,7 +22,7 @@ const FaqQuestion = ({ item, flag }) => {
     >
       {flag ? (
         <Link
-          href={`/${lang}/faq/${item.slug}/`}
+          href={lang? `/${lang}/faq/${item.slug}/`: `/faq/${item.slug}/`}
           className="flex justify-between items-center"
         >
           <p className="text-primary text-lg font-poppins font-semibold">

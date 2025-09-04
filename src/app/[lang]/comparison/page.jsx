@@ -72,6 +72,8 @@ const Page = async ({ params }) => {
     url: `https://wawcd.com/${paramLanguage}/comparison/`,
     datePublished: comparisonStarter?.createdAt,
   };
+
+  console.log('whyWawcd', whyWawcd);
   return (
     <div>
       <script

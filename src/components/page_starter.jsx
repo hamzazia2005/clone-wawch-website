@@ -17,31 +17,31 @@ const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
 
     const exactMatches = faqs.filter(
       (item) =>
-        item?.attributes?.question.toLowerCase().includes(term) ||
-        item?.attributes?.search_answer.toLowerCase().includes(term)
+        item?.question.toLowerCase().includes(term) ||
+        item?.search_answer.toLowerCase().includes(term)
     );
 
     const partialMatches = faqs
       .filter(
         (item) =>
-          !item?.attributes?.question.toLowerCase().includes(term) &&
-          !item?.attributes?.search_answer.toLowerCase().includes(term) &&
+          !item?.question.toLowerCase().includes(term) &&
+          !item?.search_answer.toLowerCase().includes(term) &&
           searchWords.some(
             (searchWord) =>
-              item?.attributes?.question.toLowerCase().includes(searchWord) ||
-              item?.attributes?.search_answer.toLowerCase().includes(searchWord)
+              item?.question.toLowerCase().includes(searchWord) ||
+              item?.search_answer.toLowerCase().includes(searchWord)
           )
       )
       .sort((a, b) => {
         const aMatches = searchWords.filter(
           (word) =>
-            a.attributes.question.toLowerCase().includes(word) ||
-            a.attributes.search_answer.toLowerCase().includes(word)
+            a.question.toLowerCase().includes(word) ||
+            a.search_answer.toLowerCase().includes(word)
         ).length;
         const bMatches = searchWords.filter(
           (word) =>
-            b.attributes.question.toLowerCase().includes(word) ||
-            b.attributes.search_answer.toLowerCase().includes(word)
+            b.question.toLowerCase().includes(word) ||
+            b.search_answer.toLowerCase().includes(word)
         ).length;
         return bMatches - aMatches;
       });
@@ -51,7 +51,7 @@ const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    router.push(`/faq/${suggestion?.attributes?.slug}`);
+    router.push(`/faq/${suggestion?. slug}`);
   };
 
   const highlightText = (text, searchWords) => {
@@ -180,7 +180,7 @@ const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
                     >
                       <div>
                         <p className="font-semibold">
-                          {suggestion?.attributes?.question
+                          {suggestion?.question
                             .split(" ")
                             .map((word, idx) => (
                               <React.Fragment key={idx}>
@@ -192,7 +192,7 @@ const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
                             ))}
                         </p>
                         <p>
-                          {suggestion?.attributes?.search_answer
+                          {suggestion?.search_answer
                             .split(" ")
                             .map((word, idx) => (
                               <React.Fragment key={idx}>

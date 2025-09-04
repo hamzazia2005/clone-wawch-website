@@ -41,12 +41,12 @@ const Detail = ({ data, faqs, related }) => {
             </h3>
           </FadeIn>
           {faqs
-            .filter((item) => item?.attributes?.slug !== params.slug)
+            .filter((item) => item?.slug !== params.slug)
             .slice(0, 5)
             .map((item, index) => (
               <div key={index}>
                 <PopUp duration={1}>
-                  <FaqQuestion item={item?.attributes} flag={true} />
+                  <FaqQuestion item={item} flag={true} />
                 </PopUp>
               </div>
             ))}

@@ -20,15 +20,15 @@ const Detail = ({ data, heading }) => {
         {data?.map((item, index) => (
           <PopUp key={index} isBounce={true} duration={1}>
             <Link
-              href={lang? `/${lang}/feature/${item?.attributes?.slug}`:`/feature/${item?.attributes?.slug}`}
+              href={lang? `/${lang}/feature/${item?.slug}`:`/feature/${item?.slug}`}
               className='flex flex-col gap-8 p-2 sm:p-4 mb-8 border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] transition-all rounded-lg'
             >
               <Image
                 src={
-                  item?.attributes?.image?.data?.attributes?.url
+                  item?.image?.url
                     ? isLocal
-                      ? BASE_URL + item?.attributes?.image?.data?.attributes?.url
-                      : item?.attributes?.image?.data?.attributes?.url
+                      ? BASE_URL + item?.image?.url
+                      : item?.image?.url
                     : "/assets/placeholder.png"
                 }
                 alt="feature"
@@ -38,12 +38,12 @@ const Detail = ({ data, heading }) => {
               />
 
               <div className="flex flex-col justify-between">
-                <p className="text-gray1">{item?.attributes?.guides}</p>
+                <p className="text-gray1">{item?.guides}</p>
                 <h2 className="text-2xl md:text-3xl text-black1 leading-tight font-poppins font-semibold hover:text-secondary my-3">
-                  {item?.attributes?.title}
+                  {item?.title}
                 </h2>
                 <p className="text-gray1">
-                  {FormatDate(item?.attributes?.createdAt)}
+                  {FormatDate(item?.createdAt)}
                 </p>
               </div>
             </Link>

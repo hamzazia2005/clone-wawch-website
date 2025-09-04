@@ -86,8 +86,8 @@ const Page = async ({ params }) => {
             {tableData?.data?.map((item, index) => (
               <TableCollapse
                 key={index}
-                data={item?.attributes?.pricing_page_data}
-                title={item?.attributes?.table_title}
+                data={item?.pricing_page_data}
+                title={item?.table_title}
               />
             ))}
           </div>

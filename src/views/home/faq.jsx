@@ -53,7 +53,7 @@ const Faq = ({ data, faqs }) => {
                   index !== 4 && (
                     <div key={index}>
                       {/* <PopUp duration={1}> */}
-                      <FaqQuestion item={item?.attributes} flag={false} />
+                      <FaqQuestion item={item} flag={false} />
                       {/* </PopUp> */}
                     </div>
                   )

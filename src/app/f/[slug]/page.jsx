@@ -35,7 +35,9 @@ const Page = async ({ params }) => {
     getServerSideData(urls.faqs, true),
   ]);
 
-  const bulkMessages = resp?.data[0]?.attributes;
+  const bulkMessages = resp?.data;
+
+  console.log('bulkMessages =========>', bulkMessages);
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -41,13 +41,13 @@ const Page = async () => {
     datePublished: meta?.createdAt,
     mainEntity: faq?.data?.map((faq) => ({
       "@type": "Question",
-      name: faq?.attributes?.question,
+      name: faq?.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq?.attributes?.search_answer,
+        text: faq?.search_answer,
       },
-      datePublished: faq?.attributes?.createdAt,
-      dateModified: faq?.attributes?.updatedAt,
+      datePublished: faq?.createdAt,
+      dateModified: faq?.updatedAt,
     })),
   };
   return (
