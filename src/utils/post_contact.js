@@ -29,7 +29,7 @@ export async function postContactForm(check, item, size) {
     if (check) {
       return repo;
     } else {
-      return repo?.data?.attributes;
+      return repo?.data;
     }
   } catch (error) {
     throw new Error("Failed to submit contact form");

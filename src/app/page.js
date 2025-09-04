@@ -5,37 +5,39 @@ import Language from "@/components/language_page";
 export async function metadata() {
   const resp = await getServerSideData("api/home-meta/?populate=*");
 
-  const faviconUrl = isLocal
-    ? BASE_URL + resp?.favicon.url
-    : resp?.favicon.url;
+  const faviconUrl = resp?.favicon?.url
+    ? isLocal
+      ? BASE_URL + resp?.favicon?.url
+      : resp?.favicon?.url
+    : null;
   return {
     title: resp?.title,
     description: resp?.description,
     verification: {
       google: "Aahq02UlpbJw3PbuUBWCiXqueMvK4qN0fZNrO4wUWcE",
     },
-    icons: {
+    icons: faviconUrl ? {
       icon: [
         {
           url: faviconUrl,
           href: faviconUrl,
         },
       ],
-    },
+    } : undefined,
     openGraph: {
       url: "https://wawcd.com/",
       title: resp?.title,
       description: resp?.description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
-      images: [
+      images: faviconUrl ? [
         {
           url: faviconUrl,
           width: 800,
           height: 600,
           alt: resp?.title,
         },
-      ],
+      ] : undefined,
     },
     alternates: {
       canonical: "https://wawcd.com/",

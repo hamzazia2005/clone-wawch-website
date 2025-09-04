@@ -18,51 +18,53 @@ const Blogs = ({ data, detail }) => {
           </p>
         </FadeIn>
         <div className='mt-8 lg:px-8 lg:py-4'>
-          <FadeIn delay={1.5}>
-            <div className='flex gap-6  p-4 md:p-6 flex-col md:flex-row md:items-center border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] transition-all duration-300 rounded-lg'>
-              <div className='md:w-[50%]'>
-                {detail?.data?.category && (
-                  <Category
-                    text={detail?.data?.category}
-                    color={detail?.data?.catagory_color}
-                  />
-                )}
-                <Link href={GenerateUrl(detail?.data?.slug)}>
-                  <h2 className='text-xl sm:text-2xl md:text-3xl text-black1 hover:text-secondary font-plus font-semibold mt-4 mb-8 cursor-pointer'>
-                    {detail?.data?.title}
-                  </h2>
-                </Link>
-                <div className='flex md:flex-col justify-between items-center md:justify-start md:items-start'>
-                  <p className='text-[#929EB8] md:mb-6'>
-                    {FormatDate(detail?.data?.publishedAt)}
-                  </p>
-                  <Link href={GenerateUrl(detail?.data?.slug)}>
-                    <button className='text-black font-medium border-b-2 hover:bg-primary hover:text-white hover:p-2 hover:border-none hover:hover:shadow-[6px_4px_14px_1px_#dcdcdc] scale-1 hover:scale-[1.025] hover:rounded-lg border-black py-2 transition-all duration-200'>
-                      {detail?.data?.read_now}
-                    </button>
+          {detail?.data?.[0] && (
+            <FadeIn delay={1.5}>
+              <div className='flex gap-6  p-4 md:p-6 flex-col md:flex-row md:items-center border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] transition-all duration-300 rounded-lg'>
+                <div className='md:w-[50%]'>
+                  {detail?.data?.[0]?.category && (
+                    <Category
+                      text={detail?.data?.[0]?.category}
+                      color={detail?.data?.[0]?.catagory_color}
+                    />
+                  )}
+                  <Link href={GenerateUrl(detail?.data?.[0]?.slug)}>
+                    <h2 className='text-xl sm:text-2xl md:text-3xl text-black1 hover:text-secondary font-plus font-semibold mt-4 mb-8 cursor-pointer'>
+                      {detail?.data?.[0]?.title}
+                    </h2>
                   </Link>
+                  <div className='flex md:flex-col justify-between items-center md:justify-start md:items-start'>
+                    <p className='text-[#929EB8] md:mb-6'>
+                      {FormatDate(detail?.data?.[0]?.publishedAt)}
+                    </p>
+                    <Link href={GenerateUrl(detail?.data?.[0]?.slug)}>
+                      <button className='text-black font-medium border-b-2 hover:bg-primary hover:text-white hover:p-2 hover:border-none hover:hover:shadow-[6px_4px_14px_1px_#dcdcdc] scale-1 hover:scale-[1.025] hover:rounded-lg border-black py-2 transition-all duration-200'>
+                        {detail?.data?.[0]?.read_now}
+                      </button>
+                    </Link>
+                  </div>
                 </div>
+                <Link
+                  className={`md:w-[50%] order-first md:order-last min-h-[200px] sm:min-h-[280px] w-full rounded-lg`}
+                  href={GenerateUrl(detail?.data?.[0]?.slug)}
+                  style={{
+                    backgroundImage: `url(${
+                      isLocal
+                        ? BASE_URL +
+                          detail?.data?.[0]?.image
+                            ?.url
+                        : '' +
+                          detail?.data?.[0]?.image
+                            ?.url
+                    })`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                  }}
+                />
               </div>
-              <Link
-                className={`md:w-[50%] order-first md:order-last min-h-[200px] sm:min-h-[280px] w-full rounded-lg`}
-                href={GenerateUrl(detail?.data?.slug)}
-                style={{
-                  backgroundImage: `url(${
-                    isLocal
-                      ? BASE_URL +
-                        detail?.data?.image
-                          ?.url
-                      : '' +
-                        detail?.data?.image
-                          ?.url
-                  })`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              />
-            </div>
-          </FadeIn>
+            </FadeIn>
+          )}
           <div className='my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
             {detail?.data?.slice(1).map((item, index) => (
               <PopUp key={index} check={true} isBounce={true}>

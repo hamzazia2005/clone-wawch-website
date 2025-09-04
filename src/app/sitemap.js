@@ -383,8 +383,8 @@ export default async function sitemap() {
 
     const blogs = Array.isArray(resp)
       ? resp.map((blog) => ({
-          url: `${URL}blog/${blog?.attributes?.slug}/`.replace(/&/g, "&amp;"),
-          lastModified: `${blog?.attributes?.updatedAt}`,
+          url: `${URL}blog/${blog?.slug}/`.replace(/&/g, "&amp;"),
+          lastModified: `${blog?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -392,11 +392,11 @@ export default async function sitemap() {
 
     const features = Array.isArray(resp2)
       ? resp2.map((feature) => ({
-          url: `${URL}feature/${feature?.attributes?.slug}/`.replace(
+          url: `${URL}feature/${feature?.slug}/`.replace(
             /&/g,
             "&amp;"
           ),
-          lastModified: `${feature?.attributes?.updatedAt}`,
+          lastModified: `${feature?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -404,11 +404,11 @@ export default async function sitemap() {
 
     const featuresAr = Array.isArray(resp2)
       ? resp2.map((feature) => ({
-          url: `${URL}feature/${feature?.attributes?.slug}/ar/`.replace(
+          url: `${URL}feature/${feature?.slug}/ar/`.replace(
             /&/g,
             "&amp;"
           ),
-          lastModified: `${feature?.attributes?.updatedAt}`,
+          lastModified: `${feature?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -416,11 +416,11 @@ export default async function sitemap() {
 
     const featuresPt = Array.isArray(resp2)
       ? resp2.map((feature) => ({
-          url: `${URL}feature/${feature?.attributes?.slug}/pt/`.replace(
+          url: `${URL}feature/${feature?.slug}/pt/`.replace(
             /&/g,
             "&amp;"
           ),
-          lastModified: `${feature?.attributes?.updatedAt}`,
+          lastModified: `${feature?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -428,11 +428,11 @@ export default async function sitemap() {
 
     const featuresFr = Array.isArray(resp2)
       ? resp2.map((feature) => ({
-          url: `${URL}feature/${feature?.attributes?.slug}/fr/`.replace(
+          url: `${URL}feature/${feature?.slug}/fr/`.replace(
             /&/g,
             "&amp;"
           ),
-          lastModified: `${feature?.attributes?.updatedAt}`,
+          lastModified: `${feature?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -440,8 +440,8 @@ export default async function sitemap() {
 
     const faqs = Array.isArray(resp3)
       ? resp3.map((faq) => ({
-          url: `${URL}faq/${faq?.attributes?.slug}/`.replace(/&/g, "&amp;"),
-          lastModified: `${faq?.attributes?.updatedAt}`,
+          url: `${URL}faq/${faq?.slug}/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -449,8 +449,8 @@ export default async function sitemap() {
 
     const faqsAr = Array.isArray(resp3)
       ? resp3.map((faq) => ({
-          url: `${URL}faq/${faq?.attributes?.slug}/ar/`.replace(/&/g, "&amp;"),
-          lastModified: `${faq?.attributes?.updatedAt}`,
+          url: `${URL}faq/${faq?.slug}/ar/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -458,8 +458,8 @@ export default async function sitemap() {
 
     const faqsPt = Array.isArray(resp3)
       ? resp3.map((faq) => ({
-          url: `${URL}faq/${faq?.attributes?.slug}/pt/`.replace(/&/g, "&amp;"),
-          lastModified: `${faq?.attributes?.updatedAt}`,
+          url: `${URL}faq/${faq?.slug}/pt/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))
@@ -467,8 +467,8 @@ export default async function sitemap() {
 
     const faqsFr = Array.isArray(resp3)
       ? resp3.map((faq) => ({
-          url: `${URL}faq/${faq?.attributes?.slug}/fr/`.replace(/&/g, "&amp;"),
-          lastModified: `${faq?.attributes?.updatedAt}`,
+          url: `${URL}faq/${faq?.slug}/fr/`.replace(/&/g, "&amp;"),
+          lastModified: `${faq?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
         }))

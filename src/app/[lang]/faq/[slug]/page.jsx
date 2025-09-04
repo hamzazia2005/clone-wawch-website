@@ -9,13 +9,14 @@ export async function generateMetadata({ params }) {
     `api/faq-sections/?filters[slug][$eq]=${params.slug}&locale=${paramLanguage}`,
     true
   );
+  const faqData = resp?.data?.[0];
   return {
-    title: resp?.meta_title,
-    description: resp?.meta_description,
+    title: faqData?.meta_title,
+    description: faqData?.meta_description,
     openGraph: {
       url: `https://wawcd.com/${params.lang}/faq/${params.slug}/`,
-      title: resp?.meta_title,
-      description: resp?.meta_description,
+      title: faqData?.meta_title,
+      description: faqData?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: `${paramLanguage}_${paramLanguage.toUpperCase()}`,
     },
@@ -36,27 +37,28 @@ const Page = async ({ params }) => {
   const [getStarted, faqs, faq] = await Promise.all([
     getServerSideData(urls.getStarted),
     getServerSideData(urls.faqs, true),
-    getServerSideData(urls.faq),
+    getServerSideData(urls.faq, true),
   ]);
 
+  const faqData = faq?.data?.[0];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    name: faq?.meta_title,
-    description: faq?.meta_description,
+    name: faqData?.meta_title,
+    description: faqData?.meta_description,
     url: `https://wawcd.com/${params.lang}/faq/${params.slug}/`,
-    datePublished: faq?.createdAt,
-    dateModified: faq?.updatedAt,
+    datePublished: faqData?.createdAt,
+    dateModified: faqData?.updatedAt,
     author: {
       "@type": "Person",
-      name: faq?.author,
+      name: faqData?.author,
     },
     mainEntity: {
       "@type": "Question",
-      name: faq?.question,
+      name: faqData?.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq?.search_answer,
+        text: faqData?.search_answer,
       },
     },
   };
@@ -69,8 +71,8 @@ const Page = async ({ params }) => {
       <Layout params={params}>
         <FaqCall
           getStarted={getStarted}
-          faqs={faqs}
-          faq={faq?.data}
+          faqs={faqs?.data}
+          faq={faqData}
         />
       </Layout>
     </div>

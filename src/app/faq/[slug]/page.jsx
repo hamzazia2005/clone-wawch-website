@@ -8,12 +8,12 @@ export async function generateMetadata({ params }) {
   );
 
   return {
-    title: resp?.data?.meta_title,
-    description: resp?.data?.meta_description,
+    title: resp?.meta_title,
+    description: resp?.meta_description,
     openGraph: {
       url: `https://wawcd.com/faq/${params.slug}/`,
-      title: resp?.data?.meta_title,
-      description: resp?.data?.meta_description,
+      title: resp?.meta_title,
+      description: resp?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
     },
@@ -33,10 +33,10 @@ const Page = async ({ params }) => {
     const [getStarted, faqs, faq] = await Promise.all([
       getServerSideData(urls.getStarted),
       getServerSideData(urls.faqs),
-      getServerSideData(urls.faq, true),
+      getServerSideData(urls.faq),
     ]);
 
-    const faqData = faq?.data?.[0];
+    const faqData = faq?.[0];
 
     const jsonLd = {
       "@context": "https://schema.org",

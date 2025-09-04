@@ -327,17 +327,17 @@ const Offers = ({ open, handleOpen, data, offer, isContact }) => {
               <div key={index}>
                 <div className="w-full flex flex-col sm:flex-row gap-2 justify-between mt-5">
                   <p>
-                    {item?.attributes?.title}{" "}
-                    {item?.attributes?.discount && (
-                      <span>{item?.attributes?.discount}% off</span>
+                    {item?.title}{" "}
+                    {item?.discount && (
+                      <span>{item?.discount}% off</span>
                     )}
                   </p>
                   <a
                     className="text-black underline"
                     target="_blank"
-                    href={item?.attributes?.link?.link}
+                    href={item?.link?.link}
                   >
-                    {item?.attributes?.link?.title}
+                    {item?.link?.title}
                   </a>
                 </div>
                 <ImageUploader

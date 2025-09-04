@@ -9,7 +9,6 @@ import { Tooltip } from "@material-tailwind/react";
 const BlogCard = ({ item, flag }) => {
   const data = item;
   const date = FormatDate(item?.publishedAt);
-  // const time = FormatTime(item?.attributes.publishedAt);
 
   const truncateTitle = (title, maxLength) => {
     return title.length > maxLength
@@ -29,12 +28,11 @@ const BlogCard = ({ item, flag }) => {
         <Link href={GenerateUrl(data?.slug)}>
           <Image
             src={
-              // data?.image?.length > 0
-              //   ? isLocal
-              //     ? BASE_URL + data?.image?.url
-              //     : "" + data?.image?.url
-              //   :
-                 "/assets/placeholder.png"
+              data?.image?.url
+                ? isLocal
+                  ? BASE_URL + data?.image?.url
+                  : "" + data?.image?.url
+                : "/assets/placeholder.png"
             }
             alt="blog"
             //priority={true}

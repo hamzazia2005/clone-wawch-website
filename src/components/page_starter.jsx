@@ -51,7 +51,8 @@ const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    router.push(`/faq/${suggestion?. slug}`);
+    const basePath = lang && lang !== 'en' ? `/${lang}` : '';
+    router.push(`${basePath}/faq/${suggestion?.slug}`);
   };
 
   const highlightText = (text, searchWords) => {

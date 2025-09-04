@@ -8,7 +8,7 @@ import Image from 'next/image';
 const ActiveOffer = ({ data, offer, isContact }) => {
   const [open, setOpen] = useState(0);
   const [popUpOpen, isPopUpOpen] = useState(false);
-  const [detail, setDetail] = useState(offer[0]?.attributes || null);
+  const [detail, setDetail] = useState(offer[0] || null);
   const handleOpen = () => {
     isPopUpOpen((cur) => !cur);
   };
@@ -46,7 +46,7 @@ const ActiveOffer = ({ data, offer, isContact }) => {
                   } w-[300px] rounded-md p-4 my-4 cursor-pointer flex justify-between`}
                   onClick={() => {
                     setOpen(index);
-                    setDetail(item?.attributes);
+                    setDetail(item);
                   }}
                 >
                   <p
@@ -54,15 +54,15 @@ const ActiveOffer = ({ data, offer, isContact }) => {
                       open === index ? 'text-black' : 'text-white'
                     } text-sm font-poppins`}
                   >
-                    {item?.attributes?.title}
+                    {item?.title}
                   </p>
-                  {item?.attributes?.discount && (
+                  {item?.discount && (
                     <p
                       className={`${
                         open === index ? 'text-black' : 'text-white'
                       }  text-sm font-poppins`}
                     >
-                      {item?.attributes?.discount}% off
+                      {item?.discount}% off
                     </p>
                   )}
                 </div>
@@ -75,10 +75,10 @@ const ActiveOffer = ({ data, offer, isContact }) => {
                 <div className='flex flex-col xs:flex-row justify-between xs:gap-5 w-full xs:items-center'>
                   <Image
                     src={
-                      detail?.logo?.data?.attributes?.url
+                      detail?.logo?.url
                         ? isLocal
-                          ? BASE_URL + detail?.logo?.data?.attributes?.url
-                          : detail?.logo?.data?.attributes?.url
+                          ? BASE_URL + detail?.logo?.url
+                          : detail?.logo?.url
                         : '/assets/placeholder.png'
                     }
                     alt='logo'

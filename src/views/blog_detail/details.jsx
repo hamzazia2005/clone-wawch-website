@@ -4,6 +4,7 @@ import { Category, BlogCard, Heading, BlocksRender } from '@/components';
 import Image from 'next/image';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import { FadeIn, PopUp } from '@/animations';
+import { FormatDate } from '@/utils';
 
 const Detail = ({ data, detail, blog_headings }) => {
   const params = useParams();
@@ -33,17 +34,19 @@ const Detail = ({ data, detail, blog_headings }) => {
           <h1 className='text-[40px] text-black1 font-plus text-center font-bold my-3 md:w-[70%] mt-4 mb-5'>
             {data?.title}
           </h1>
+          <p className='text-gray1 text-lg font-poppins font-medium'>
+            {FormatDate(data?.publishedAt)}
+          </p>
         </div>
         {/* </FadeIn> */}
         {/* <PopUp> */}
         <Image
           src={
-            // data?.image?.url
-            //   ? isLocal
-            //     ? BASE_URL + data?.image?.url
-            //     : data?.image?.url
-            //   :
-               '/assets/placeholder.png'
+            data?.image?.url
+              ? isLocal
+                ? BASE_URL + data?.image?.url
+                : data?.image?.url
+              : '/assets/placeholder.png'
           }
           priority={true}
           alt='blog'
