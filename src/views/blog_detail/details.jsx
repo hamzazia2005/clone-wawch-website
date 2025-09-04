@@ -6,7 +6,6 @@ import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import { FadeIn, PopUp } from '@/animations';
 
 const Detail = ({ data, detail, blog_headings }) => {
-  console.log('data =========>', data);
   const params = useParams();
   const router = useRouter();
 
@@ -14,7 +13,7 @@ const Detail = ({ data, detail, blog_headings }) => {
     router.push('/404');
     return <div></div>;
   }
-  const author = data?.author?.data;
+  const author = data?.author;
   const profileImage =
     author?.image?.url || '/assets/profile_pic.png';
 

@@ -70,8 +70,6 @@ const Page = async ({ params }) => {
       availability: "https://schema.org/InStock",
     })),
   };
-
-  console.log('updatedPricing =========>', updatedPricing);
   
   return (
     <>

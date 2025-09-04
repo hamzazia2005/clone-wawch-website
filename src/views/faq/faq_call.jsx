@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const FaqCall = ({ getStarted, faqs, faq }) => {
- 
-  console.log('============>faqs =========>', faqs?.data);
   const [search, setSearch] = useState('');
   const router = useRouter();
   if (!faq) {
@@ -20,7 +18,7 @@ const FaqCall = ({ getStarted, faqs, faq }) => {
         search={search}
         setSearch={setSearch}
       />
-      <Detail data={faq} faqs={faqs?.data} related={getStarted} />
+      <Detail data={faq} faqs={faqs} related={getStarted} />
     </div>
   );
 };

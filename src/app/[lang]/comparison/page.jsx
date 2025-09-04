@@ -73,7 +73,6 @@ const Page = async ({ params }) => {
     datePublished: comparisonStarter?.createdAt,
   };
 
-  console.log('whyWawcd', whyWawcd);
   return (
     <div>
       <script

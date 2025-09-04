@@ -2,7 +2,6 @@ import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import Image from 'next/image';
 
 const WhyWawcd = ({ data }) => {
-  console.log('============>data =========>', data);
   return (
     <div className='flex justify-center items-center'>
       <div className='max-w-[1440px] w-full px-4 sm:px-12 py-12'>

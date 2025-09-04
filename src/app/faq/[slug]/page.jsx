@@ -33,32 +33,32 @@ const Page = async ({ params }) => {
     const [getStarted, faqs, faq] = await Promise.all([
       getServerSideData(urls.getStarted),
       getServerSideData(urls.faqs),
-      getServerSideData(urls.faq),
+      getServerSideData(urls.faq, true),
     ]);
+
+    const faqData = faq?.data?.[0];
 
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      name: faq?.meta_title,
-      description: faq?.meta_description,
+      name: faqData?.meta_title,
+      description: faqData?.meta_description,
       url: `https://wawcd.com/faq/${params.slug}/`,
-      datePublished: faq?.createdAt,
-      dateModified: faq?.updatedAt,
+      datePublished: faqData?.createdAt,
+      dateModified: faqData?.updatedAt,
       author: {
         "@type": "Person",
-        name: faq?.author,
+        name: faqData?.author,
       },
       mainEntity: {
         "@type": "Question",
-        name: faq?.question,
+        name: faqData?.question,
         acceptedAnswer: {
           "@type": "Answer",
-          text: faq?.search_answer,
+          text: faqData?.search_answer,
         },
       },
     };
-
-    console.log('faq', faq);
 
     return (
       <div>
@@ -67,7 +67,7 @@ const Page = async ({ params }) => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Layout>
-          <FaqCall getStarted={getStarted} faqs={faqs} faq={faq?.data} />
+          <FaqCall getStarted={getStarted} faqs={faqs} faq={faqData} />
         </Layout>
       </div>
     );

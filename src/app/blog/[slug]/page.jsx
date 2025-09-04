@@ -45,18 +45,21 @@ const Page = async ({ params }) => {
     getServerSideData(urls.blog_headings),
   ]);
 
+  const blogData = blog?.data?.[0];
+  const detailData = detail?.data;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: blog?.data?.meta_title,
-    description: blog?.data?.meta_description,
-    image: blog?.data?.image?.url,
+    name: blogData?.meta_title,
+    description: blogData?.meta_description,
+    image: blogData?.image?.[0]?.url,
     url: `https://wawcd.com/blog/${params.slug}/`,
-    datePublished: blog?.data?.createdAt,
-    dateModified: blog?.data?.updatedAt,
+    datePublished: blogData?.createdAt,
+    dateModified: blogData?.updatedAt,
     author: {
       "@type": "Person",
-      name: blog?.data?.author,
+      name: blogData?.author?.title,
     },
     publisher: {
       "@type": "Organization",
@@ -71,8 +74,8 @@ const Page = async ({ params }) => {
       />
       <Layout>
         <Detail
-          data={blog?.data}
-          detail={detail}
+          data={blogData}
+          detail={detailData}
           blog_headings={blog_headings}
         />
       </Layout>

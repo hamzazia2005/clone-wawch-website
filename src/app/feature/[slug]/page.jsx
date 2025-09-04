@@ -72,9 +72,7 @@ const Page = async ({ params }) => {
       thumbnailUrl: featureData?.image?.url,
     };
   }
-
-  console.log('detail =========>', detail?.data);
-  console.log('featureData =========>', featureData);
+  
   return (
     <div>
       <script

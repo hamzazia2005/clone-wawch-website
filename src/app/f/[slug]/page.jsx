@@ -37,8 +37,6 @@ const Page = async ({ params }) => {
 
   const bulkMessages = resp?.data;
 
-  console.log('bulkMessages =========>', bulkMessages);
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",

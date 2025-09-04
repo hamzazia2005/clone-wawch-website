@@ -80,9 +80,6 @@ const Page = async () => {
     })),
   };
 
-  console.log('tableData ', tableData);
-  console.log('tableHead', tableHead);
-
   return (
     <>
       <script

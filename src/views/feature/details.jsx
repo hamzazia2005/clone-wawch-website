@@ -12,8 +12,6 @@ const Detail = ({ data }) => {
     router.push('/404');
     return <div></div>;
   }
-  console.log("===>DATA<====:", data?.feature_details);
-  console.log("FEATURE DETAILS:", JSON.stringify(data?.feature_details, null, 2));
 
 
   return (
