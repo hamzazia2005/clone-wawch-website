@@ -10,7 +10,9 @@ export function AppWrapper({ children }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedLang = localStorage.getItem("lang");
+      // Get language from localStorage only
+      const storedLang = localStorage.getItem("lang") || "";
+      
       if (typeof document !== "undefined") {
         const dir = storedLang.startsWith("ar") ? "rtl" : "ltr";
         document.documentElement.setAttribute("dir", dir);

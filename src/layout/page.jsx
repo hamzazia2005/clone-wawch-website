@@ -1,8 +1,9 @@
 import { getServerSideData } from '@/utils/get_api';
 import { Header, Footer } from '.';
+import LanguageDetector from '@/components/language-detector';
 
 const Layout = async ({ children, params }) => {
-  const languages = ['en', 'fr', 'ar', 'pt', 'ru'];
+  const languages = ['en', 'fr', 'ar', 'pt'];
   const paramLanguage = languages?.includes(params?.lang) ? params?.lang : 'en';
   const urls = {
     gcid: `api/google-adds-ids`,
@@ -15,6 +16,7 @@ const Layout = async ({ children, params }) => {
   const gcid = await getServerSideData(urls.gcid, true);
   return (
     <div className='min-h-[100vh] flex flex-col justify-between'>
+      <LanguageDetector />
       <Header data={header} gcid={gcid?.data} />
       {children}
       <Footer data={footer} />

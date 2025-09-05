@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const Footer = ({ data }) => {
   const params = useParams();
-  const languages = ['en', 'fr', 'ar', 'pt', 'ru'];
+  const languages = ['en', 'fr', 'ar', 'pt'];
 
   useEffect(() => {
     localStorage.setItem(

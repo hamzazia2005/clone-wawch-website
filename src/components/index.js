@@ -26,3 +26,4 @@ export { default as WhatsappButton } from "./whatsapp-button";
 export { default as FeaturesContainer } from "./features-container";
 export { default as BoostMap } from "./boost-map";
 export { default as Testimonial } from "./testimonial";
+export { default as LanguageDetector } from "./language-detector";

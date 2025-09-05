@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
         src="https://cdn.tolt.io/tolt.js"
         data-tolt="0f9eae97-4b55-488f-8f78-5b9b955d11ae"
       ></Script>
-      <GoogleTagManager gtmId="GTM-N6RMD8BD" />
+      {/* <GoogleTagManager gtmId="GTM-N6RMD8BD" /> */}
       <body className={`${plusJakartaSans.className} ${poppins.className}`}>
         <AOSinit />
         <NextTopLoader color="#47b772" height={4} showSpinner={false} />

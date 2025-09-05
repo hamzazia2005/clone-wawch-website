@@ -30,7 +30,7 @@ const Header = ({ data, gcid }) => {
 
   const fetchData = async () => {
     localStorage.setItem('lang', '');
-    const languages = ['en', 'fr', 'ar', 'pt', 'ru'];
+    const languages = ['en', 'fr', 'ar', 'pt'];
     if (params.lang && !languages.includes(params.lang)) {
       router.push('/404');
     }
