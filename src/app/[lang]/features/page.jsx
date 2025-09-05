@@ -63,7 +63,7 @@ const Page = async ({ params}) => {
       />
       <Layout params={params}>
         <Feature
-          data={feature?.data?.[0]}
+          data={feature?.data}
           heading={meta?.heading ? meta?.heading : ""}
         />
       </Layout>

@@ -41,10 +41,10 @@ const TeamMembers = ({ heading, data, version }) => {
             >
               <Image
                 src={
-                  item?.image?.data?.url
+                  item?.image?.url
                     ? isLocal
                       ? BASE_URL +
-                        item?.image?.data?.url
+                        item?.image?.url
                       : '' + item?.image?.url
                     : '/assets/profile_pic.png'
                 }

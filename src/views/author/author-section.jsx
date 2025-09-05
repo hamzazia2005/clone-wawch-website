@@ -11,7 +11,7 @@ const Author = ({ author, handleAuthorSelection }) => {
           <Image
             src={
               author?.image?.length > 0
-                ? author?.image?.url
+                ? author?.image[0]?.url
                 : 
                 '/assets/author-fallback.svg'
             }

@@ -32,19 +32,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "pricing/ar/",
+    id: "ar/pricing/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "pricing/pt/",
+    id: "pt/pricing/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "pricing/fr/",
+    id: "fr/pricing/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -56,19 +56,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "privacy-policy/ar/",
+    id: "ar/privacy-policy/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "privacy-policy/pt/",
+    id: "pt/privacy-policy/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "privacy-policy/fr/",
+    id: "fr/privacy-policy/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -86,19 +86,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "faqs/ar/",
+    id: "ar/faqs/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "faqs/pt/",
+    id: "pt/faqs/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "faqs/fr/",
+    id: "fr/faqs/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -110,19 +110,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "features/ar/",
+    id: "ar/features/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "features/pt/",
+    id: "pt/features/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "features/fr/",
+    id: "fr/features/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -134,19 +134,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "uninstall/ar/",
+    id: "ar/uninstall/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "uninstall/pt/",
+    id: "pt/uninstall/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "uninstall/fr/",
+    id: "fr/uninstall/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -158,19 +158,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "contact-us/ar/",
+    id: "ar/contact-us/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "contact-us/pt/",
+    id: "pt/contact-us/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "contact-us/fr/",
+    id: "fr/contact-us/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -182,19 +182,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "coming-soon/ar/",
+    id: "ar/coming-soon/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "coming-soon/pt/",
+    id: "pt/coming-soon/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "coming-soon/fr/",
+    id: "fr/coming-soon/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -206,19 +206,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "why-wawcd/ar/",
+    id: "ar/why-wawcd/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "why-wawcd/pt/",
+    id: "pt/why-wawcd/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "why-wawcd/fr/",
+    id: "fr/why-wawcd/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -236,19 +236,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "affiliate/ar/",
+    id: "ar/affiliate/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "affiliate/pt/",
+    id: "pt/affiliate/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "affiliate/fr/",
+    id: "fr/affiliate/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -260,19 +260,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "avail-offer/ar/",
+    id: "ar/avail-offer/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "avail-offer/pt/",
+    id: "pt/avail-offer/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "avail-offer/fr/",
+    id: "fr/avail-offer/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -284,19 +284,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "comparison/ar/",
+    id: "ar/comparison/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "comparison/pt/",
+    id: "pt/comparison/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "comparison/fr/",
+    id: "fr/comparison/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -308,19 +308,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "road-map/ar/",
+    id: "ar/road-map/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "road-map/pt/",
+    id: "pt/road-map/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "road-map/fr/",
+    id: "fr/road-map/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -332,19 +332,19 @@ const getSortedPostsData = [
     frequency: "daily",
   },
   {
-    id: "changelog/ar/",
+    id: "ar/changelog/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "changelog/pt/",
+    id: "pt/changelog/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
   },
   {
-    id: "changelog/fr/",
+    id: "fr/changelog/",
     date: new Date().toISOString(),
     priority: 0.9,
     frequency: "daily",
@@ -404,7 +404,7 @@ export default async function sitemap() {
 
     const featuresAr = Array.isArray(resp2)
       ? resp2.map((feature) => ({
-          url: `${URL}feature/${feature?.slug}/ar/`.replace(
+          url: `${URL}ar/feature/${feature?.slug}/`.replace(
             /&/g,
             "&amp;"
           ),
@@ -416,7 +416,7 @@ export default async function sitemap() {
 
     const featuresPt = Array.isArray(resp2)
       ? resp2.map((feature) => ({
-          url: `${URL}feature/${feature?.slug}/pt/`.replace(
+          url: `${URL}pt/feature/${feature?.slug}/`.replace(
             /&/g,
             "&amp;"
           ),
@@ -428,7 +428,7 @@ export default async function sitemap() {
 
     const featuresFr = Array.isArray(resp2)
       ? resp2.map((feature) => ({
-          url: `${URL}feature/${feature?.slug}/fr/`.replace(
+          url: `${URL}fr/feature/${feature?.slug}/`.replace(
             /&/g,
             "&amp;"
           ),
@@ -449,7 +449,7 @@ export default async function sitemap() {
 
     const faqsAr = Array.isArray(resp3)
       ? resp3.map((faq) => ({
-          url: `${URL}faq/${faq?.slug}/ar/`.replace(/&/g, "&amp;"),
+          url: `${URL}ar/faq/${faq?.slug}/`.replace(/&/g, "&amp;"),
           lastModified: `${faq?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
@@ -458,7 +458,7 @@ export default async function sitemap() {
 
     const faqsPt = Array.isArray(resp3)
       ? resp3.map((faq) => ({
-          url: `${URL}faq/${faq?.slug}/pt/`.replace(/&/g, "&amp;"),
+          url: `${URL}pt/faq/${faq?.slug}/`.replace(/&/g, "&amp;"),
           lastModified: `${faq?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",
@@ -467,7 +467,7 @@ export default async function sitemap() {
 
     const faqsFr = Array.isArray(resp3)
       ? resp3.map((faq) => ({
-          url: `${URL}faq/${faq?.slug}/fr/`.replace(/&/g, "&amp;"),
+          url: `${URL}fr/faq/${faq?.slug}/`.replace(/&/g, "&amp;"),
           lastModified: `${faq?.updatedAt}`,
           priority: 0.8,
           changeFrequency: "daily",

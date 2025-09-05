@@ -38,8 +38,6 @@ const Page = async ({ params }) => {
   };
   let iframeUrl = "";
   const [detail] = await Promise.all([getServerSideData(urls.detail, true)]);
-
-  // Extract the actual feature data from the response array
   const featureData = detail?.data?.[0];
 
   if (featureData?.video_iframe) {
