@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { detectLanguageFromIP, shouldRedirectToLanguage, shouldExcludeFromLanguageRedirect } from '@/utils/ip-language-detection';
+import { detectLanguageFromIP, shouldRedirectToLanguage, shouldSkipLanguageDetection } from '@/utils/ip-language-detection';
 
 export default function LanguageDetector() {
   const router = useRouter();
@@ -11,20 +11,8 @@ export default function LanguageDetector() {
     // Only run on client side
     if (typeof window === 'undefined') return;
 
-    // Skip if already on a language-specific route
-    if (pathname.match(/^\/[a-z]{2}\//)) return;
-
-    // Skip API routes and static files
-    if (
-      pathname.startsWith('/api/') ||
-      pathname.startsWith('/_next/') ||
-      pathname.includes('.') ||
-      pathname === '/robots.txt' ||
-      pathname === '/sitemap.xml'
-    ) {
-      return;
-    }
-    if (shouldExcludeFromLanguageRedirect(pathname)) return;
+    // Use the comprehensive skip function to check all conditions
+    if (shouldSkipLanguageDetection(pathname)) return;
 
     // Detect language and redirect if needed
     const detectAndRedirect = async () => {
