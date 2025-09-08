@@ -27,7 +27,7 @@ const Page = async () => {
   };
   const [getStarted, reasons] = await Promise.all([
     getServerSideData(urls.getStarted),
-    getServerSideData(urls.reasons, true),
+    getServerSideData(urls.reasons),
   ]);
 
   const jsonLd = {
@@ -47,7 +47,7 @@ const Page = async () => {
       <Layout>
         <div className="bg-circle_bg bg-no-repeat bg-cover w-full">
           <GetStarted data={getStarted} />
-          <Reasons data={reasons?.data} />
+          <Reasons data={reasons} />
         </div>
       </Layout>
     </div>

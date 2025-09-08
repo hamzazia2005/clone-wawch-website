@@ -80,18 +80,18 @@ const Review = ({ data, reviews, platform }) => {
                   {/* <FadeIn> */}
                   <Link
                     data-aos="fade-up"
-                    href={item?.attributes?.link}
+                    href={item?.link}
                     target="_blank"
                     // className="w-[80px] h-[80px]"
                   >
                     <Image
                       className="scale-100 hover:scale-[1.07] transition-transform duration-300 opacity-80 hover:opacity-100 rounded-lg"
                       src={
-                        item?.attributes?.icon?.data?.attributes?.url
+                        item?.icon?.url
                           ? isLocal
                             ? BASE_URL +
-                              item?.attributes?.icon?.data?.attributes?.url
-                            : item?.attributes?.icon?.data?.attributes?.url
+                              item?.icon?.url
+                            : item?.icon?.url
                           : "/assets/placeholder.png"
                       }
                       alt="logo"
@@ -116,7 +116,7 @@ const Review = ({ data, reviews, platform }) => {
           <div className="col-span-12">
             <Slider ref={SliderRef} {...settings}>
               {reviews?.data?.map((item, index) => (
-                <ReviewContainer key={index} item={item.attributes} />
+                <ReviewContainer key={index} item={item} />
               ))}
             </Slider>
           </div>

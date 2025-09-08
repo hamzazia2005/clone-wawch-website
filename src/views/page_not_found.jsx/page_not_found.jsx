@@ -16,10 +16,10 @@ const PageNotFound = ({ data }) => {
       <div className='w-full h-[100vh] flex items-center px-6 mt-4 justify-center'>
         <Image
           src={
-            data?.image?.data?.attributes?.url
+            data?.image?.url
               ? isLocal
-                ? BASE_URL + data?.image?.data?.attributes?.url
-                : data?.image?.data?.attributes?.url
+                ? BASE_URL + data?.image?.url
+                : data?.image?.url
               : '/assets/placeholder.png'
           }
           alt='404'

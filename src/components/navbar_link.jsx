@@ -17,13 +17,13 @@ const NavbarLinks = ({ navLinks }) => {
         ? 0
         : pathname.includes("/pricing/")
         ? 1
-        : pathname.includes("/faqs/")
+        : (pathname.includes("/faqs/") || pathname.includes("/blog/"))
         ? 2
         : pathname.includes("/features/")
         ? 3
-        : pathname.includes("/blog/")
-        ? 4
         : pathname.includes("/contact-us/")
+        ? 4
+        : (pathname.includes("/affiliates/") || pathname.includes("/partner/"))
         ? 5
         : -1
     );

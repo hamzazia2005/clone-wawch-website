@@ -48,17 +48,17 @@ const page = async () => {
     hasPart: authors?.data?.map((author, index) => ({
       "@type": "Person",
       "@id": `https://wawcd.com/author/#author-${author?.id || index}`,
-      name: author?.attributes?.title,
-      description: author?.attributes?.description,
-      image: author.attributes?.image?.data[0]?.attributes?.url,
-      jobTitle: author?.attributes?.designation || "Author",
+      name: author?.title,
+      description: author?.description,
+      image: author?.image?.url,
+      jobTitle: author?.designation || "Author",
       worksFor: {
         "@type": "Organization",
         name: "WAWCD",
       },
     })),
   };
-
+  
   return (
     <>
       <script

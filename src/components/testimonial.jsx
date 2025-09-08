@@ -13,7 +13,7 @@ const Testimonial = ({ data }) => {
         <div className="flex-shrink-0 w-[250px] h-[300px] md:w-[220px] md:h-[260px] rounded-xl overflow-hidden bg-white flex items-center justify-center">
           {data?.image && (
             <Image
-              src={data?.image?.data?.attributes?.url}
+              src={data?.image?.url}
               alt={data?.name || "testimonial image"}
               width={220}
               height={260}

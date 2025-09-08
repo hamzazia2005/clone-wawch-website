@@ -20,7 +20,7 @@ export async function postUninsallForm(check, item, difficulty) {
       throw new Error(errorData.message || "Failed to submit uninstall form");
     }
     const repo = await res.json();
-    return check ? repo : repo?.data?.attributes;
+    return check ? repo : repo?.data;
   } catch (error) {
     throw new Error("Failed to submit uninstall form");
   }

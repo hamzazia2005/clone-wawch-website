@@ -48,7 +48,7 @@ const Page = async () => {
       getServerSideData(urls.pricing),
       getServerSideData(urls.faq),
       getServerSideData(urls.tableHead),
-      getServerSideData(urls.tableData, true),
+      getServerSideData(urls.tableData),
       getServerSideData(urls.enterpriseSection),
     ]);
 
@@ -91,11 +91,11 @@ const Page = async () => {
           <Pricing data={updatedPricing} isPage={true} />
           <div className="mt-10 flex flex-col items-center justify-center">
             <TableCollapse data={tableData.tier} head={tableHead?.head} />
-            {tableData?.data?.map((item, index) => (
+            {tableData?.map((item, index) => (
               <TableCollapse
                 key={index}
-                data={item?.attributes?.pricing_page_data}
-                title={item?.attributes?.table_title}
+                data={item?.pricing_page_data}
+                title={item?.table_title}
               />
             ))}
           </div>

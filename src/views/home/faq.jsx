@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Faq = ({ data, faqs }) => {
   const { lang } = useAppContext();
-
+  
   return (
     <div className="flex justify-center items-center">
       <div className="max-w-[1440px] w-full px-5 sm:px-12 py-12">
@@ -53,7 +53,7 @@ const Faq = ({ data, faqs }) => {
                   index !== 4 && (
                     <div key={index}>
                       {/* <PopUp duration={1}> */}
-                      <FaqQuestion item={item?.attributes} flag={false} />
+                      <FaqQuestion item={item} flag={false} />
                       {/* </PopUp> */}
                     </div>
                   )

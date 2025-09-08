@@ -91,7 +91,7 @@ const Reasons = ({ data }) => {
                   scrollToSection(index);
                 }}
               >
-                {formatIndex(index)} {item?.attributes?.title}
+                {formatIndex(index)} {item?.title}
               </li>
             ))}
           </ul>
@@ -104,14 +104,14 @@ const Reasons = ({ data }) => {
                   {formatIndex(index)}
                 </p>
                 <h2 className='text-3xl sm:text-4xl lg:text-5xl text-white leading-normal sm:leading-normal lg:leading-normal font-poppins font-semibold'>
-                  {item?.attributes?.heading}
+                  {item?.heading}
                 </h2>
                 <p className='mt-4 text-white font-poppins text-base sm:text-xl leading-loose font-normal'>
-                  {item?.attributes?.description}
+                  {item?.description}
                 </p>
               </div>
-              {item?.attributes?.content &&
-                item?.attributes?.content.trim() != '' && (
+              {item?.content &&
+                item?.content.trim() != '' && (
                   <div className='flex justify-end mt-8'>
                     <div className='lg:w-[70%] p-5 border border-[#DCF6D4] rounded-[5px]'>
                       <Image
@@ -124,7 +124,7 @@ const Reasons = ({ data }) => {
                       <p
                         className={'text-lg font-poppins leading-[160%] text-white'}
                       >
-                        {item?.attributes?.content}
+                        {item?.content}
                       </p>
                     </div>
                   </div>

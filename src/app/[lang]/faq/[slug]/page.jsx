@@ -9,13 +9,14 @@ export async function generateMetadata({ params }) {
     `api/faq-sections/?filters[slug][$eq]=${params.slug}&locale=${paramLanguage}`,
     true
   );
+  const faqData = resp?.data?.[0];
   return {
-    title: resp?.data[0]?.attributes?.meta_title,
-    description: resp?.data[0]?.attributes?.meta_description,
+    title: faqData?.meta_title,
+    description: faqData?.meta_description,
     openGraph: {
       url: `https://wawcd.com/${params.lang}/faq/${params.slug}/`,
-      title: resp?.data[0]?.attributes?.meta_title,
-      description: resp?.data[0]?.attributes?.meta_description,
+      title: faqData?.meta_title,
+      description: faqData?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: `${paramLanguage}_${paramLanguage.toUpperCase()}`,
     },
@@ -39,24 +40,25 @@ const Page = async ({ params }) => {
     getServerSideData(urls.faq, true),
   ]);
 
+  const faqData = faq?.data?.[0];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    name: faq?.data[0]?.attributes?.meta_title,
-    description: faq?.data[0]?.attributes?.meta_description,
+    name: faqData?.meta_title,
+    description: faqData?.meta_description,
     url: `https://wawcd.com/${params.lang}/faq/${params.slug}/`,
-    datePublished: faq?.data[0]?.attributes?.createdAt,
-    dateModified: faq?.data[0]?.attributes?.updatedAt,
+    datePublished: faqData?.createdAt,
+    dateModified: faqData?.updatedAt,
     author: {
       "@type": "Person",
-      name: faq?.data[0]?.attributes?.author,
+      name: faqData?.author,
     },
     mainEntity: {
       "@type": "Question",
-      name: faq?.data[0]?.attributes?.question,
+      name: faqData?.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq?.data[0]?.attributes?.search_answer,
+        text: faqData?.search_answer,
       },
     },
   };
@@ -69,8 +71,8 @@ const Page = async ({ params }) => {
       <Layout params={params}>
         <FaqCall
           getStarted={getStarted}
-          faqs={faqs}
-          faq={faq?.data[0]?.attributes}
+          faqs={faqs?.data}
+          faq={faqData}
         />
       </Layout>
     </div>

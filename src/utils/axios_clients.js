@@ -2,9 +2,8 @@
 import axios from "axios";
 
 // Base URL from environment variables with fallbacks
-const BASE_URL_SERVER = process.env.STRAPI_BE_URL_SERVER || process.env.STRAPI_BE_URL || "https://strapi.wawcd.com";
-const BASE_URL_CLIENT = process.env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT || "https://strapi.wawcd.com";
-
+const BASE_URL_SERVER =  process.env.STRAPI_BE_URL_SERVER; //'http://localhost:1337' ;//process.env.STRAPI_BE_URL_SERVER || process.env.STRAPI_BE_URL || "https://strapi.wawcd.com";
+const BASE_URL_CLIENT = process.env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT;//'http://localhost:1337' ;//process.env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT || "https://strapi.wawcd.com";
 // Server-side Axios instance
 export const serverAxios = axios.create({
   baseURL: BASE_URL_SERVER,

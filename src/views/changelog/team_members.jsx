@@ -41,11 +41,11 @@ const TeamMembers = ({ heading, data, version }) => {
             >
               <Image
                 src={
-                  item?.attributes?.image?.data?.attributes?.url
+                  item?.image?.url
                     ? isLocal
                       ? BASE_URL +
-                        item?.attributes?.image?.data?.attributes?.url
-                      : '' + item?.attributes?.image?.data?.attributes?.url
+                        item?.image?.url
+                      : '' + item?.image?.url
                     : '/assets/profile_pic.png'
                 }
                 width={50}
@@ -56,10 +56,10 @@ const TeamMembers = ({ heading, data, version }) => {
               />
               <div>
                 <h3 className='mt-2 md:mt-0 text-black font-plus text-xl font-semibold'>
-                  {item?.attributes?.name}
+                  {item?.name}
                 </h3>
                 <p className='font-poppins font-medium text-[#606060]'>
-                  {item?.attributes?.role}
+                  {item?.role}
                 </p>
               </div>
             </div>
@@ -71,15 +71,15 @@ const TeamMembers = ({ heading, data, version }) => {
             <FadeIn>
               <div className='flex gap-2 mb-2 mt-10 bg-gray-300 p-2 rounded-md'>
                 <p className='text-lg font-poppins leading-[160%] font-semibold text-black'>
-                  {item?.attributes?.version}
+                  {item?.version}
                 </p>
                 <p className='text-base font-poppins leading-[160%] font-semibold text-black'>
-                  ({item?.attributes?.date})
+                  ({item?.date})
                 </p>
               </div>
             </FadeIn>
             <FadeIn delay={0.4}>
-              <BlocksRender data={item?.attributes?.description} />
+              <BlocksRender data={item?.description} />
             </FadeIn>
           </div>
         ))}

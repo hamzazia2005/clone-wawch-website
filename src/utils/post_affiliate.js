@@ -26,7 +26,7 @@ export async function postAffiliateForm(check, item, promote) {
     }
     const repo = await res.json();
 
-    return check ? repo : repo?.data?.attributes;
+    return check ? repo : repo?.data;
   } catch (error) {
     console.error("Error posting affiliate form:", error);
     throw new Error("Failed to submit affiliate form");

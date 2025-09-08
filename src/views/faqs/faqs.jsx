@@ -5,15 +5,15 @@ import { useState } from 'react';
 
 const Faq = ({ data }) => {
   // eslint-disable-next-line no-undef
-  const titles = [...new Set(data?.map((item) => item.attributes.title))];
+  const titles = data && data.length > 0 ? [...new Set(data.map((item) => item.title))] : [];
   const [selectedTitle, setSelectedTitle] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 10;
   const filteredData =
     selectedTitle === 'All'
-      ? data
-      : data.filter((item) => item?.attributes?.title === selectedTitle);
+      ? (data || [])
+      : (data || []).filter((item) => item?.title === selectedTitle);
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -43,7 +43,7 @@ const Faq = ({ data }) => {
               All
             </h2>
           </FadeIn>
-          {titles?.map((title, index) => (
+          {titles && titles.length > 0 && titles.map((title, index) => (
             <FadeIn key={index} duration={1}>
               <h2
                 className={`text-xl font-poppins cursor-pointer ${
@@ -59,13 +59,19 @@ const Faq = ({ data }) => {
           ))}
         </div>
         <div className='mb-12'>
-          {currentData.map((item, index) => (
-            <div key={index}>
-              <PopUp duration={1}>
-                <FaqQuestion item={item?.attributes} flag={true} />
-              </PopUp>
+          {currentData && currentData.length > 0 ? (
+            currentData.map((item, index) => (
+              <div key={index}>
+                <PopUp duration={1}>
+                  <FaqQuestion item={item} flag={true} />
+                </PopUp>
+              </div>
+            ))
+          ) : (
+            <div className="text-center text-gray-500 py-8">
+              No FAQs found.
             </div>
-          ))}
+          )}
         </div>
         {/* Pagination Controls*/}
         {totalPages > 1 && filteredData.length > 0 && (

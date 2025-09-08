@@ -24,7 +24,7 @@ const AuthorPage = ({
 
   const filteredBlogs = selectedAuthorId
     ? (details?.data || []).filter(
-        (blog) => blog?.attributes?.author?.data?.id === selectedAuthorId
+        (blog) => blog?.author?.id === selectedAuthorId
       )
     : [];
   setTimeout(() => {
@@ -69,7 +69,7 @@ const AuthorPage = ({
           {selectedAuthorId && filteredBlogs.length > 0 && (
             <AuthorBlogs
               detail={filteredBlogs}
-              page_title={reviews_banner?.data?.attributes?.blog_title}
+              page_title={reviews_banner?.data?.blog_title}
             />
           )}
         </div>

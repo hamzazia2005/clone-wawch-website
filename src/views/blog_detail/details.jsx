@@ -4,6 +4,7 @@ import { Category, BlogCard, Heading, BlocksRender } from '@/components';
 import Image from 'next/image';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import { FadeIn, PopUp } from '@/animations';
+import { FormatDate } from '@/utils';
 
 const Detail = ({ data, detail, blog_headings }) => {
   const params = useParams();
@@ -13,9 +14,9 @@ const Detail = ({ data, detail, blog_headings }) => {
     router.push('/404');
     return <div></div>;
   }
-  const author = data?.author?.data?.attributes;
+  const author = data?.author;
   const profileImage =
-    author?.image?.data[0]?.attributes?.url || '/assets/profile_pic.png';
+    author?.image?.url || '/assets/profile_pic.png';
 
   return (
     <div className='flex justify-center items-center mt-20'>
@@ -33,15 +34,18 @@ const Detail = ({ data, detail, blog_headings }) => {
           <h1 className='text-[40px] text-black1 font-plus text-center font-bold my-3 md:w-[70%] mt-4 mb-5'>
             {data?.title}
           </h1>
+          <p className='text-gray1 text-lg font-poppins font-medium'>
+            {FormatDate(data?.publishedAt)}
+          </p>
         </div>
         {/* </FadeIn> */}
         {/* <PopUp> */}
         <Image
           src={
-            data?.image?.data[0]?.attributes?.url
+            data?.image?.url
               ? isLocal
-                ? BASE_URL + data?.image?.data[0]?.attributes?.url
-                : data?.image?.data[0]?.attributes?.url
+                ? BASE_URL + data?.image?.url
+                : data?.image?.url
               : '/assets/placeholder.png'
           }
           priority={true}
@@ -74,7 +78,7 @@ const Detail = ({ data, detail, blog_headings }) => {
         </div>
         <div className='flex justify-center pb-16'>
           <div className='md:w-[90%]'>
-            {data?.author?.data?.attributes?.title && (
+            {data?.author?.title && (
               <>
                 <div className='border-t border-b py-6 space-y-6'>
                   <Heading text={blog_headings?.author_heading} />
@@ -110,7 +114,7 @@ const Detail = ({ data, detail, blog_headings }) => {
             <Heading text={data?.more_blog} />
             <div className='my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {detail?.data
-                ?.filter((item) => item?.attributes?.slug !== params.slug)
+                ?.filter((item) => item?.slug !== params.slug)
                 ?.slice(0, 3)
                 ?.map((item, index) => (
                   <PopUp

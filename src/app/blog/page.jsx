@@ -52,10 +52,10 @@ const Page = async ({ searchParams }) => {
     datePublished: meta?.createdAt,
     mainEntity: detail?.data?.map((blog) => ({
       "@type": "BlogPosting",
-      headline: blog?.attributes?.meta_title,
-      image: blog?.attributes?.image?.data[0]?.attributes?.url,
-      datePublished: blog?.attributes?.createdAt,
-      dateModified: blog?.attributes?.updatedAt,
+      headline: blog?.meta_title,
+      image: blog?.image?.url,
+      datePublished: blog?.createdAt,
+      dateModified: blog?.updatedAt,
     })),
   };
   return (

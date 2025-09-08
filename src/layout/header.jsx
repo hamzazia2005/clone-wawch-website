@@ -19,7 +19,7 @@ const Header = ({ data, gcid }) => {
   useEffect(() => {
     const gclid = searchParams.get('gclid');
     if (gclid) {
-      const gclidExists = gcid?.some((item) => item.attributes.gclid === gclid);
+      const gclidExists = gcid?.some((item) => item.gclid === gclid);
       localStorage.setItem('gclid', gclid);
       localStorage.setItem('gclidForWhatsapp', gclid);
       if (!gclidExists) {

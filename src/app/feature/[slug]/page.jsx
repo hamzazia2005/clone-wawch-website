@@ -9,17 +9,17 @@ export async function generateMetadata({ params }) {
   );
 
   return {
-    title: resp?.data[0]?.attributes?.meta_title,
-    description: resp?.data[0]?.attributes?.meta_description,
+    title: resp?.data?.meta_title,
+    description: resp?.data?.meta_description,
     openGraph: {
       url: `https://wawcd.com/feature/${params.slug}/`,
-      title: resp?.data[0]?.attributes?.meta_title,
-      description: resp?.data[0]?.attributes?.meta_description,
+      title: resp?.data?.meta_title,
+      description: resp?.data?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
       images: [
         {
-          url: resp?.data[0]?.attributes?.image?.data[0]?.attributes?.url,
+          url: resp?.data?.image?.url,
           width: 800,
           height: 600,
           alt: resp?.title,
@@ -38,9 +38,10 @@ const Page = async ({ params }) => {
   };
   let iframeUrl = "";
   const [detail] = await Promise.all([getServerSideData(urls.detail, true)]);
+  const featureData = detail?.data?.[0];
 
-  if (detail?.data[0]?.attributes?.video_iframe) {
-    const iframeTag = detail?.data[0]?.attributes?.video_iframe;
+  if (featureData?.video_iframe) {
+    const iframeTag = featureData?.video_iframe;
     const iframeUrlMatch = iframeTag?.match(/src="([^"]+)"/);
     iframeUrl = iframeUrlMatch ? iframeUrlMatch[1] : null;
   }
@@ -48,28 +49,28 @@ const Page = async ({ params }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: detail?.data[0]?.attributes?.meta_title,
-    description: detail?.data[0]?.attributes?.meta_description,
-    image: detail?.data[0]?.attributes?.image?.data?.attributes?.url,
+    name: featureData?.meta_title,
+    description: featureData?.meta_description,
+    image: featureData?.image?.url,
     url: `https://wawcd.com/feature/${params.slug}/`,
-    datePublished: detail?.data[0]?.attributes?.createdAt,
-    dateModified: detail?.data[0]?.attributes?.updatedAt,
+    datePublished: featureData?.createdAt,
+    dateModified: featureData?.updatedAt,
     publisher: {
       "@type": "Organization",
       name: "WAWCD",
     },
   };
-  if (detail?.data[0]?.attributes?.video_iframe) {
+  if (featureData?.video_iframe) {
     jsonLd.mainEntity = {
       "@type": "VideoObject",
-      name: detail?.data[0]?.attributes?.meta_title,
-      description: detail?.data[0]?.attributes?.meta_description,
+      name: featureData?.meta_title,
+      description: featureData?.meta_description,
       embedUrl: iframeUrl,
-      uploadDate: detail?.data[0]?.attributes?.createdAt,
-      thumbnailUrl: detail?.data[0]?.attributes?.image?.data?.attributes?.url,
+      uploadDate: featureData?.createdAt,
+      thumbnailUrl: featureData?.image?.url,
     };
   }
-
+  
   return (
     <div>
       <script
@@ -77,7 +78,7 @@ const Page = async ({ params }) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Layout>
-        <Details data={detail?.data[0]?.attributes} />
+        <Details data={featureData} />
       </Layout>
     </div>
   );

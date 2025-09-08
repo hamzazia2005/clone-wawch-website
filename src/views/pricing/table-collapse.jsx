@@ -45,7 +45,7 @@ const TableCollapse = ({ data = [], title, head = [] }) => {
               ))}
 
               <tbody>
-                {data.map((feature, index) => (
+                {data?.map((feature, index) => (
                   <tr
                     key={index}
                     className='border-none text-[#3F4E41] text-[15px] font-[500]'

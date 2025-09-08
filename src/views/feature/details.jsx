@@ -13,6 +13,7 @@ const Detail = ({ data }) => {
     return <div></div>;
   }
 
+
   return (
     <div className='flex justify-center items-center mt-20'>
       <div className='max-w-[1440px] px-5 sm:px-12 py-12 flex flex-col w-[500px] sm:w-[700px] md:w-full'>
@@ -35,10 +36,10 @@ const Detail = ({ data }) => {
           data-aos-duration='800'
           data-aos-delay='300'
           src={
-            data?.image?.data?.attributes?.url
+            data?.image?.url
               ? isLocal
-                ? BASE_URL + data?.image?.data?.attributes?.url
-                : data?.image?.data?.attributes?.url
+                ? BASE_URL + data?.image?.url
+                : data?.image?.url
               : '/assets/placeholder.png'
           }
           alt='img'
@@ -62,7 +63,7 @@ const Detail = ({ data }) => {
                 ></div>
               </div>
             )}
-            <BlocksRender data={data?.feature_details} />
+            <BlocksRender data={data?.feature_details || []} />
           </div>
         </div>
       </div>

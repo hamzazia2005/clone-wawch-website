@@ -9,17 +9,17 @@ export async function generateMetadata({ params }) {
   );
 
   return {
-    title: resp?.data[0]?.attributes?.meta_title,
-    description: resp?.data[0]?.attributes?.meta_description,
+    title: resp?.meta_title,
+    description: resp?.data?.meta_description,
     openGraph: {
       url: `https://wawcd.com/blog/${params.slug}/`,
-      title: resp?.data[0]?.attributes?.meta_title,
-      description: resp?.data[0]?.attributes?.meta_description,
+      title: resp?.data?.meta_title,
+      description: resp?.data?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
       images: [
         {
-          url: resp?.data[0]?.attributes?.image?.data[0]?.attributes?.url,
+          url: resp?.data?.image?.url,
           width: 800,
           height: 600,
           alt: resp?.title,
@@ -45,18 +45,21 @@ const Page = async ({ params }) => {
     getServerSideData(urls.blog_headings),
   ]);
 
+  const blogData = blog?.data?.[0];
+  const detailData = detail?.data;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: blog?.data[0]?.attributes?.meta_title,
-    description: blog?.data[0]?.attributes?.meta_description,
-    image: blog?.data[0]?.attributes?.image?.data[0]?.attributes?.url,
+    name: blogData?.meta_title,
+    description: blogData?.meta_description,
+    image: blogData?.image?.[0]?.url,
     url: `https://wawcd.com/blog/${params.slug}/`,
-    datePublished: blog?.data[0]?.attributes?.createdAt,
-    dateModified: blog?.data[0]?.attributes?.updatedAt,
+    datePublished: blogData?.createdAt,
+    dateModified: blogData?.updatedAt,
     author: {
       "@type": "Person",
-      name: blog?.data[0]?.attributes?.author,
+      name: blogData?.author?.title,
     },
     publisher: {
       "@type": "Organization",
@@ -71,8 +74,8 @@ const Page = async ({ params }) => {
       />
       <Layout>
         <Detail
-          data={blog?.data[0]?.attributes}
-          detail={detail}
+          data={blogData}
+          detail={detailData}
           blog_headings={blog_headings}
         />
       </Layout>

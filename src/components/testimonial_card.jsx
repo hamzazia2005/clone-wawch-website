@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { isLocal, BASE_URL } from '@/utils/axios_instance';
 
 const TestimonialCard = ({ item }) => {
-  const data = item?.attributes;
+  const data = item;
 
   return (
     <div className='p-4 pb-6 border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] rounded-lg transition-all duration-300'>
@@ -15,13 +15,13 @@ const TestimonialCard = ({ item }) => {
           ></div>
         </div>
       )}
-      {data?.image?.data?.attributes?.url && (
+      {data?.image?.url && (
         <Image
           src={
-            data?.image?.data?.attributes.url
+            data?.image?.url
               ? isLocal
-                ? BASE_URL + data?.image?.data?.attributes?.url
-                : data?.image?.data?.attributes?.url
+                ? BASE_URL + data?.image?.url
+                : data?.image?.url
               : '/assets/placeholder.png'
           }
           alt='image'
@@ -42,10 +42,10 @@ const TestimonialCard = ({ item }) => {
       <div className='flex gap-3 items-center'>
         <Image
           src={
-            data?.profile_image?.data?.attributes?.url
+            data?.profile_image?.url
               ? isLocal
-                ? BASE_URL + data?.profile_image?.data?.attributes?.url
-                : data?.profile_image?.data?.attributes?.url
+                ? BASE_URL + data?.profile_image?.url
+                : data?.profile_image?.url
               : '/assets/profile_pic.png'
           }
           alt='image'

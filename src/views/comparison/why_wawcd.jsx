@@ -12,20 +12,20 @@ const WhyWawcd = ({ data }) => {
           >
             <div>
               <h3 className='mb-6 mt-8 md:mt-0 text-black leading-snug font-plus text-[30px] sm:text-[36px] font-semibold'>
-                {item?.attributes?.heading}
+                {item?.heading}
               </h3>
               <p className='font-poppins text-black'>
-                {item?.attributes?.description}
+                {item?.description}
               </p>
             </div>
-            {item?.attributes?.image?.data?.attributes?.url && (
+            {item?.image?.url && (
               <Image
                 src={
-                  item?.attributes?.image?.data?.attributes?.url
+                  item?.image?.url
                     ? isLocal
                       ? BASE_URL +
-                        item?.attributes?.image?.data?.attributes?.url
-                      : item?.attributes?.image?.data?.attributes?.url
+                        item?.image?.url
+                      : item?.image?.url
                     : '/assets/placeholder.png'
                 }
                 width={300}

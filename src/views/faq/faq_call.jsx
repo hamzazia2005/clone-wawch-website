@@ -14,11 +14,11 @@ const FaqCall = ({ getStarted, faqs, faq }) => {
     <div>
       <GetStarted
         data={getStarted}
-        faqs={faqs?.data}
+        faqs={faqs}
         search={search}
         setSearch={setSearch}
       />
-      <Detail data={faq} faqs={faqs?.data} related={getStarted} />
+      <Detail data={faq} faqs={faqs} related={getStarted} />
     </div>
   );
 };

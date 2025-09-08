@@ -9,9 +9,11 @@ export async function generateMetadata({ params }) {
     `api/home-meta/?locale=${paramLanguage}&populate=*`
   );
 
-  const faviconUrl = isLocal
-    ? BASE_URL + resp?.favicon.data.attributes.url
-    : resp?.favicon.data.attributes.url;
+  const faviconUrl = resp?.favicon?.url
+    ? isLocal
+      ? BASE_URL + resp?.favicon?.url
+      : resp?.favicon?.url
+    : null;
 
   return {
     title: resp?.title,
@@ -19,28 +21,28 @@ export async function generateMetadata({ params }) {
     verification: {
       google: "Aahq02UlpbJw3PbuUBWCiXqueMvK4qN0fZNrO4wUWcE",
     },
-    icons: {
+    icons: faviconUrl ? {
       icon: [
         {
           url: faviconUrl,
           href: faviconUrl,
         },
       ],
-    },
+    } : undefined,
     openGraph: {
       url: `https://wawcd.com/${paramLanguage}/`,
       title: resp?.title,
       description: resp?.description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: `${paramLanguage}_${paramLanguage.toUpperCase()}`,
-      images: [
+      images: faviconUrl ? [
         {
           url: faviconUrl,
           width: 800,
           height: 600,
           alt: resp?.title,
         },
-      ],
+      ] : undefined,
     },
     alternates: {
       canonical: `https://wawcd.com/${paramLanguage}/`,
@@ -96,8 +98,8 @@ const Page = async ({ params }) => {
     "@type": "Organization",
     name: meta?.title,
     image: isLocal
-      ? BASE_URL + template?.image?.data?.attributes?.url
-      : template?.image?.data?.attributes?.url,
+      ? BASE_URL + template?.image?.url
+      : template?.image?.url,
     description: meta?.description,
     url: `https://wawcd.com/${paramLanguage}/`,
   };
