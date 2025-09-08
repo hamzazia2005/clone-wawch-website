@@ -42,10 +42,10 @@ const Detail = ({ data, detail, blog_headings }) => {
         {/* <PopUp> */}
         <Image
           src={
-            data?.image?.url
+            data?.image[0]?.url
               ? isLocal
-                ? BASE_URL + data?.image?.url
-                : data?.image?.url
+                ? BASE_URL + data?.image[0]?.url
+                : data?.image[0]?.url
               : '/assets/placeholder.png'
           }
           priority={true}

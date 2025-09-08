@@ -51,10 +51,10 @@ const Blogs = ({ data, detail }) => {
                     backgroundImage: `url(${
                       isLocal
                         ? BASE_URL +
-                          detail?.data?.[0]?.image
+                          detail?.data?.[0]?.image[0]
                             ?.url
                         : '' +
-                          detail?.data?.[0]?.image
+                          detail?.data?.[0]?.image[0]
                             ?.url
                     })`,
                     backgroundPosition: 'center',
