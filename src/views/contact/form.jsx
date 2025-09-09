@@ -117,12 +117,29 @@ const ContactForm = ({ data }) => {
                 setSubmit(true);
                 return;
               }
-              postContactForm(
-                'api/contact-applications',
-                false,
-                values,
-                selectedOption
-              );
+              try {
+                await postContactForm(
+                  false,
+                  values,
+                  selectedOption
+                );
+              } catch (error) {
+                console.error('Contact form submission error:', error);
+                toast.error(error.message || 'Failed to submit contact form', {
+                  style: {
+                    border: '2px solid #ef4444',
+                    borderRadius: '10px',
+                    padding: '12px 40px',
+                    color: '#7f1d1d',
+                    backgroundColor: '#fef2f2',
+                  },
+                  iconTheme: {
+                    primary: '#ef4444',
+                    secondary: '#fef2f2',
+                  },
+                });
+                return; 
+              }
               document.getElementById('fName').value = '';
               document.getElementById('lName').value = '';
               document.getElementById('company').value = '';

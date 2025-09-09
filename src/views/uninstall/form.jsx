@@ -46,7 +46,6 @@ const UninstallForm = ({ data }) => {
                 return;
               }
               postUninsallForm(
-                'api/uninstall-applications',
                 false,
                 values,
                 selectedOption

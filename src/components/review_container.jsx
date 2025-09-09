@@ -55,7 +55,7 @@ const ReviewContainer = ({ item, index }) => {
             item?.profile_pic?.url
               ? isLocal
                 ? BASE_URL + item?.profile_pic?.url
-                : "" + item?.profile_pic?.url
+                : item?.profile_pic?.url
               : "/assets/placeholder.png"
           }
           width={50}
