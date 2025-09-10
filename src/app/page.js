@@ -83,16 +83,6 @@ const Page = async () => {
     getServerSideData(urls.meta),
   ]);
 
-  // const jsonLd = {
-  //   "@context": "https://schema.org",
-  //   "@type": "Organization",
-  //   name: meta?.title,
-  //   image: isLocal
-  //     ? BASE_URL + template?.image?.url
-  //     : template?.image?.url,
-  //   description: meta?.description,
-  //   url: "https://wawcd.com/",
-  // };
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
