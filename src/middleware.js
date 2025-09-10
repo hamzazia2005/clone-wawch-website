@@ -23,8 +23,7 @@ export async function middleware(request) {
         const redirectPath = shouldRedirectToLanguage(pathname, detectedLanguage);
         
         if (redirectPath) {
-          console.log(`Redirecting from ${pathname} to ${redirectPath} (detected language: ${detectedLanguage})`);
-          return NextResponse.redirect(new URL(redirectPath, request.url));
+            return NextResponse.redirect(new URL(redirectPath, request.url));
         }
       }
     }
