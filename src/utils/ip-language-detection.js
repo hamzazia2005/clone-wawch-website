@@ -105,7 +105,6 @@ export function shouldSkipLanguageDetection(pathname) {
     return true;
   }
 
-  // Skip pages that should be excluded from language redirect
   if (shouldExcludeFromLanguageRedirect(pathname)) {
     return true;
   }
@@ -114,7 +113,6 @@ export function shouldSkipLanguageDetection(pathname) {
 }
 
 export function shouldRedirectToLanguage(pathname, detectedLanguage) {
-  // Use the comprehensive skip function to check all conditions
   if (shouldSkipLanguageDetection(pathname)) {
     return null;
   }

@@ -16,7 +16,8 @@ const Layout = async ({ children, params }) => {
   const gcid = await getServerSideData(urls.gcid, true);
   return (
     <div className='min-h-[100vh] flex flex-col justify-between'>
-      <LanguageDetector />
+      {/* Keeping this component in case we need it later (fallback) */}
+      {/* <LanguageDetector /> */} 
       <Header data={header} gcid={gcid?.data} />
       {children}
       <Footer data={footer} />

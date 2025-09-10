@@ -4,7 +4,6 @@ import { detectLanguageFromIP, shouldRedirectToLanguage, shouldExcludeFromLangua
 export async function middleware(request) {
   const { pathname, searchParams } = request.nextUrl;
 
-  // Handle features page redirects
   if (pathname === '/features' || pathname === '/features/' || 
       pathname.match(/^\/[a-z]{2}\/features\/?$/)) {
     const page = searchParams.get('page');
@@ -23,7 +22,7 @@ export async function middleware(request) {
         const redirectPath = shouldRedirectToLanguage(pathname, detectedLanguage);
         
         if (redirectPath) {
-            return NextResponse.redirect(new URL(redirectPath, request.url));
+          return NextResponse.redirect(new URL(redirectPath, request.url));
         }
       }
     }
@@ -79,6 +78,11 @@ export const config = {
     '/affiliates/',
     '/coming-soon',
     '/coming-soon/',
+    // Dynamic routes
+    '/f/:path*',
+    '/feature/:path*',
+    '/faq/:path*',
+    '/blog/:path*',
     // Exclude API routes, static files, and Next.js internals
     '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)',
   ],

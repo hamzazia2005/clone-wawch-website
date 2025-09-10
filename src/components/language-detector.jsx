@@ -8,20 +8,15 @@ export default function LanguageDetector() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Only run on client side
     if (typeof window === 'undefined') return;
-
-    // Use the comprehensive skip function to check all conditions
     if (shouldSkipLanguageDetection(pathname)) return;
 
-    // Detect language and redirect if needed
     const detectAndRedirect = async () => {
       try {
         const detectedLanguage = await detectLanguageFromIP();
         const redirectPath = shouldRedirectToLanguage(pathname, detectedLanguage);
         
         if (redirectPath) {
-          // Redirect to language-specific route
           router.push(redirectPath);
         }
       } catch (error) {
@@ -35,6 +30,5 @@ export default function LanguageDetector() {
     return () => clearTimeout(timeoutId);
   }, [router, pathname]);
 
-  // This component doesn't render anything
   return null;
 }
