@@ -1,15 +1,49 @@
 const countryToLanguageMap = {
   'AE': 'ar', // UAE
-  'BR': 'pt', // Brazil
-  'EG': 'ar', // Egypt
-  'ID': 'en', // Indonesia
-  'IN': 'en', // India
-  'MY': 'en', // Malaysia
-  'PK': 'en', // Pakistan
-  'QA': 'ar', // Qatar
   'SA': 'ar', // Saudi Arabia
-  'FR': 'fr', // France
+  'EG': 'ar', // Egypt
+  'QA': 'ar', // Qatar
+  'KW': 'ar', // Kuwait
+  'BH': 'ar', // Bahrain
+  'OM': 'ar', // Oman
+  'JO': 'ar', // Jordan
+  'LB': 'ar', // Lebanon
+  'SY': 'ar', // Syria
+  'IQ': 'ar', // Iraq
+  'LY': 'ar', // Libya
+  'TN': 'ar', // Tunisia
+  'DZ': 'ar', // Algeria
+  'MA': 'ar', // Morocco
+  'SD': 'ar', // Sudan
+  'YE': 'ar', // Yemen
+  'PS': 'ar', // Palestine
+  'MR': 'ar', // Mauritania
+
+  'BR': 'pt', // Brazil
   'PT': 'pt', // Portugal
+  'AO': 'pt', // Angola
+  'MZ': 'pt', // Mozambique
+  'CV': 'pt', // Cape Verde
+  'GW': 'pt', // Guinea-Bissau
+  'ST': 'pt', // São Tomé and Príncipe
+  'TL': 'pt', // East Timor
+
+  'FR': 'fr', // France
+  'BE': 'fr', // Belgium
+  'LU': 'fr', // Luxembourg
+  'MC': 'fr', // Monaco
+  'SN': 'fr', // Senegal
+  'CI': 'fr', // Ivory Coast
+  'ML': 'fr', // Mali
+  'BF': 'fr', // Burkina Faso
+  'NE': 'fr', // Niger
+  'TD': 'fr', // Chad
+  'MG': 'fr', // Madagascar
+  'CM': 'fr', // Cameroon
+  'CD': 'fr', // Democratic Republic of Congo
+  'CG': 'fr', // Republic of Congo
+  'CF': 'fr', // Central African Republic
+  'GA': 'fr', // Gabon
   
   // Default to English for all other countries
 };
@@ -31,7 +65,6 @@ export async function detectLanguageFromIP() {
     
     const data = await response.json();
     const countryCode = data.country;
-    
     return getLanguageFromCountry(countryCode);
   } catch (error) {
     console.error('Error detecting language from IP:', error);
