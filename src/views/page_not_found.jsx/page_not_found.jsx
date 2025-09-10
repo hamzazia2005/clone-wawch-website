@@ -1,16 +1,9 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+
 import Image from 'next/image';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 
 const PageNotFound = ({ data }) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push('/');
-  }, []);
-
   return (
     <div>
       <div className='w-full h-[100vh] flex items-center px-6 mt-4 justify-center'>

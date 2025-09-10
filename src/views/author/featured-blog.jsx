@@ -14,10 +14,10 @@ const FeaturedBlogCard = ({ blog }) => {
         <div>
           <Image
             src={
-              blog?.image?.url
+              blog?.image[0]?.url
                 ? isLocal
-                  ? BASE_URL + blog?.image?.url
-                  : '' + blog?.image?.url
+                  ? BASE_URL + blog?.image[0]?.url
+                  : blog?.image[0]?.url
                 : '/assets/placeholder.png'
             }
             alt='blog'

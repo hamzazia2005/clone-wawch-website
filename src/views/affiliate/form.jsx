@@ -66,7 +66,6 @@ const ContactForm = ({ data }) => {
                 return;
               }
               postAffiliateForm(
-                'api/affiliate-applications',
                 false,
                 values,
                 selectedOption

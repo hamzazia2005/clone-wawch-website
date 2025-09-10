@@ -45,7 +45,7 @@ const TeamMembers = ({ heading, data, version }) => {
                     ? isLocal
                       ? BASE_URL +
                         item?.image?.url
-                      : '' + item?.image?.url
+                      : item?.image?.url
                     : '/assets/profile_pic.png'
                 }
                 width={50}
