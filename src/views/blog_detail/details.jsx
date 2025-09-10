@@ -16,8 +16,9 @@ const Detail = ({ data, detail, blog_headings }) => {
   }
   const author = data?.author;
   const profileImage =
-    author?.image[0]?.url || '/assets/profile_pic.png';
+    author?.image?.[0].url || '/assets/profile_pic.png';
 
+console.log("Detail: ", detail?.data);
   return (
     <div className='flex justify-center items-center mt-20'>
       <div className='max-w-[1440px] px-5 sm:px-12 py-12 flex flex-col w-[500px] sm:w-[700px] md:w-full'>
@@ -113,7 +114,7 @@ const Detail = ({ data, detail, blog_headings }) => {
             )}
             <Heading text={data?.more_blog} />
             <div className='my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-              {detail?.data
+              {detail
                 ?.filter((item) => item?.slug !== params.slug)
                 ?.slice(0, 3)
                 ?.map((item, index) => (
