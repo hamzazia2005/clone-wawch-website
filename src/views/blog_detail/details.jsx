@@ -18,7 +18,6 @@ const Detail = ({ data, detail, blog_headings }) => {
   const profileImage =
     author?.image?.[0].url || '/assets/profile_pic.png';
 
-console.log("Detail: ", detail?.data);
   return (
     <div className='flex justify-center items-center mt-20'>
       <div className='max-w-[1440px] px-5 sm:px-12 py-12 flex flex-col w-[500px] sm:w-[700px] md:w-full'>
