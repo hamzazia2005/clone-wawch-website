@@ -1,4 +1,3 @@
-"use client";
 import { AboutContainer } from "@/components";
 // import { FadeIn } from "@/animations";
 import Image from "next/image";

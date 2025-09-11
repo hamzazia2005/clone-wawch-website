@@ -122,7 +122,7 @@ const GetStarted = ({ data }) => {
           {/* </PopUp> */}
           <div className="max-w-[400px] px-3 sm:p-0">
             <div className="flex flex-wrap gap-2">
-              {data?.chips?.data?.map((item, index) => (
+              {(data?.chips?.data || []).map((item, index) => (
                 // <PopUp delay={2} duration={1} key={index} isBounce={true}>
                 <div
                   key={index}
@@ -136,7 +136,7 @@ const GetStarted = ({ data }) => {
               ))}
             </div>
             <div className="flex flex-wrap gap-2 mt-3">
-              {data?.websites?.data?.map((item, index) => (
+              {(data?.websites?.data || []).map((item, index) => (
                 // <PopUp delay={2} duration={1} key={index} isBounce={true}>
                 <SiteContainer key={index} item={item} />
               ))}

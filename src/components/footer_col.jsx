@@ -1,9 +1,9 @@
-"use client";
-import { useAppContext } from "@/context";
+//import { useAppContext } from "@/context";
 import Link from "next/link";
 
 const FooterCol = ({ title, items }) => {
-  const { lang } = useAppContext();
+  //const { lang } = useAppContext();
+  const lang = ""; 
 
   return (
     <div>

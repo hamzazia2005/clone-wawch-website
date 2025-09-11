@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams, useRouter, usePathname } from "next/navigation";
-import { useAppContext } from "@/context";
+//import { useAppContext } from "@/context";
 import Link from "next/link";
 
 const NavbarLinks = ({ navLinks }) => {
-  const { lang } = useAppContext();
+  const lang = "";
   const params = useParams();
   const router = useRouter();
   const pathname = usePathname();

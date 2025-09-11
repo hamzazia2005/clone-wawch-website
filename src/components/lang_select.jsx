@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAppContext } from '@/context';
+//import { useAppContext } from '@/context';
 
 const LangSelect = () => {
-  const { lang } = useAppContext();
+  //const { lang } = useAppContext();
+  const lang = ""; 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(lang || 'en');
   const data = ['en', 'ar', 'pt', 'fr'];

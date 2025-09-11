@@ -7,14 +7,15 @@ import { useEffect } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import MobileNav from './mobile_nav';
-import { useAppContext } from '@/context';
+//import { useAppContext } from '@/context';
 import { postGclid } from '@/utils/post_gclid';
 
 const Header = ({ data, gcid }) => {
   const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { lang } = useAppContext();
+  //const { lang } = useAppContext();
+  const lang = "";
 
   useEffect(() => {
     const gclid = searchParams.get('gclid');

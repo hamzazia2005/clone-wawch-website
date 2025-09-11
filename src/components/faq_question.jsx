@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useAppContext } from "@/context";
+//import { useAppContext } from "@/context";
 import { Arrow } from "@/icons";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 const FaqQuestion = ({ item, flag }) => {
-  const { lang } = useAppContext();
+  //const { lang } = useAppContext();
+  const lang = "";
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAnswer = () => {

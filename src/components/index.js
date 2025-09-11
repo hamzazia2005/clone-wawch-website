@@ -26,5 +26,5 @@ export { default as WhatsappButton } from "./whatsapp-button";
 export { default as FeaturesContainer } from "./features-container";
 export { default as BoostMap } from "./boost-map";
 export { default as Testimonial } from "./testimonial";
+export { default as DemoModal } from "./demo-modal";
 export { default as LanguageDetector } from "./language-detector";
-export { default as DemoModal } from "./demo_modal";
