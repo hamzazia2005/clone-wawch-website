@@ -1,5 +1,5 @@
 "use client";
-import { IconButton, SiteContainer } from "@/components";
+import { IconButton, SiteContainer, DemoModal } from "@/components";
 import { useState } from "react";
 // import { FadeIn, PopUp } from "@/animations";
 import Image from "next/image";
@@ -8,9 +8,23 @@ const GetStarted = ({ data }) => {
   const [imgSrc, setImgSrc] = useState(
     "https://res.cloudinary.com/dno9rw4ax/image/upload/f_auto,q_auto/v1721989345/banner_50c756e462.webp"
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Video ID from YouTube URL
+  const videoId = "z_A9RzmiRZc";
+  const handleModalOpen = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
-    <div className="relative flex justify-center items-center mt-24">
+    <>
+      <DemoModal 
+        open={isModalOpen} 
+        handleOpen={handleModalOpen} 
+        videoId={videoId}
+        title={data?.modal_title || "Watch Demo Video"}
+      />
+      <div className="relative flex justify-center items-center mt-24">
       <Image
         src={imgSrc}
         onError={() => setImgSrc("/assets/placeholder.png")}
@@ -62,18 +76,7 @@ const GetStarted = ({ data }) => {
               {/* <FadeIn> */}
               <div
                 data-aos="fade-in"
-                onClick={() => {
-                  const section = document.getElementById(0);
-                  const offset = -80;
-
-                  if (section) {
-                    const offsetTop = section.offsetTop + offset;
-                    window.scrollTo({
-                      top: offsetTop,
-                      behavior: "smooth",
-                    });
-                  }
-                }}
+                onClick={handleModalOpen}
               >
                 <IconButton isStarted={false} text={data?.feature_btn} />
               </div>
@@ -143,6 +146,7 @@ const GetStarted = ({ data }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
