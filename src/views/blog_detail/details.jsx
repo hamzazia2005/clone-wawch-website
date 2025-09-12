@@ -16,7 +16,7 @@ const Detail = ({ data, detail, blog_headings }) => {
   }
   const author = data?.author;
   const profileImage =
-    author?.image?.url || '/assets/profile_pic.png';
+    author?.image[0]?.url || '/assets/profile_pic.png';
 
   return (
     <div className='flex justify-center items-center mt-20'>

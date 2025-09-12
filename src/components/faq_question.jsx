@@ -23,20 +23,20 @@ const FaqQuestion = ({ item, flag }) => {
       {flag ? (
         <Link
           href={lang? `/${lang}/faq/${item.slug}/`: `/faq/${item.slug}/`}
-          className="flex justify-between items-center"
+          className="flex justify-between items-center gap-3"
         >
           <p className="text-primary text-lg font-poppins font-semibold">
             {item?.question}
           </p>
-          <Arrow className={lang === "ar" ? "transform rotate-180" : ""} />
+          <Arrow className={`flex-shrink-0 ${lang === "ar" ? "transform rotate-180" : ""}`} />
         </Link>
       ) : (
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-3">
           <p className="text-primary text-lg font-poppins font-semibold">
             {item?.question}
           </p>
           <ChevronDown
-            className={`w-6 h-6 text-primary transition-transform ${
+            className={`w-6 h-6 text-primary transition-transform flex-shrink-0 ${
               isOpen ? "rotate-180" : ""
             }`}
           />

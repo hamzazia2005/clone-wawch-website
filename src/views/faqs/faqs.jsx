@@ -15,9 +15,9 @@ const Faq = ({ data }) => {
       ? (data || [])
       : (data || []).filter((item) => item?.title === selectedTitle);
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
 
-  const currentData = filteredData.slice(
+  const currentData = filteredData?.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -74,7 +74,7 @@ const Faq = ({ data }) => {
           )}
         </div>
         {/* Pagination Controls*/}
-        {totalPages > 1 && filteredData.length > 0 && (
+        {totalPages > 1 && filteredData?.length > 0 && (
           <div className='flex justify-center items-center gap-2 my-4'>
             {currentPage > 1 && (
               <button
