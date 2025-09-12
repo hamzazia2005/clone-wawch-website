@@ -1,6 +1,6 @@
 import { getServerSideData } from '@/utils/get_api';
 import { Header, Footer } from '.';
-import LanguageDetector from '@/components/language-detector';
+import { LanguageDetector } from '@/components';
 
 const Layout = async ({ children, params }) => {
   const languages = ['en', 'fr', 'ar', 'pt'];
@@ -17,7 +17,7 @@ const Layout = async ({ children, params }) => {
   return (
     <div className='min-h-[100vh] flex flex-col justify-between'>
       {/* Keeping this component in case we need it later (fallback) */}
-      {/* <LanguageDetector /> */} 
+      <LanguageDetector /> 
       <Header data={header} gcid={gcid?.data} />
       {children}
       <Footer data={footer} />

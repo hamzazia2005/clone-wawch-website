@@ -9,7 +9,6 @@ const Loader = () => {
         width={300}
         height={300}
         unoptimized
-        priority
       />
     </div>
   );
