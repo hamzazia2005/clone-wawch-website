@@ -1,16 +1,16 @@
-"use client";
+
 
 import { TestimonialCard } from "@/components";
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 
 const Testimonial = ({ data }) => {
-  const [isClient, setIsClient] = useState(false);
+  // const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
 
-  if (!isClient) return null;
+  // if (!isClient) return null;
 
   return (
     <div className="flex justify-center items-center">

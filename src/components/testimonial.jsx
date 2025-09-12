@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { BlocksRender, Button } from ".";
 import Link from "next/link";

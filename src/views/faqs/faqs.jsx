@@ -31,7 +31,7 @@ const Faq = ({ data }) => {
     <div className='flex justify-center items-center'>
       <div className='sm:max-w-[900px] w-full px-5 sm:px-12 pt-16'>
         <div className='flex items-center justify-between sm:justify-center gap-5 mb-6 overflow-x-scroll sm:overflow-hidden'>
-          <FadeIn key={-1} duration={1}>
+          {/* <FadeIn key={-1} duration={1}> */}
             <h2
               className={`text-xl font-poppins cursor-pointer ${
                 selectedTitle === 'All'
@@ -42,9 +42,9 @@ const Faq = ({ data }) => {
             >
               All
             </h2>
-          </FadeIn>
+          {/* </FadeIn> */}
           {titles && titles.length > 0 && titles.map((title, index) => (
-            <FadeIn key={index} duration={1}>
+            // <FadeIn key={index} duration={1}>
               <h2
                 className={`text-xl font-poppins cursor-pointer ${
                   selectedTitle === title
@@ -55,16 +55,16 @@ const Faq = ({ data }) => {
               >
                 {title}
               </h2>
-            </FadeIn>
+            // {/* </FadeIn> */}
           ))}
         </div>
         <div className='mb-12'>
           {currentData && currentData.length > 0 ? (
             currentData.map((item, index) => (
               <div key={index}>
-                <PopUp duration={1}>
+                {/* <PopUp duration={1}> */}
                   <FaqQuestion item={item} flag={true} />
-                </PopUp>
+                {/* </PopUp> */}
               </div>
             ))
           ) : (

@@ -62,7 +62,7 @@ const Detail = ({ data, detail, blog_headings }) => {
         <div className='flex justify-center py-12'>
           <div className='md:w-[70%]'>
             {data?.is_html ? (
-              <FadeIn>
+              // <FadeIn>
                 <div className='test-class'>
                   <div
                     dangerouslySetInnerHTML={{
@@ -70,7 +70,7 @@ const Detail = ({ data, detail, blog_headings }) => {
                     }}
                   ></div>
                 </div>
-              </FadeIn>
+              // </FadeIn>
             ) : (
               <BlocksRender data={data?.blog_detail_text} />
             )}

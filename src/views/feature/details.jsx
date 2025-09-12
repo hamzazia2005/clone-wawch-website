@@ -17,7 +17,7 @@ const Detail = ({ data }) => {
   return (
     <div className='flex justify-center items-center mt-20'>
       <div className='max-w-[1440px] px-5 sm:px-12 py-12 flex flex-col w-[500px] sm:w-[700px] md:w-full'>
-        <FadeIn>
+        {/* <FadeIn> */}
           <div className='flex flex-col items-center gap-4 sm:gap-8'>
             <p className='text-gray1 text-lg font-poppins font-medium'>
               {data?.guides}
@@ -29,7 +29,7 @@ const Detail = ({ data }) => {
               {FormatDate(data?.createdAt)}
             </p>
           </div>
-        </FadeIn>
+        {/* </FadeIn> */}
 
         <Image
           data-aos='zoom-in'

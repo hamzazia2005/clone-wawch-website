@@ -1,13 +1,14 @@
 'use client';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
-import { PopUp } from '@/animations';
+//import { PopUp } from '@/animations';
 import { FormatDate } from '@/utils';
-import { useAppContext } from '@/context';
+//import { useAppContext } from '@/context';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Detail = ({ data, heading }) => {
-  const { lang } = useAppContext();
+ //const { lang } = useAppContext();
+const lang= "";
 
   return (
   <div className="flex justify-center items-center mt-20">
@@ -18,7 +19,7 @@ const Detail = ({ data, heading }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {data?.map((item, index) => (
-          <PopUp key={index} isBounce={true} duration={1}>
+          // <PopUp key={index} isBounce={true} duration={1}>
             <Link
               href={lang? `/${lang}/feature/${item?.slug}`:`/feature/${item?.slug}`}
               className='flex flex-col gap-8 p-2 sm:p-4 mb-8 border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] transition-all rounded-lg'
@@ -47,7 +48,7 @@ const Detail = ({ data, heading }) => {
                 </p>
               </div>
             </Link>
-          </PopUp>
+          // </PopUp>
         ))}
       </div>
     </div>

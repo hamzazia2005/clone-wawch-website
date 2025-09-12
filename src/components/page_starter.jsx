@@ -2,14 +2,15 @@
 import { FadeIn } from "@/animations";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { useAppContext } from "@/context";
+//import { useAppContext } from "@/context";
 
 const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const router = useRouter();
   const searchRef = useRef(null);
-  const { lang } = useAppContext();
+ //const { lang } = useAppContext();
+const lang= "";
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase();
     setSearch(term);

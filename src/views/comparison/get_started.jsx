@@ -1,5 +1,5 @@
 'use client';
-import { useAppContext } from '@/context';
+//import { useAppContext } from '@/context';
 import { IconButton } from '@/components';
 import { FadeIn } from '@/animations';
 import Link from 'next/link';
@@ -7,7 +7,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 const GetStarted = ({ data, islarge }) => {
-  const { lang } = useAppContext();
+ //const { lang } = useAppContext();
+const lang = "";
   const router = useRouter();
 
   useEffect(() => {
