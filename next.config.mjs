@@ -31,6 +31,20 @@ const nextConfig = {
   },
   trailingSlash: true,
   reactStrictMode: false,
+  //Added this code to fix the issue of the PRICING VIOLATION error
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Permissions-Policy',
+            value: 'payment=*, camera=(), microphone=(), geolocation=(), interest-cohort=()'
+          }
+        ]
+      }
+    ]
+  }
 };
 
 export default nextConfig;

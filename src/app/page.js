@@ -68,7 +68,6 @@ const Page = async () => {
     review3,
     faq,
     faqs,
-    meta,
     // eslint-disable-next-line no-undef
   ] = await Promise.all([
     getServerSideData(urls.getStarted),
@@ -80,7 +79,6 @@ const Page = async () => {
     getServerSideData(urls.review3, true),
     getServerSideData(urls.faq),
     getServerSideData(urls.faqs, true),
-    getServerSideData(urls.meta),
   ]);
 
   const jsonLd = {
