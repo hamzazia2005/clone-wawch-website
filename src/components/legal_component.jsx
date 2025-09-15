@@ -23,7 +23,7 @@ const Legal_BlockRender = ({ data }) => {
         content={data}
         blocks={{
           image: ({ image }, index) => (
-            <PopUp key={index}>
+            // <PopUp key={index}>
               <Image
                 src={image.url || "/assets/placeholder.png"}
                 width={image.width}
@@ -31,7 +31,7 @@ const Legal_BlockRender = ({ data }) => {
                 alt={image.alternativeText || "image"}
                 className="block my-4"
               />
-            </PopUp>
+            // </PopUp>
           ),
           heading: ({ children }, index) => (
             <Accordion

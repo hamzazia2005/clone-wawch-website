@@ -117,14 +117,14 @@ const Detail = ({ data, detail, blog_headings }) => {
                 ?.filter((item) => item?.slug !== params.slug)
                 ?.slice(0, 3)
                 ?.map((item, index) => (
-                  <PopUp
-                    key={index}
-                    check={true}
-                    delay={index * 1}
-                    isBounce={true}
-                  >
+                  // <PopUp
+                  //   key={index}
+                  //   check={true}
+                  //   delay={index * 1}
+                  //   isBounce={true}
+                  // >
                     <BlogCard item={item} flag={true} />
-                  </PopUp>
+                  //  {/* </PopUp> */}
                 ))}
             </div>
           </div>

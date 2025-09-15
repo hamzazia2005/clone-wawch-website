@@ -5,19 +5,19 @@ import Layout from "@/layout/page";
 
 const WhyWawcd = dynamic(
   () => import("@/views/comparison").then((mod) => mod.WhyWawcd),
-  { ssr: false }
+  // { ssr: false }
 );
 const Comparisons = dynamic(
   () => import("@/views/comparison").then((mod) => mod.Comparisons),
-  { ssr: false }
+  // { ssr: false }
 );
 
 const Review = dynamic(() => import("@/views/home").then((mod) => mod.Review), {
-  ssr: false,
+  // ssr: false,
 });
 
 const Faq = dynamic(() => import("@/views/home").then((mod) => mod.Faq), {
-  ssr: false,
+  // ssr: false,
 });
 
 export async function metadata() {

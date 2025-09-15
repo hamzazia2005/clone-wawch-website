@@ -29,38 +29,38 @@ const lang = "";
         } w-full rounded-md`}
       >
         <div className='py-20 px-3 md:px-12'>
-          <FadeIn>
+          {/* <FadeIn> */}
             <p className='text-green1 font-medium text-center font-poppins'>
               {data?.title}
             </p>
-          </FadeIn>
-          <FadeIn>
+          {/* </FadeIn> */}
+          {/* <FadeIn> */}
             <h1 className='text-primary text-[36px] sm:text-[45px] md:text-[52px] font-bold sm:font-semibold font-plus text-center my-4'>
               {data?.heading}
             </h1>
-          </FadeIn>
+          {/* </FadeIn> */}
           {data?.description && (
-            <FadeIn>
+            // <FadeIn>
               <p className='text-lg font-poppins font-medium mb-4 text-[#606060] text-center max-w-[648px] mx-auto'>
                 {data?.description}
               </p>
-            </FadeIn>
+            // </FadeIn>
           )}
           <div className='w-full'>
             <div className='flex items-center justify-center flex-col sm:flex-row gap-5 my-8'>
-              <FadeIn>
+              {/* <FadeIn> */}
                 <a
                   href='https://chromewebstore.google.com/detail/wawcd-chatgpt-powered-wha/gbbpfmmjcaakdmhlnjfdlhlehoeikbic'
                   target='_blank'
                 >
                   <IconButton isStarted={true} text={data?.btn_txt1} />
                 </a>
-              </FadeIn>
-              <FadeIn>
+              {/* </FadeIn> */}
+              {/* <FadeIn> */}
                 <Link href={`/contact-us/${lang}`}>
                   <IconButton isStarted={false} text={data?.btn_txt2} />
                 </Link>
-              </FadeIn>
+              {/* </FadeIn> */}
             </div>
           </div>
         </div>

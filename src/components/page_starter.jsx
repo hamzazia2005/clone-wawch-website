@@ -1,5 +1,5 @@
 "use client";
-import { FadeIn } from "@/animations";
+// import { FadeIn } from "@/animations";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 //import { useAppContext } from "@/context";
@@ -87,7 +87,7 @@ const lang= "";
 
   return (
     <div className="max-w-[1440px] w-full rounded-md">
-      <FadeIn>
+      {/* <FadeIn> */}
         <div className="px-3 md:px-20 relative flex justify-center items-center flex-col">
           <p className="text-green1 font-medium text-lg text-center font-poppins">
             {data?.page}
@@ -219,7 +219,7 @@ const lang= "";
             </div>
           )}
         </div>
-      </FadeIn>
+      {/* </FadeIn> */}
     </div>
   );
 };
