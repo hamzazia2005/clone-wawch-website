@@ -1,5 +1,5 @@
 'use client';
-//import { FadeIn, PopUp } from '@/animations';
+import { FadeIn, PopUp } from '@/animations';
 import { BlogCard, Category } from '@/components';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import Link from 'next/link';
@@ -68,7 +68,7 @@ const Blogs = ({ data, detail }) => {
           <div className='my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
             {detail?.data?.slice(1).map((item, index) => (
               // <PopUp key={index} check={true} isBounce={true}>
-                <BlogCard item={item} flag={true} />
+                <BlogCard key={index} item={item} flag={true} />
               // </PopUp>
             ))}
           </div>
