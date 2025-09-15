@@ -123,7 +123,7 @@ const Detail = ({ data, detail, blog_headings }) => {
                   //   delay={index * 1}
                   //   isBounce={true}
                   // >
-                    <BlogCard item={item} flag={true} />
+                    <BlogCard key={index} item={item} flag={true} />
                   //  {/* </PopUp> */}
                 ))}
             </div>

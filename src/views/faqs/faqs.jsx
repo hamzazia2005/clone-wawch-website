@@ -46,6 +46,7 @@ const Faq = ({ data }) => {
           {titles && titles.length > 0 && titles.map((title, index) => (
             // <FadeIn key={index} duration={1}>
               <h2
+                key={index}
                 className={`text-xl font-poppins cursor-pointer ${
                   selectedTitle === title
                     ? 'text-secondary font-semibold'

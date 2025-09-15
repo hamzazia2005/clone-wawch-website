@@ -7,6 +7,7 @@ import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 //import AOSinit from '@/animations/AOSinit';
 import NextTopLoader from 'nextjs-toploader';
+import ClientEnhancer from '@/components/client-wrapper';
 // import Head from 'next/head';
 // import { Suspense } from 'react';
 // import Loader from '@/components/loader';
@@ -76,7 +77,10 @@ export default function RootLayout({ children }) {
             <WhatsAppButton />
           </AppWrapper>
         </Suspense> */} 
-        {children}
+
+        {/* {children} */}
+
+        <ClientEnhancer>{children}</ClientEnhancer>
         <Script
           dangerouslySetInnerHTML={{
             __html: `
