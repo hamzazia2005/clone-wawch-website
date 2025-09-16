@@ -1,13 +1,19 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { detectLanguageFromIP, shouldRedirectToLanguage, shouldSkipLanguageDetection } from '@/utils/ip-language-detection';
 
 export default function LanguageDetector() {
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     if (typeof window === 'undefined') return;
     if (shouldSkipLanguageDetection(pathname)) return;
 
@@ -28,7 +34,7 @@ export default function LanguageDetector() {
     const timeoutId = setTimeout(detectAndRedirect, 100);
     
     return () => clearTimeout(timeoutId);
-  }, [router, pathname]);
+  }, [isClient, router, pathname]);
 
   return null;
 }

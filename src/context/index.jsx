@@ -5,10 +5,16 @@ import { usePathname } from "next/navigation";
 const AppContext = createContext(undefined);
 
 export function AppWrapper({ children }) {
+  const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
   const [lang, setLang] = useState("");
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     if (typeof window !== "undefined") {
       // Get language from localStorage only
       const storedLang = localStorage.getItem("lang") || "";
@@ -19,9 +25,9 @@ export function AppWrapper({ children }) {
       }
       setLang(storedLang);
     }
-  }, [pathname]);
+  }, [isClient, pathname]);
 
-  return <AppContext.Provider value={{ lang }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ lang, isClient }}>{children}</AppContext.Provider>;
 }
 
 export function useAppContext() {
@@ -32,26 +38,10 @@ export function useAppContext() {
     return context;
   }
   
-  // If context is not available
-  // Try to get language from URL path or localStorage
-  let fallbackLang = "";
-  
-  if (typeof window !== "undefined") {
-    // Try localStorage first
-    fallbackLang = localStorage.getItem("lang") || "";
-    
-    // If not in localStorage, try to extract from URL
-    if (!fallbackLang && typeof window !== "undefined") {
-      const pathSegments = window.location.pathname.split('/').filter(Boolean);
-      const languages = ["en", "fr", "ar", "pt"];
-      const urlLang = pathSegments[0];
-      
-      if (languages.includes(urlLang)) {
-        fallbackLang = urlLang;
-      }
-    }
-  }
-  
-  return { lang: fallbackLang };
+  // If context is not available, return safe defaults
+  return { 
+    lang: "", 
+    isClient: false 
+  };
 }
 
