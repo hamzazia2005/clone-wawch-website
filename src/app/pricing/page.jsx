@@ -82,17 +82,18 @@ const Page = async () => {
           <div className="mt-10 flex flex-col items-center justify-center">
             <TableCollapse data={tableData.tier} head={tableHead?.head} />
             {tableData?.map((item, index) => (
+              <div data-aos="fade-up" data-aos-duration="1000" className="w-full" key={index}>
               <TableCollapse
-                key={index}
                 data={item?.pricing_page_data}
                 title={item?.table_title}
               />
+              </div>
             ))}
           </div>
-          <div className="mt-10 flex justify-center gap-6" id="enterprise-card">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="mt-10 flex justify-center gap-6" id="enterprise-card">
             <BulkPurchase enterpriseSection={enterpriseSection} />
           </div>
-          <div className="px-12 lg:px-36">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="px-12 lg:px-36">
             <Cta data={faq} isPage={true} />
           </div>
         </div>
