@@ -3,19 +3,9 @@ import { getServerSideData } from "@/utils/get_api";
 import dynamic from "next/dynamic";
 import { Pricing } from "@/views/home";
 
-const BulkPurchase = dynamic(
-  () => import("@/views/pricing").then((mod) => mod.BulkPurchase),
-  { ssr: false }
-);
-const TableCollapse = dynamic(
-  () => import("@/views/pricing").then((mod) => mod.TableCollapse),
-  {
-    ssr: false,
-  }
-);
-const Cta = dynamic(() => import("@/views/home").then((mod) => mod.Cta), {
-  ssr: false,
-});
+const BulkPurchase = dynamic(() => import("@/views/pricing").then((mod) => mod.BulkPurchase));
+const TableCollapse = dynamic(() => import("@/views/pricing").then((mod) => mod.TableCollapse));
+const Cta = dynamic(() => import("@/views/home").then((mod) => mod.Cta));
 
 export async function metadata() {
   const resp = await getServerSideData("api/price");

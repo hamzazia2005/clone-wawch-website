@@ -18,7 +18,7 @@ export default function ClientEnhancer({ children }) {
 
   return (
     <Suspense fallback={<Loader />}>
-      <AOSinit/> 
+      {/* <AOSinit/> */}
       <AppWrapper>
         {children}
         <WhatsAppButton /> 

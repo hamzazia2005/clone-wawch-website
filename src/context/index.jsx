@@ -25,5 +25,33 @@ export function AppWrapper({ children }) {
 }
 
 export function useAppContext() {
-  return useContext(AppContext);
+  const context = useContext(AppContext);
+  
+  // If context is available (JS is on and AppWrapper is mounted), use it
+  if (context !== undefined) {
+    return context;
+  }
+  
+  // If context is not available
+  // Try to get language from URL path or localStorage
+  let fallbackLang = "";
+  
+  if (typeof window !== "undefined") {
+    // Try localStorage first
+    fallbackLang = localStorage.getItem("lang") || "";
+    
+    // If not in localStorage, try to extract from URL
+    if (!fallbackLang && typeof window !== "undefined") {
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      const languages = ["en", "fr", "ar", "pt"];
+      const urlLang = pathSegments[0];
+      
+      if (languages.includes(urlLang)) {
+        fallbackLang = urlLang;
+      }
+    }
+  }
+  
+  return { lang: fallbackLang };
 }
+

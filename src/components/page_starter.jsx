@@ -10,7 +10,7 @@ const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
   const router = useRouter();
   const searchRef = useRef(null);
  //const { lang } = useAppContext();
-const lang= "";
+  const lang= "";
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase();
     setSearch(term);

@@ -9,8 +9,8 @@ import Link from "next/link";
 
 const Pricing = ({ data, isPage }) => {
   const [isMonthly, setIsMonthly] = useState(false);
- ////const { lang } = useAppContext();
-  const lang = "";
+  const { lang } = useAppContext();
+  //const lang = "";
   useEffect(() => {
     if (typeof window.updateButtonUrls === "function") {
       window.updateButtonUrls();

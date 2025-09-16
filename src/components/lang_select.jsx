@@ -3,11 +3,10 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-//import { useAppContext } from '@/context';
+import { useAppContext } from '@/context';
 
 const LangSelect = () => {
-  //const { lang } = useAppContext();
-  const lang = ""; 
+  const { lang } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(lang || 'en');
   const data = ['en', 'ar', 'pt', 'fr'];
@@ -22,6 +21,8 @@ const LangSelect = () => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    // Store the selected language in localStorage
+    localStorage.setItem('lang', option);
   };
 
   const cleanPathname = (path) => {
