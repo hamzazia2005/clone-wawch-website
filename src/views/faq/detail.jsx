@@ -14,7 +14,7 @@ const Detail = ({ data, faqs, related }) => {
   return (
     <div className='my-24 flex justify-center mx-4'>
       {data && (
-        <div className='max-w-[700px] w-full'>
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className='max-w-[700px] w-full'>
           {/* <FadeIn> */}
             <h2 className='font-semibold text-4xl text-black font-poppins my-4'>
               {data?.question}

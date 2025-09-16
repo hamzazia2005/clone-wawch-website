@@ -18,7 +18,7 @@ const Detail = ({ data }) => {
     <div className='flex justify-center items-center mt-20'>
       <div className='max-w-[1440px] px-5 sm:px-12 py-12 flex flex-col w-[500px] sm:w-[700px] md:w-full'>
         {/* <FadeIn> */}
-          <div className='flex flex-col items-center gap-4 sm:gap-8'>
+          <div data-aos="fade-up" data-aos-duration="1000" className='flex flex-col items-center gap-4 sm:gap-8'>
             <p className='text-gray1 text-lg font-poppins font-medium'>
               {data?.guides}
             </p>
@@ -52,7 +52,7 @@ const Detail = ({ data }) => {
           className='rounded-lg cursor-pointer mt-12 m-auto w-[70%]'
         />
 
-        <div className='flex justify-center py-12'>
+        <div data-aos="fade-up" data-aos-duration="1000" className='flex justify-center py-12'>
           <div className='md:w-[70%]'>
             {data?.video_iframe && (
               <div className='video-class'>

@@ -1,14 +1,12 @@
 'use client';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
-//import { PopUp } from '@/animations';
 import { FormatDate } from '@/utils';
-//import { useAppContext } from '@/context';
+import { useAppContext } from '@/context';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Detail = ({ data, heading }) => {
- //const { lang } = useAppContext();
-const lang= "";
+ const { lang } = useAppContext();
 
   return (
   <div className="flex justify-center items-center mt-20">
