@@ -24,6 +24,7 @@ const lang = "";
   return (
     <div className='flex justify-center items-center mt-24 bg-banner bg-cover'>
       <div
+        data-aos="zoom-in" data-aos-duration="1000"
         className={`${
           islarge ? 'max-w-[1134px]' : 'max-w-[800px]'
         } w-full rounded-md`}

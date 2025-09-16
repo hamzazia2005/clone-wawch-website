@@ -28,7 +28,7 @@ const TeamMembers = ({ heading, data, version }) => {
   };
 
   return (
-    <div className='flex justify-center items-center'>
+    <div data-aos="fade-up" data-aos-duration="1000" className='flex justify-center items-center'>
       <div className='max-w-[1440px] w-full px-4 sm:px-12 py-12'>
         <h2 className='text-black text-center leading-snug text-[30px] sm:text-[48px] mb-8 font-poppins font-semibold'>
           {heading?.heading2}

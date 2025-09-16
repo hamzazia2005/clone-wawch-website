@@ -38,8 +38,8 @@ const ContactForm = ({ data }) => {
   };
 
   return (
-    <div className='flex justify-center items-center bg-gray-100 px-5 sm:px-12 py-16'>
-      <div className='sm:max-w-[1000px] w-full flex gap-12 md:justify-between flex-col md:flex-row p-3 bg-white rounded-[10px]'>
+    <div data-aos-delay="500" className='flex justify-center items-center bg-gray-100 px-5 sm:px-12 py-16'>
+      <div data-aos="fade-up" data-aos-duration="1000" className='sm:max-w-[1000px] w-full flex gap-12 md:justify-between flex-col md:flex-row p-3 bg-white rounded-[10px]'>
         <div className='md:w-[40%] bg-bg_form bg-center bg-cover px-4 sm:pl-5 sm:pr-10 py-8 flex flex-col justify-between gap-8'>
           <div>
             <h2 className='text-primary text-[28px] font-semibold font-poppins'>

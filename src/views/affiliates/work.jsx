@@ -1,6 +1,6 @@
 const Work = ({ data }) => {
   return (
-    <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-12 mb-12">
+    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="max-w-[1440px] w-full mx-auto px-4 sm:px-12 mb-12">
       <h2 className="text-2xl font-plus font-semibold text-center text-secondary mb-8">
         {data?.heading}
       </h2>

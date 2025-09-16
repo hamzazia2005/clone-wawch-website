@@ -57,7 +57,7 @@ const Page = async () => {
       />
       <Layout>
         <GetStarted data={banner} />
-        <div className="mt-12">
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="mt-12">
           <Boost data={whyJoin} isPartner={false} />
         </div>
         <Work data={work} />

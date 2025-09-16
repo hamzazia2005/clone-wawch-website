@@ -5,7 +5,7 @@ const TestimonialCard = ({ item }) => {
   const data = item;
 
   return (
-    <div className='p-4 pb-6 border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] rounded-lg transition-all duration-300'>
+    <div data-aos="fade-up" data-aos-duration="1000" className='p-4 pb-6 border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] rounded-lg transition-all duration-300'>
       {data?.video_iframe && (
         <div className='testimonial-video mb-4'>
           <div

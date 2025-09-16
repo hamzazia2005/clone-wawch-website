@@ -27,24 +27,26 @@ const AuthorPage = ({
         (blog) => blog?.author?.id === selectedAuthorId
       )
     : [];
-  setTimeout(() => {
-    authorBlogsRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  }, 100);
+  // setTimeout(() => {
+  //   authorBlogsRef.current?.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //   });
+  // }, 100);
 
   return (
     <div>
       <div className='flex flex-col justify-center mt-24 py-20 bg-author bg-cover bg-center'>
-        <h1 className='text-primary text-[52px] sm:text-[64px] font-semibold font-plus text-center mt-2'>
-          {banner?.title}
-        </h1>
-        <p className='text-third leading-7 font-medium text-center mb-4 mt-2 font-poppins mx-3 sm:mx-8 lg:mx-48'>
-          {banner?.description}
-        </p>
+        <div data-aos="zoom-in" data-aos-duration="1000">
+          <h1 className='text-primary text-[52px] sm:text-[64px] font-semibold font-plus text-center mt-2'>
+            {banner?.title}
+          </h1>
+          <p className='text-third leading-7 font-medium text-center mb-4 mt-2 font-poppins mx-3 sm:mx-8 lg:mx-48'>
+            {banner?.description}
+          </p>
+        </div>
       </div>
-      <div className='px-5 sm:px-12'>
+      <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className='px-5 sm:px-12'>
         <Swiper
           slidesPerView={1}
           spaceBetween={10}

@@ -12,7 +12,7 @@ import Link from 'next/link';
 const PopularArticles = ({ details, articles_banner }) => {
   const swiperRef = useRef();
   return (
-    <div className='flex flex-col lg:flex-row justify-center items-center overflow-hidden w-full my-3 sm:my-10 p-4 bg-neutral-50 gap-4'>
+    <div data-aos="fade-up" data-aos-duration="1000" className='flex flex-col lg:flex-row justify-center items-center overflow-hidden w-full my-3 sm:my-10 p-4 bg-neutral-50 gap-4'>
       <div className='w-full max-w-3xl lg:w-1/3 mb-6 sm:mb-0 text-center lg:text-start'>
         <h2 className='text-2xl sm:text-3xl font-bold font-plus'>
           {articles_banner?.data?.title}
