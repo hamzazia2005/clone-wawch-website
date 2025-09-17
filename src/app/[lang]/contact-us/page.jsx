@@ -50,7 +50,7 @@ const Page = async ({ params }) => {
       name: "WAWCD",
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: form?.contacts[0].value,
+        telephone: form?.contacts && form?.contacts.length > 0 ? form?.contacts[0]?.value : null,
         contactType: "Customer Service",
         availableLanguage: ["English", "Arabic", "French", "Portuguese"],
       },

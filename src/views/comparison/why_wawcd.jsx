@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const WhyWawcd = ({ data }) => {
   return (
-    <div className='flex justify-center items-center'>
+    <div data-aos="fade-up" data-aos-duration="1000" className='flex justify-center items-center'>
       <div className='max-w-[1440px] w-full px-4 sm:px-12 py-12'>
         {data?.map((item, index) => (
           <div

@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useAppContext } from "@/context";
+//import { useAppContext } from "@/context";
 import { Arrow } from "@/icons";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { useAppContext } from "@/context";
 
 const FaqQuestion = ({ item, flag }) => {
   const { lang } = useAppContext();

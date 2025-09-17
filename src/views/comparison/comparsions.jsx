@@ -10,7 +10,7 @@ const Comparsions = ({ data }) => {
         </p>
         <div>
           {data?.comparison?.map((item, index) => (
-            <div key={index}>
+            <div data-aos="fade-up" data-aos-duration="1000" key={index}>
               <h4
                 id={index + 6}
                 className='md:px-24 my-12 text-black text-center text-3xl sm:text-4xl font-poppins font-semibold'

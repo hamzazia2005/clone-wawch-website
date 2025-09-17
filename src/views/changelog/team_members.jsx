@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import Image from 'next/image';
 import { BlocksRender } from '@/components';
-import { FadeIn } from '@/animations';
 
 const TeamMembers = ({ heading, data, version }) => {
   // Pagination
@@ -28,7 +27,7 @@ const TeamMembers = ({ heading, data, version }) => {
   };
 
   return (
-    <div className='flex justify-center items-center'>
+    <div data-aos="fade-up" data-aos-duration="1000" className='flex justify-center items-center'>
       <div className='max-w-[1440px] w-full px-4 sm:px-12 py-12'>
         <h2 className='text-black text-center leading-snug text-[30px] sm:text-[48px] mb-8 font-poppins font-semibold'>
           {heading?.heading2}
@@ -67,8 +66,7 @@ const TeamMembers = ({ heading, data, version }) => {
         </div>
 
         {currentVersions?.map((item, index) => (
-          <div key={index}>
-            <FadeIn>
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" key={index}>
               <div className='flex gap-2 mb-2 mt-10 bg-gray-300 p-2 rounded-md'>
                 <p className='text-lg font-poppins leading-[160%] font-semibold text-black'>
                   {item?.version}
@@ -77,10 +75,7 @@ const TeamMembers = ({ heading, data, version }) => {
                   ({item?.date})
                 </p>
               </div>
-            </FadeIn>
-            <FadeIn delay={0.4}>
               <BlocksRender data={item?.description} />
-            </FadeIn>
           </div>
         ))}
 

@@ -14,6 +14,7 @@ const Footer = ({ data }) => {
       'lang',
       languages?.includes(params?.lang) ? params?.lang : ''
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

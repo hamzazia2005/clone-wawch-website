@@ -28,7 +28,7 @@ const BlogCard = ({ item, flag }) => {
         <Link href={GenerateUrl(data?.slug)}>
           <Image
             src={
-              data?.image[0]?.url
+              data?.image && data?.image.length > 0 && data?.image[0]?.url
                 ? isLocal
                   ? BASE_URL + data?.image[0]?.url
                   : data?.image[0]?.url

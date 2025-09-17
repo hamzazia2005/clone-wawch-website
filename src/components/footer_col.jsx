@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const FooterCol = ({ title, items }) => {
   const { lang } = useAppContext();
+   
 
   return (
     <div>

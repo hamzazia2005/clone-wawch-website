@@ -7,7 +7,6 @@ import {
 } from "@material-tailwind/react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
-import { PopUp } from "@/animations";
 
 const Legal_BlockRender = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -23,15 +22,16 @@ const Legal_BlockRender = ({ data }) => {
         content={data}
         blocks={{
           image: ({ image }, index) => (
-            <PopUp key={index}>
+            // <PopUp key={index}>
               <Image
+                key={index}
                 src={image.url || "/assets/placeholder.png"}
                 width={image.width}
                 height={image.height}
                 alt={image.alternativeText || "image"}
                 className="block my-4"
               />
-            </PopUp>
+            // </PopUp>
           ),
           heading: ({ children }, index) => (
             <Accordion

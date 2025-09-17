@@ -23,6 +23,7 @@ const BulkCard = ({ enterpriseSection, isMonthly }) => {
       ).toFixed(2)
     );
     setTotalPrices(initialPrices);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMonthly]);
 
   const handleChange = (index) => (event) => {

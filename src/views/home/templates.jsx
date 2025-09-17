@@ -1,6 +1,4 @@
-"use client";
 import Image from "next/image";
-// import { FadeIn, PopUp } from "@/animations";
 import { BASE_URL, isLocal } from "@/utils/axios_instance";
 
 const Templates = ({ data, isImageRight }) => {
@@ -74,9 +72,9 @@ const Templates = ({ data, isImageRight }) => {
             </p>
           )}
           {/* </FadeIn> */}
-          {data?.chip?.length > 0 && (
+          {data?.chip && data.chip.length > 0 && (
             <div className="flex flex-wrap gap-x-2 gap-y-3">
-              {data?.chip?.map((item, index) => (
+              {(data?.chip || []).map((item, index) => (
                 // <PopUp key={index} delay={1.1} duration={0.4} isBounce={true}>
                 <div
                   key={index}

@@ -14,7 +14,7 @@ const FeaturedBlogCard = ({ blog }) => {
         <div>
           <Image
             src={
-              blog?.image[0]?.url
+              blog?.image && blog?.image.length > 0 && blog?.image[0]?.url
                 ? isLocal
                   ? BASE_URL + blog?.image[0]?.url
                   : blog?.image[0]?.url

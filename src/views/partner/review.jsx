@@ -2,7 +2,7 @@ import { Testimonial } from "@/components";
 
 const Review = ({ data }) => {
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
       <Testimonial data={data} />
     </div>
   );

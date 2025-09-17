@@ -1,4 +1,3 @@
-"use client";
 import { PageStarter } from "@/components";
 
 const GetStarted = ({ data }) => {

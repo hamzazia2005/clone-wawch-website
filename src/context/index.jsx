@@ -5,10 +5,16 @@ import { usePathname } from "next/navigation";
 const AppContext = createContext(undefined);
 
 export function AppWrapper({ children }) {
+  const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
   const [lang, setLang] = useState("");
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     if (typeof window !== "undefined") {
       // Get language from localStorage only
       const storedLang = localStorage.getItem("lang") || "";
@@ -19,11 +25,23 @@ export function AppWrapper({ children }) {
       }
       setLang(storedLang);
     }
-  }, [pathname]);
+  }, [isClient, pathname]);
 
-  return <AppContext.Provider value={{ lang }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ lang, isClient }}>{children}</AppContext.Provider>;
 }
 
 export function useAppContext() {
-  return useContext(AppContext);
+  const context = useContext(AppContext);
+  
+  // If context is available (JS is on and AppWrapper is mounted), use it
+  if (context !== undefined) {
+    return context;
+  }
+  
+  // If context is not available, return safe defaults
+  return { 
+    lang: "", 
+    isClient: false 
+  };
 }
+

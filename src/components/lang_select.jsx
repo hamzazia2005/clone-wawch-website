@@ -21,6 +21,8 @@ const LangSelect = () => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    // Store the selected language in localStorage
+    localStorage.setItem('lang', option);
   };
 
   const cleanPathname = (path) => {

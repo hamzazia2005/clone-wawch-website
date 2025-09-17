@@ -25,7 +25,7 @@ const ReviewSlider = ({ reviews, reviews_banner }) => {
     ],
   };
   return (
-    <div className='mx-auto my-3 sm:my-10'>
+    <div data-aos="fade-up" data-aos-duration="1000" className='mx-auto my-3 sm:my-10'>
       <h2 className='text-2xl sm:text-3xl font-bold text-center my-4 font-plus'>
         {reviews_banner?.data?.title}
       </h2>

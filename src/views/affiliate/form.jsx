@@ -36,10 +36,10 @@ const ContactForm = ({ data }) => {
   };
 
   return (
-    <div className='flex justify-center items-center bg-gray-100 px-5 sm:px-12 py-16'>
+    <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500" className='flex justify-center items-center bg-gray-100 px-5 sm:px-12 py-16'>
       <div className='sm:max-w-[1000px] w-full flex gap-12 md:justify-between flex-col md:flex-row p-3 bg-white rounded-[10px]'>
         <div className='md:w-[40%] bg-bg_form bg-center bg-cover px-4 sm:pl-5 sm:pr-10 py-8 flex flex-col justify-center items-center gap-8'>
-          <div>
+          <div data-aos="zoom-in" data-aos-duration="1000">
             <h2 className='text-primary text-[28px] font-semibold font-poppins'>
               {data?.heading}
             </h2>
@@ -48,7 +48,7 @@ const ContactForm = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className='md:w-[60%] py-8'>
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className='md:w-[60%] py-8'>
           <Formik
             initialValues={{
               fName: '',

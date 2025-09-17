@@ -2,15 +2,16 @@
 import React from 'react';
 import { Plus_Jakarta_Sans, Poppins } from 'next/font/google';
 import './globals.css';
-import { AppWrapper } from '@/context';
+//import { AppWrapper } from '@/context';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
-import AOSinit from '@/animations/AOSinit';
+//import AOSinit from '@/animations/AOSinit';
 import NextTopLoader from 'nextjs-toploader';
+import ClientEnhancer from '@/components/client-wrapper';
 // import Head from 'next/head';
-import { Suspense } from 'react';
-import Loader from '@/components/loader';
-import WhatsAppButton from '@/components/whatsapp-button';
+// import { Suspense } from 'react';
+// import Loader from '@/components/loader';
+ //import WhatsAppButton from '@/components/whatsapp-button';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -40,7 +41,7 @@ export const metadata = {
   // },
 };
 
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <html lang="en">
       <Script
@@ -68,14 +69,18 @@ export default function RootLayout({ children }) {
         }}
       />
       <body className={`${plusJakartaSans.className} ${poppins.className}`}>
-        <AOSinit />
+        {/* <AOSinit/> */}
         <NextTopLoader color="#47b772" height={4} showSpinner={false} />
-        <Suspense fallback={<Loader />}>
+        {/* <Suspense fallback={<Loader />}>
           <AppWrapper>
             {children}
             <WhatsAppButton />
           </AppWrapper>
-        </Suspense>
+        </Suspense> */} 
+
+        {/* {children} */}
+
+        <ClientEnhancer>{children}</ClientEnhancer>
         <Script
           dangerouslySetInnerHTML={{
             __html: `

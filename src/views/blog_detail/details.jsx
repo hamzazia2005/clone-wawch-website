@@ -3,7 +3,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { Category, BlogCard, Heading, BlocksRender } from '@/components';
 import Image from 'next/image';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
-import { FadeIn, PopUp } from '@/animations';
 import { FormatDate } from '@/utils';
 
 const Detail = ({ data, detail, blog_headings }) => {
@@ -16,7 +15,7 @@ const Detail = ({ data, detail, blog_headings }) => {
   }
   const author = data?.author;
   const profileImage =
-    author?.image?.[0].url || '/assets/profile_pic.png';
+    author?.image && author?.image.length > 0 ? author?.image[0]?.url : '/assets/profile_pic.png';
 
   return (
     <div className='flex justify-center items-center mt-20'>
@@ -42,7 +41,7 @@ const Detail = ({ data, detail, blog_headings }) => {
         {/* <PopUp> */}
         <Image
           src={
-            data?.image[0]?.url
+            data?.image && data?.image.length > 0 && data?.image[0]?.url
               ? isLocal
                 ? BASE_URL + data?.image[0]?.url
                 : data?.image[0]?.url
@@ -62,7 +61,7 @@ const Detail = ({ data, detail, blog_headings }) => {
         <div className='flex justify-center py-12'>
           <div className='md:w-[70%]'>
             {data?.is_html ? (
-              <FadeIn>
+              // <FadeIn>
                 <div className='test-class'>
                   <div
                     dangerouslySetInnerHTML={{
@@ -70,7 +69,7 @@ const Detail = ({ data, detail, blog_headings }) => {
                     }}
                   ></div>
                 </div>
-              </FadeIn>
+              // </FadeIn>
             ) : (
               <BlocksRender data={data?.blog_detail_text} />
             )}
@@ -117,14 +116,14 @@ const Detail = ({ data, detail, blog_headings }) => {
                 ?.filter((item) => item?.slug !== params.slug)
                 ?.slice(0, 3)
                 ?.map((item, index) => (
-                  <PopUp
-                    key={index}
-                    check={true}
-                    delay={index * 1}
-                    isBounce={true}
-                  >
-                    <BlogCard item={item} flag={true} />
-                  </PopUp>
+                  // <PopUp
+                  //   key={index}
+                  //   check={true}
+                  //   delay={index * 1}
+                  //   isBounce={true}
+                  // >
+                    <BlogCard key={index} item={item} flag={true} />
+                  //  {/* </PopUp> */}
                 ))}
             </div>
           </div>

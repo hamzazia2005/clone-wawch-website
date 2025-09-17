@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { FadeIn, PopUp } from '@/animations';
 import { BlocksRender, FaqQuestion } from '@/components';
 import { useParams } from 'next/navigation';
 
@@ -14,14 +13,14 @@ const Detail = ({ data, faqs, related }) => {
   return (
     <div className='my-24 flex justify-center mx-4'>
       {data && (
-        <div className='max-w-[700px] w-full'>
-          <FadeIn>
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className='max-w-[700px] w-full'>
+          {/* <FadeIn> */}
             <h2 className='font-semibold text-4xl text-black font-poppins my-4'>
               {data?.question}
             </h2>
-          </FadeIn>
+          {/* </FadeIn> */}
           <BlocksRender data={data?.answer} />
-          <FadeIn>
+          {/* <FadeIn> */}
             {data?.video_iframe && (
               <div className='video-class'>
                 <div
@@ -31,23 +30,23 @@ const Detail = ({ data, faqs, related }) => {
                 ></div>
               </div>
             )}
-          </FadeIn>
+          {/* </FadeIn> */}
           <div className='my-12 py-12 border-y-2 border-gray-500 text-[#7D7B7B]'>
             <BlocksRender data={related?.paragraph} />
           </div>
-          <FadeIn>
+          {/* <FadeIn> */}
             <h3 className='font-semibold text-3xl text-black font-poppins my-4'>
               {related?.related_title}
             </h3>
-          </FadeIn>
+          {/* </FadeIn> */}
           {faqs
             ?.filter((item) => item?.slug !== params.slug)
             ?.slice(0, 5)
             ?.map((item, index) => (
               <div key={index}>
-                <PopUp duration={1}>
+                {/* <PopUp duration={1}> */}
                   <FaqQuestion item={item} flag={true} />
-                </PopUp>
+                {/* </PopUp> */}
               </div>
             ))}
         </div>

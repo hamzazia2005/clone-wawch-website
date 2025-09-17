@@ -73,7 +73,7 @@ const Reasons = ({ data }) => {
       <div
         className={'max-w-[1440px] w-full px-4 sm:px-12 flex justify-between gap-8 relative pb-12'}
       >
-        <div className='hidden md:block md:w-[30%]'>
+        <div data-aos="fade-up" data-aos-duration="1000" className='hidden md:block md:w-[30%]'>
           <ul
             className={`${
               isFixed ? 'sticky top-32' : isTop ? 'absolute' : 'sticky top-32'
@@ -96,7 +96,7 @@ const Reasons = ({ data }) => {
             ))}
           </ul>
         </div>
-        <div className='md:w-[70%]'>
+        <div data-aos="fade-up" data-aos-duration="1000" className='md:w-[70%]'>
           {data.map((item, index) => (
             <div key={index} id={index} className='mb-12'>
               <div className='lg:w-[70%]'>

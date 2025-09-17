@@ -50,7 +50,7 @@ const page = async () => {
       "@id": `https://wawcd.com/author/#author-${author?.id || index}`,
       name: author?.title,
       description: author?.description,
-      image: author?.image?.[0]?.url,
+      image: author?.image && author?.image.length > 0 ? author?.image[0]?.url : null,
       jobTitle: author?.designation || "Author",
       worksFor: {
         "@type": "Organization",

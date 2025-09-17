@@ -1,6 +1,8 @@
+"use client";
+
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
-import { PopUp } from "@/animations";
+//import { PopUp } from "@/animations";
 
 const BlocksRender = ({ data }) => {
   return (
@@ -10,7 +12,7 @@ const BlocksRender = ({ data }) => {
         blocks={{
           image: ({ image }) => {
             return (
-              <PopUp>
+              // <PopUp>
                 <Image
                   //priority={true}
                   src={image.url || "/assets/placeholder.png"}
@@ -19,7 +21,7 @@ const BlocksRender = ({ data }) => {
                   alt={image.alternativeText || "image"}
                   className="block my-4"
                 />
-              </PopUp>
+              // </PopUp>
             );
           },
           heading: ({ children, level }) => {

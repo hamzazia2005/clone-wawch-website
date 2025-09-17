@@ -3,19 +3,9 @@ import { getServerSideData } from "@/utils/get_api";
 import dynamic from "next/dynamic";
 import { Pricing } from "@/views/home";
 
-const BulkPurchase = dynamic(
-  () => import("@/views/pricing").then((mod) => mod.BulkPurchase),
-  { ssr: false }
-);
-const TableCollapse = dynamic(
-  () => import("@/views/pricing").then((mod) => mod.TableCollapse),
-  {
-    ssr: false,
-  }
-);
-const Cta = dynamic(() => import("@/views/home").then((mod) => mod.Cta), {
-  ssr: false,
-});
+const BulkPurchase = dynamic(() => import("@/views/pricing").then((mod) => mod.BulkPurchase));
+const TableCollapse = dynamic(() => import("@/views/pricing").then((mod) => mod.TableCollapse));
+const Cta = dynamic(() => import("@/views/home").then((mod) => mod.Cta));
 
 export async function metadata() {
   const resp = await getServerSideData("api/price");
@@ -92,17 +82,18 @@ const Page = async () => {
           <div className="mt-10 flex flex-col items-center justify-center">
             <TableCollapse data={tableData.tier} head={tableHead?.head} />
             {tableData?.map((item, index) => (
+              <div data-aos="fade-up" data-aos-duration="1000" className="w-full" key={index}>
               <TableCollapse
-                key={index}
                 data={item?.pricing_page_data}
                 title={item?.table_title}
               />
+              </div>
             ))}
           </div>
-          <div className="mt-10 flex justify-center gap-6" id="enterprise-card">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="mt-10 flex justify-center gap-6" id="enterprise-card">
             <BulkPurchase enterpriseSection={enterpriseSection} />
           </div>
-          <div className="px-12 lg:px-36">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="px-12 lg:px-36">
             <Cta data={faq} isPage={true} />
           </div>
         </div>

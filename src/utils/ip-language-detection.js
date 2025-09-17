@@ -67,7 +67,7 @@ export async function detectLanguageFromIP() {
     const countryCode = data.country;
     return getLanguageFromCountry(countryCode);
   } catch (error) {
-    console.error('Error detecting language from IP:', error);
+   // console.error('Error detecting language from IP:', error);
     return 'en'; 
   }
 }
