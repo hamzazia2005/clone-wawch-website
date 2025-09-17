@@ -11,7 +11,6 @@ const NavbarLinks = ({ navLinks }) => {
   const pathname = usePathname();
   const [open, setOpen] = useState(-1);
 
-  // --- Helper: localize link ---
   const localizeLink = (link) => {
     if (
       !link?.includes("/author") &&
@@ -31,15 +30,13 @@ const NavbarLinks = ({ navLinks }) => {
     return link;
   };
 
-  // --- Find active menu index based on pathname ---
+  // Active menu index based on pathname 
   useEffect(() => {
     const activeIndex = navLinks.findIndex((item) => {
       if (item.link) {
-        // home: must be exact match
         if (item.link === "/" && (pathname === "/" || pathname === `/${params?.lang}`)) {
           return true;
         }
-        // other direct links: prefix is fine
         if (item.link !== "/" && pathname.startsWith(item.link)) {
           return true;
         }
@@ -89,31 +86,59 @@ const NavbarLinks = ({ navLinks }) => {
 
         return (
           <div key={index} className="relative group">
-            {"links" in item ? (
+ {"links" in item ? (
               <>
-                <div
-                  className={`cursor-pointer font-medium font-poppins flex items-center gap-1 ${
-                    isActive
-                      ? "text-secondary font-semibold"
-                      : "text-primary hover:text-secondary"
-                  }`}
-                >
-                  {item.name}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-4 h-4"
+                {item.link ? (
+                  <Link
+                    href={localizeLink(item.link)}
+                    className={`cursor-pointer font-medium font-poppins flex items-center gap-1 ${
+                      isActive
+                        ? "text-secondary font-semibold"
+                        : "text-primary hover:text-secondary"
+                    }`}
+                    onClick={() => handleNavigate(item, index)}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    />
-                  </svg>
-                </div>
+                    {item.name}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                      />
+                    </svg>
+                  </Link>
+                ) : (
+                  <div
+                    className={`cursor-pointer font-medium font-poppins flex items-center gap-1 ${
+                      isActive
+                        ? "text-secondary font-semibold"
+                        : "text-primary hover:text-secondary"
+                    }`}
+                  >
+                    {item.name}
+                      <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                      />
+                    </svg>
+                  </div>
+                )}
 
                 <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-md rounded-md z-50 min-w-[150px]">
                   {item.links.map((subItem, subIndex) => {
