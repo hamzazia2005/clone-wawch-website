@@ -15,9 +15,7 @@ const NavbarLinks = ({ navLinks }) => {
     if (
       !link?.includes("/author") &&
       !link?.includes("/blog") &&
-      !link?.includes("/resources") &&
-      !link?.includes("/partner") &&
-      !link?.includes("/affiliates")
+      !link?.includes("/resources")
     ) {
       return link === "/"
         ? `/${lang}`
