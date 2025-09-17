@@ -52,13 +52,11 @@ const Blogs = ({ data, detail }) => {
                   href={GenerateUrl(detail?.data?.[0]?.slug)}
                   style={{
                     backgroundImage: `url(${
-                      isLocal
-                        ? BASE_URL +
-                          detail?.data?.[0]?.image[0]
-                            ?.url
-                        : '' +
-                          detail?.data?.[0]?.image[0]
-                            ?.url
+                      detail?.data?.[0]?.image && detail?.data?.[0]?.image.length > 0 && detail?.data?.[0]?.image[0]?.url
+                        ? isLocal
+                          ? BASE_URL + detail?.data?.[0]?.image[0]?.url
+                          : detail?.data?.[0]?.image[0]?.url
+                        : '/assets/placeholder.png'
                     })`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',

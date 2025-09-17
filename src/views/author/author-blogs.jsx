@@ -5,8 +5,8 @@ import { FeaturedBlogCard } from ".";
 
 const AuthorBlogs = ({ detail, page_title }) => {
   const blogs = detail || [];
-  const featuredBlog = blogs[0];
-  const otherBlogs = blogs.slice(1, 5);
+  const featuredBlog = blogs.length > 0 ? blogs[0] : null;
+  const otherBlogs = blogs.length > 1 ? blogs.slice(1, 5) : [];
 
   return (
     <div className="mx-auto my-3 sm:my-10 w-full">
@@ -16,17 +16,23 @@ const AuthorBlogs = ({ detail, page_title }) => {
           {featuredBlog?.author?.title}
         </span>
       </h2>
-      <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6 max-w-4xl py-10 mx-auto">
-        <div className="w-full max-w-[525px] md:w-[40%]">
-          <FeaturedBlogCard blog={featuredBlog} />
-        </div>
+      {featuredBlog ? (
+        <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6 max-w-4xl py-10 mx-auto">
+          <div className="w-full max-w-[525px] md:w-[40%]">
+            <FeaturedBlogCard blog={featuredBlog} />
+          </div>
 
-        <div className="w-full max-w-xl md:w-[60%] grid grid-cols-1 sm:grid-cols-2 gap-6 sm:px-[10px] md:px-3 py-[2px] mx-auto justify-items-center">
-          {otherBlogs.map((item) => (
-            <BlogCard key={item.id} item={item} flag={false} />
-          ))}
+          <div className="w-full max-w-xl md:w-[60%] grid grid-cols-1 sm:grid-cols-2 gap-6 sm:px-[10px] md:px-3 py-[2px] mx-auto justify-items-center">
+            {otherBlogs.map((item) => (
+              <BlogCard key={item.id} item={item} flag={false} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="text-center py-10">
+          <p className="text-gray-500">No articles available for this author.</p>
+        </div>
+      )}
     </div>
   );
 };

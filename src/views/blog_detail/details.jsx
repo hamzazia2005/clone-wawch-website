@@ -15,7 +15,7 @@ const Detail = ({ data, detail, blog_headings }) => {
   }
   const author = data?.author;
   const profileImage =
-    author?.image?.[0].url || '/assets/profile_pic.png';
+    author?.image && author?.image.length > 0 ? author?.image[0]?.url : '/assets/profile_pic.png';
 
   return (
     <div className='flex justify-center items-center mt-20'>
@@ -41,7 +41,7 @@ const Detail = ({ data, detail, blog_headings }) => {
         {/* <PopUp> */}
         <Image
           src={
-            data?.image[0]?.url
+            data?.image && data?.image.length > 0 && data?.image[0]?.url
               ? isLocal
                 ? BASE_URL + data?.image[0]?.url
                 : data?.image[0]?.url

@@ -10,7 +10,7 @@ const Author = ({ author, handleAuthorSelection }) => {
         <div className='relative flex-1'>
           <Image
             src={
-              author?.image?.length > 0
+              author?.image && author?.image.length > 0
                 ? author?.image[0]?.url
                 : '/assets/author-fallback.svg'
             }
