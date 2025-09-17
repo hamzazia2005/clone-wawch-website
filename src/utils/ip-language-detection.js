@@ -76,6 +76,7 @@ export function shouldExcludeFromLanguageRedirect(pathname) {
   const englishOnlyPages = [
     '/blog',
     '/author',
+    '/resources',
   ];
   
   for (const page of englishOnlyPages) {

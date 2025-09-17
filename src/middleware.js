@@ -66,6 +66,8 @@ export const config = {
     '/author/',
     '/blog',
     '/blog/',
+    '/resources',
+    '/resources/',
     '/privacy-policy',
     '/privacy-policy/',
     '/road-map',
@@ -83,6 +85,7 @@ export const config = {
     '/feature/:path*',
     '/faq/:path*',
     '/blog/:path*',
+    '/resources/:path*',
     // Exclude API routes, static files, and Next.js internals
     '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)',
   ],

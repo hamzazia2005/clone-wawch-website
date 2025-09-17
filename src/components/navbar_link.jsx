@@ -86,7 +86,7 @@ const NavbarLinks = ({ navLinks }) => {
 
         return (
           <div key={index} className="relative group">
- {"links" in item ? (
+              {"links" in item ? (
               <>
                 {item.link ? (
                   <Link

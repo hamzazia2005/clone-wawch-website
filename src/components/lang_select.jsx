@@ -57,7 +57,7 @@ const LangSelect = () => {
         {data.map((option) => (
           <Link
           href={`${
-            pathname.includes('/blog/') || pathname.includes('/author/')
+            pathname.includes('/blog/') || pathname.includes('/author/') || pathname.includes('/resources/')
               ? pathname
               : '/' + option + (cleanPathname(pathname) === '/' ? '' : cleanPathname(pathname))
           }`}
