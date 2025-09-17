@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
-import { FadeIn } from '@/animations';
 import { FormatDate } from '@/utils';
 import { BlocksRender } from '@/components';
 

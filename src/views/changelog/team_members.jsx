@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import Image from 'next/image';
 import { BlocksRender } from '@/components';
-import { FadeIn } from '@/animations';
 
 const TeamMembers = ({ heading, data, version }) => {
   // Pagination

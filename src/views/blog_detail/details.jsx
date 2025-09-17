@@ -3,7 +3,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { Category, BlogCard, Heading, BlocksRender } from '@/components';
 import Image from 'next/image';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
-import { FadeIn, PopUp } from '@/animations';
 import { FormatDate } from '@/utils';
 
 const Detail = ({ data, detail, blog_headings }) => {

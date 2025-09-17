@@ -1,6 +1,5 @@
 'use client';
 import { FaqQuestion } from '@/components';
-import { FadeIn, PopUp } from '@/animations';
 import { useState } from 'react';
 
 const Faq = ({ data }) => {

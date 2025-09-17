@@ -1,5 +1,5 @@
 'use client';
-import { FadeIn } from '@/animations';
+
 // import { BlocksRender } from '@/components';
 import Legal_BlockRender from '@/components/legal_component';
 

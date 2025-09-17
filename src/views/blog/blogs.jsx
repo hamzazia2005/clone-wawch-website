@@ -1,5 +1,4 @@
 'use client';
-import { FadeIn, PopUp } from '@/animations';
 import { BlogCard, Category } from '@/components';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import Link from 'next/link';

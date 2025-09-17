@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { FadeIn, PopUp } from '@/animations';
 import { BlocksRender, FaqQuestion } from '@/components';
 import { useParams } from 'next/navigation';
 
