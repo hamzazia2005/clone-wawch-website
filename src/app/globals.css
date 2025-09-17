@@ -268,3 +268,7 @@ strong {
   align-items: flex-start;
   margin-top: 8px;
 }
+
+a{
+  color: #38b36c;
+}

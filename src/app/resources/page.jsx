@@ -86,9 +86,11 @@ const ResourcesPage = async () => {
                           </Link>
                         </div>
                         <div className="px-4 pb-4">
-                          <h3 className="text-xl font-semibold text-black1 hover:text-secondary mb-4">
-                            {category.title}
-                          </h3>
+                          <Link href={`/resources/${category.slug}`}>
+                            <h3 className="text-xl font-semibold text-black1 hover:text-secondary mb-4">
+                              {category.title}
+                            </h3>
+                          </Link>
                           <p className="text-gray-600 mb-4">
                             {category.description || `Explore ${category.title.toLowerCase()} resources and articles`}
                           </p>

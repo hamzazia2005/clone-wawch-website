@@ -4,7 +4,7 @@ import Layout from "@/layout/page";
 
 export async function generateMetadata({ params }) {
   const resp = await getServerSideData(
-    `api/blog-details/?filters[slug][$eq]=${params.slug}&populate[category]=*&populate=*`,
+    `api/blog-details/?filters[slug][$eq]=${params.slug}&populate=*`,
     true
   );
 

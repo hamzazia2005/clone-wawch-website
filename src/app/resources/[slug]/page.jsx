@@ -27,27 +27,29 @@ export async function generateMetadata({ params }) {
 const Page = async ({ params }) => {
   const { slug } = params;
   const categoryBanner = await getServerSideData("api/category-banner");
-  const categoryData = await getServerSideData(
-    `api/categories?filters[slug][$eq]=whatsapp-automation&populate[blogs][populate]=image`
-  );
 
-  const category = categoryData?.find(cat => 
-    cat.slug.toLowerCase() === slug.toLowerCase() || 
-    cat.slug === slug ||
-    slug.toLowerCase().includes(cat.slug.toLowerCase())
-  );
+  const allCategoriesResponse = await getServerSideData("api/categories?populate[blogs][populate]=image&populate=image");
+  const allCategories = allCategoriesResponse?.data || allCategoriesResponse || [];
+  
 
-  if (!category) {
+  const validCategory = allCategories.find(cat => 
+    cat.slug.toLowerCase() === slug.toLowerCase()
+  );
+  
+  if (!validCategory) {
     redirect('/404');
   }
 
-  const blogs = category.blogs || [];
+  const displayCategory = validCategory;
+
+  const blogs = displayCategory.blogs || [];
+
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${category.title} Resources`,
-    description: `Resources and articles in the ${category.title} category`,
+    name: `${displayCategory.title} Resources`,
+    description: `Resources and articles in the ${displayCategory.title} category`,
     url: `https://wawcd.com/resources/${slug}`,
     mainEntity: blogs.map((blog) => ({
       "@type": "BlogPosting",
@@ -70,10 +72,10 @@ const Page = async ({ params }) => {
           <div className="max-w-[1440px] px-5 sm:px-12 py-12 sm:w-[550px] w-[400px] md:w-[900px] lg:w-full">
             <div data-aos="fade-up" data-aos-duration="800">
               <h1 className="text-4xl text-black1 font-plus text-center font-bold my-3">
-                {category.title}
+                {displayCategory.title}
               </h1>
               <p className="text-third text-lg text-center font-poppins mx-3 sm:mx-8 lg:mx-40">
-                {category.description || `Explore our collection of ${category.title.toLowerCase()} resources and articles`}
+                {displayCategory.description || `Explore our collection of ${displayCategory.title.toLowerCase()} resources and articles`}
               </p>
             </div>
 
@@ -103,9 +105,11 @@ const Page = async ({ params }) => {
                       href={GenerateUrl(blogs[0]?.slug)}
                       style={{
                         backgroundImage: `url(${
-                          isLocal
-                            ? BASE_URL + blogs[0]?.image?.[0]?.url
-                            : blogs[0]?.image?.[0]?.url
+                          blogs[0]?.image && blogs[0]?.image.length > 0 && blogs[0]?.image[0]?.url
+                            ? isLocal
+                              ? BASE_URL + blogs[0]?.image[0]?.url
+                              : blogs[0]?.image[0]?.url
+                            : '/assets/placeholder.png'
                         })`,
                         backgroundPosition: "center",
                         backgroundSize: "cover",
