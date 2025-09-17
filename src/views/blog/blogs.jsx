@@ -25,9 +25,9 @@ const Blogs = ({ data, detail }) => {
             // <FadeIn delay={1.5}>
               <div data-aos="fade-up"  data-aos-duration="1000" data-aos-delay="500"  className='flex gap-6  p-4 md:p-6 flex-col md:flex-row md:items-center border border-gray-300 scale-1 hover:scale-[1.025] hover:shadow-[0px_0px_20px_2px_#dcdcdc] transition-all duration-300 rounded-lg'>
                 <div className='md:w-[50%]'>
-                  {detail?.data?.[0]?.category && (
+                  {detail?.data?.[0]?.category?.title && (
                     <Category
-                      text={detail?.data?.[0]?.category}
+                      text={detail?.data?.[0]?.category?.title}
                       color={detail?.data?.[0]?.catagory_color}
                     />
                   )}

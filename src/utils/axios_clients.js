@@ -79,19 +79,19 @@ serverAxios.interceptors.response.use(
 
 clientAxios.interceptors.response.use(responseInterceptor, errorInterceptor);
 
-export const createFormDataConfig = (token, isServer = false) => {
+export const createFormDataConfig = (token) => {
   const headers = {
     Authorization: `Bearer ${token || ""}`,
     "Content-Type": "multipart/form-data",
   };
 
-  if (isServer) {
-    headers["x-server-security-key"] = process.env.SERVER_SECURITY_KEY || "";
-    headers["x-server-request"] = process.env.SERVER_REQUEST_SIGNATURE || "";
-  } else {
-    headers["x-client-request"] = process.env.NEXT_PUBLIC_CLIENT_REQUEST_SIGNATURE || "";
-    headers["x-client-security-key"] = process.env.NEXT_PUBLIC_CLIENT_SECURITY_KEY || "";
-  }
+  // if (isServer) {
+  //   headers["x-server-security-key"] = process.env.SERVER_SECURITY_KEY || "";
+  //   headers["x-server-request"] = process.env.SERVER_REQUEST_SIGNATURE || "";
+  // } else {
+  //   headers["x-client-request"] = process.env.NEXT_PUBLIC_CLIENT_REQUEST_SIGNATURE || "";
+  //   headers["x-client-security-key"] = process.env.NEXT_PUBLIC_CLIENT_SECURITY_KEY || "";
+  // }
 
   return { headers };
 };

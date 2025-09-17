@@ -22,12 +22,12 @@ const Detail = ({ data, detail, blog_headings }) => {
       <div className='max-w-[1440px] px-5 sm:px-12 py-12 flex flex-col w-[500px] sm:w-[700px] md:w-full'>
         {/* <FadeIn> */}
         <div className='flex flex-col items-center'>
-          {data?.category && (
+          {data?.category?.title && (
             <div className='flex items-center gap-2 justify-center'>
               <p className='text-black text-lg font-poppins font-medium'>
                 {blog_headings?.category_label}:
               </p>
-              <Category text={data?.category} color={data?.catagory_color} />
+              <Category text={data?.category?.title} color={data?.catagory_color} />
             </div>
           )}
           <h1 className='text-[40px] text-black1 font-plus text-center font-bold my-3 md:w-[70%] mt-4 mb-5'>

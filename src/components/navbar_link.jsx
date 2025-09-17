@@ -11,23 +11,47 @@ const NavbarLinks = ({ navLinks }) => {
   const pathname = usePathname();
   const [open, setOpen] = useState(-1);
 
+  // --- Helper: localize link ---
+  const localizeLink = (link) => {
+    if (
+      !link?.includes("/author") &&
+      !link?.includes("/blog") &&
+      !link?.includes("/resources") &&
+      !link?.includes("/partner") &&
+      !link?.includes("/affiliates")
+    ) {
+      return link === "/"
+        ? `/${lang}`
+        : link?.[0] === "/"
+        ? lang
+          ? `/${lang}${link}`
+          : `${lang}${link}`
+        : link;
+    }
+    return link;
+  };
+
+  // --- Find active menu index based on pathname ---
   useEffect(() => {
-    setOpen(
-      pathname === `/${params?.lang}/` || pathname === `/`
-        ? 0
-        : pathname.includes("/pricing/")
-        ? 1
-        : (pathname.includes("/faqs/") || pathname.includes("/blog/"))
-        ? 2
-        : pathname.includes("/features/")
-        ? 3
-        : pathname.includes("/contact-us/")
-        ? 4
-        : (pathname.includes("/affiliates/") || pathname.includes("/partner/"))
-        ? 5
-        : -1
-    );
-  }, [pathname, params?.lang]);
+    const activeIndex = navLinks.findIndex((item) => {
+      if (item.link) {
+        // home: must be exact match
+        if (item.link === "/" && (pathname === "/" || pathname === `/${params?.lang}`)) {
+          return true;
+        }
+        // other direct links: prefix is fine
+        if (item.link !== "/" && pathname.startsWith(item.link)) {
+          return true;
+        }
+      }
+
+      if (item.links?.some((sub) => pathname.startsWith(sub.link))) {
+        return true;
+      }
+      return false;
+    });
+    setOpen(activeIndex);
+  }, [pathname, params?.lang, navLinks]);
 
   const scrollToSection = (sectionId, index) => {
     const section = document.getElementById(sectionId);
@@ -56,73 +80,75 @@ const NavbarLinks = ({ navLinks }) => {
 
   return (
     <div className="flex lg:items-center flex-col lg:flex-row gap-x-8 gap-y-8">
-      {navLinks?.map((item, index) => (
-        <div key={index} className="relative group">
-          {"links" in item ? (
-            <>
-              <div className="cursor-pointer text-primary font-medium font-poppins hover:text-secondary flex items-center gap-1">
-                {item.name}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-4 h-4"
+      {navLinks?.map((item, index) => {
+        const isActive =
+          open === index ||
+          (item.link === "/" && (pathname === "/" || pathname === `/${params?.lang}`)) ||
+          (item.link && item.link !== "/" && pathname.startsWith(item.link)) ||
+          item.links?.some((sub) => pathname.startsWith(sub.link));
+
+        return (
+          <div key={index} className="relative group">
+            {"links" in item ? (
+              <>
+                <div
+                  className={`cursor-pointer font-medium font-poppins flex items-center gap-1 ${
+                    isActive
+                      ? "text-secondary font-semibold"
+                      : "text-primary hover:text-secondary"
+                  }`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-              </div>
-              <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-md rounded-md z-50 min-w-[150px]">
-                {item.links.map((subItem, subIndex) => (
-                  <Link
-                    key={subIndex}
-                    href={
-                      !subItem?.link?.includes("/blog") &&
-                      !subItem?.link?.includes("/author")
-                        ? subItem?.link === "/"
-                          ? `/${lang}`
-                          : subItem?.link?.[0] === "/"
-                          ? lang?`/${lang}${subItem?.link}`:`${lang}${subItem?.link}`
-                          : subItem?.link
-                        : subItem?.link
-                    }
-                    className="block px-4 py-2 text-sm text-primary hover:text-secondary hover:bg-gray-100 whitespace-nowrap"
-                    onClick={() => handleNavigate(subItem, index)}
+                  {item.name}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-4 h-4"
                   >
-                    {subItem.title}
-                  </Link>
-                ))}
-              </div>
-            </>
-          ) : (
-            <Link
-              href={
-                !item?.link?.includes("/author") &&
-                !item?.link?.includes("/blog") &&
-                !item?.link?.includes("/partner") &&
-                !item?.link?.includes("/affiliates")
-                  ? item?.link === "/"
-                    ? `/${lang}`
-                    : item?.link?.[0] === "/"
-                    ? lang?`/${lang}${item?.link}`:`${lang}${item?.link}`
-                    : item?.link
-                  : item?.link
-              }
-              className={`${
-                open === index ? "text-secondary font-semibold" : "text-primary"
-              } font-medium font-poppins cursor-pointer hover:text-secondary`}
-              onClick={() => handleNavigate(item, index)}
-            >
-              {item?.title}
-            </Link>
-          )}
-        </div>
-      ))}
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </div>
+
+                <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-md rounded-md z-50 min-w-[150px]">
+                  {item.links.map((subItem, subIndex) => {
+                    const isSubActive = pathname.startsWith(subItem.link);
+                    return (
+                      <Link
+                        key={subIndex}
+                        href={localizeLink(subItem.link)}
+                        className={`block px-4 py-2 text-sm whitespace-nowrap ${
+                          isSubActive
+                            ? "text-secondary font-semibold bg-gray-50"
+                            : "text-primary hover:text-secondary hover:bg-gray-100"
+                        }`}
+                        onClick={() => handleNavigate(subItem, index)}
+                      >
+                        {subItem.title}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <Link
+                href={localizeLink(item.link)}
+                className={`${
+                  isActive ? "text-secondary font-semibold" : "text-primary"
+                } font-medium font-poppins cursor-pointer hover:text-secondary`}
+                onClick={() => handleNavigate(item, index)}
+              >
+                {item?.title}
+              </Link>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };

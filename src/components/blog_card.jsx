@@ -45,8 +45,8 @@ const BlogCard = ({ item, flag }) => {
         </Link>
         <div className="flex justify-between items-center">
           <div>
-            {flag && data?.category && (
-              <Category text={data?.category} color={data?.catagory_color} />
+            {flag && data?.category?.title && (
+              <Category text={data?.category?.title} color={data?.catagory_color} />
             )}
           </div>
           <p className={`${flag ? "text-sm" : "text-xs"} text-gray-400`}>
