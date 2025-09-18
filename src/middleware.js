@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { detectLanguageFromIP, shouldRedirectToLanguage, shouldExcludeFromLanguageRedirect } from './utils/ip-language-detection';
+import { shouldRedirectToLanguage, shouldExcludeFromLanguageRedirect, detectLanguageFromIP } from './utils/ip-language-detection';
 
-const deletedBlogSlugs = [
+const deletedBlogSlugs = new Set([
   "whatsApp-tags-in-wawcd",
   "whatsapp-business-api-integration-with-e-commerce-platforms",
   "whatsapp-automation-in-digital-transformation",
@@ -42,7 +42,8 @@ const deletedBlogSlugs = [
   "how-to-broadcast-to-1000-contacts-on-whatsapp!",
   "What-is-the-Process-of-WhatsApp-Green-Tick-Verification",
   "Maximize-Customer-Engagement-with-HubSpot-integrated-Chrome-Extensions-for-WhatsApp-Web",
-];
+]);
+
 
 export async function middleware(request) {
   const { pathname, searchParams } = request.nextUrl;
@@ -59,13 +60,10 @@ export async function middleware(request) {
 
   if (pathname.startsWith("/blog/")) {
     const slug = pathname.replace("/blog/", "").replace(/\/$/, "");
-    if (deletedBlogSlugs.includes(slug)) {
+    if (deletedBlogSlugs.has(slug)) {
       return new NextResponse(
         "<h1>410 - This blog post has been removed</h1><p>Please visit our <a href='/blog'>blog</a> for latest posts.</p>",
-        {
-          status: 410,
-          headers: { "Content-Type": "text/html" },
-        }
+        { status: 410, headers: { "Content-Type": "text/html" } }
       );
     }
   }
@@ -75,6 +73,9 @@ export async function middleware(request) {
     // Skip if already on a language-specific route
     if (!pathname.match(/^\/[a-z]{2}\//)) {
       if (!shouldExcludeFromLanguageRedirect(pathname)) {
+        //possible solution to detect language from cloudflare ip country
+        //const country = request.headers.get("cf-ipcountry") || "";
+        //const detectedLanguage = getLanguageFromCountry(country);
         const detectedLanguage = await detectLanguageFromIP();
         const redirectPath = shouldRedirectToLanguage(pathname, detectedLanguage);
         

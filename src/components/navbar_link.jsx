@@ -30,7 +30,7 @@ const NavbarLinks = ({ navLinks }) => {
 
   // Active menu index based on pathname 
   useEffect(() => {
-    const activeIndex = navLinks.findIndex((item) => {
+    const activeIndex = navLinks?.findIndex((item) => {
       if (item.link) {
         if (item.link === "/" && (pathname === "/" || pathname === `/${params?.lang}`)) {
           return true;
