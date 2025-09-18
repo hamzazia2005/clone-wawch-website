@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
   const urls = {
-    blog: `api/blog-details/?filters[slug][$eq]=${params.slug}&populate[author][populate][0]=image&populate=image`,
+    blog: `api/blog-details/?filters[slug][$eq]=${params.slug}&populate=*`,
     detail:
       "api/blog-details/?populate=*&sort=createdAt:DESC&pagination[limit]=4",
     blog_headings: `api/blog`,

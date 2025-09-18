@@ -25,6 +25,9 @@ export default function WhatsAppButton() {
     } else if (pathname.includes('/blog')) {
       setChatMessage("Hello! 👋 Enjoying our blog? If you have any questions about what you're reading, feel free to ask!");
       setPreDefinedMessage("I just read your blog and have a question.");
+    } else if (pathname.includes('/resources')) {
+      setChatMessage("Hello! 👋 Browsing resources? I can help you find blogs, articles, and tips you need!");
+      setPreDefinedMessage("I'm looking for a specific blog or article.");
     } else {
       setChatMessage("Hello! 👋 Welcome to WAWCD! How can we help you today?");
       setPreDefinedMessage("I'd like to learn more about WAWCD.");

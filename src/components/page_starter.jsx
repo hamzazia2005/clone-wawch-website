@@ -86,15 +86,15 @@ const PageStarter = ({ data, faqs, setSearch, isSearch, search }) => {
   }, []);
 
   return (
-    <div data-aos="fade-up" data-aos-duration="1000" className="max-w-[1440px] w-full rounded-md">
+    <div className="max-w-[1440px] w-full rounded-md">
         <div className="px-3 md:px-20 relative flex justify-center items-center flex-col">
           <p className="text-green1 font-medium text-lg text-center font-poppins">
             {data?.page}
           </p>
-          <h1 className="text-primary text-[42px] sm:text-[56px] font-semibold font-plus text-center mt-2">
+          <h1 data-aos="zoom-in" className="text-primary text-[42px] sm:text-[56px] font-semibold font-plus text-center mt-2">
             {data?.title}
           </h1>
-          <p className="text-third leading-7 font-medium text-center mb-4 mt-2 font-poppins mx-3 sm:mx-8 lg:mx-48">
+          <p data-aos="zoom-in" className="text-third leading-7 font-medium text-center mb-4 mt-2 font-poppins mx-3 sm:mx-8 lg:mx-48">
             {data?.description}
           </p>
           {isSearch && (
