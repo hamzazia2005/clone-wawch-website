@@ -32,14 +32,14 @@ export const metadata = {
   title: 'WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more',
   description:
     'Maximize Your Impact with the Most Powerful WhatsApp Solution! Enjoy Privacy Features, Zero Inbox, Contact Saver for WhatsApp, Broadcasting, and Seamless Integration with ChatGPT, Hubspot, and More – All in One WhatsApp Solution.',
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: '/assets/logo.svg',
-  //       href: '/assets/logo.svg',
-  //     },
-  //   ],
-  // },
+    icons: {
+      icon: [
+        {
+          url: '/assets/logo.svg',
+          href: '/assets/logo.svg',
+        },
+      ],
+    },
 };
 
 export default function Layout({ children }) {
