@@ -1,10 +1,10 @@
 import { getServerSideData } from '@/utils/get_api';
 import { Header, Footer } from '.';
-import dynamic from 'next/dynamic';
+//import dynamic from 'next/dynamic';
 
-const LanguageDetector = dynamic(() => import('@/components/language-detector'), {
-  ssr: false
-});
+// const LanguageDetector = dynamic(() => import('@/components/language-detector'), {
+//   ssr: false
+// });
 
 // const Header = dynamic(() => import('./header'), {
 //   ssr: false
