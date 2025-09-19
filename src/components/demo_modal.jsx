@@ -2,12 +2,10 @@
 import React from "react";
 import {
   Dialog,
-  DialogHeader,
   DialogBody,
-  IconButton,
 } from "@material-tailwind/react";
 
-const DemoModal = ({ open, handleOpen, videoId, title }) => {
+const DemoModal = ({ open, handleOpen, videoId }) => {
   return (
     <Dialog 
       size="lg" 
