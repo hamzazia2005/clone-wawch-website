@@ -17,12 +17,12 @@ const Pricing = ({ data, isPage }) => {
     }
   }, [isMonthly]);
 
-  const scrollToEnterprise = useCallback(() => {
-    const enterpriseDiv = document.getElementById("enterprise-card");
-    if (enterpriseDiv) {
-      enterpriseDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, []);
+  // const scrollToEnterprise = useCallback(() => {
+  //   const enterpriseDiv = document.getElementById("enterprise-card");
+  //   if (enterpriseDiv) {
+  //     enterpriseDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  //   }
+  // }, []);
 
   const handleTabClick = useCallback(
     (index) => {
@@ -30,11 +30,13 @@ const Pricing = ({ data, isPage }) => {
         setIsMonthly(false);
       } else if (index === 1) {
         setIsMonthly(true);
-      } else if (index === 2) {
-        scrollToEnterprise();
-      }
+      } 
+      // else if (index === 2) {
+      //   scrollToEnterprise();
+      // }
     },
-    [scrollToEnterprise]
+    // [scrollToEnterprise]
+    []
   );
 
   const tabs = useMemo(
@@ -46,7 +48,7 @@ const Pricing = ({ data, isPage }) => {
             className: "bg-[#DCF6D4] rounded-full",
           }}
         >
-          {data?.type?.map((label, index) => (
+         {data?.type?.slice(0, 2).map((label, index) => (
             <Tab
               key={index}
               value={index}
