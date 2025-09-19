@@ -23,7 +23,14 @@ export async function metadata() {
           href: faviconUrl,
         },
       ],
-    } : undefined,
+    } : {
+      icon: [
+        {
+          url: '/assets/logo.svg',
+          href: '/assets/logo.svg',
+        },
+      ],
+    },
     openGraph: {
       url: "https://wawcd.com/",
       title: resp?.title,
