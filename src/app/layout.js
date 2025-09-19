@@ -82,7 +82,8 @@ export default function Layout({ children }) {
         {/* {children} */}
 
         <ClientEnhancer>{children}</ClientEnhancer>
-        <Script
+        {/* Commented out these scripts as stripe (and associated code) is not required for now*/}
+        {/* <Script
           dangerouslySetInnerHTML={{
             __html: `
             window.updateButtonUrls = function updateButtonUrls() {
@@ -122,9 +123,9 @@ export default function Layout({ children }) {
             });
           `,
           }}
-        />
+        /> */}
 
-        <Script async src="https://js.stripe.com/v3/pricing-table.js"></Script>
+        {/* <Script async src="https://js.stripe.com/v3/pricing-table.js"></Script> */}
       </body>
       <GoogleAnalytics gaId="G-LEYYSF0TEL" />
     </html>

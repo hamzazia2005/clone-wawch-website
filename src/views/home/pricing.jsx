@@ -1,7 +1,7 @@
 "use client";
 import { PricePlan, Button } from "@/components";
 import { useAppContext } from "@/context";
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Tabs, TabsHeader, Tab } from "@material-tailwind/react";
 import { BASE_URL, isLocal } from "@/utils/axios_instance";
 import Image from "next/image";
@@ -11,11 +11,13 @@ const Pricing = ({ data, isPage }) => {
   const [isMonthly, setIsMonthly] = useState(false);
   const { lang } = useAppContext();
 
-  useEffect(() => {
-    if (typeof window.updateButtonUrls === "function") {
-      window.updateButtonUrls();
-    }
-  }, [isMonthly]);
+  //Commented out this code as stripe (and associated code) is not required for this page
+
+  // useEffect(() => {
+  //   if (typeof window.updateButtonUrls === "function") {
+  //     window.updateButtonUrls();
+  //   }
+  // }, [isMonthly]);
 
   // const scrollToEnterprise = useCallback(() => {
   //   const enterpriseDiv = document.getElementById("enterprise-card");
