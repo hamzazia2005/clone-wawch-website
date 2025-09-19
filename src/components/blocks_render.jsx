@@ -30,7 +30,7 @@ const BlocksRender = ({ data }) => {
                 return (
                   // <FadeIn>
                   <h1
-                    className={`block my-6 text-[50px] font-bold leading-[120%] text-inherit`}
+                    className={`block my-6 text-[40px] font-bold leading-[120%] text-inherit`}
                   >
                     {children}
                   </h1>
@@ -43,7 +43,7 @@ const BlocksRender = ({ data }) => {
                 return (
                   // <FadeIn>
                   <h2
-                    className={`block my-[22px] text-[40px] font-bold leading-[120%] text-inherit`}
+                    className={`block my-[22px] text-[22px] font-bold leading-[120%] text-inherit`}
                   >
                     {children}
                   </h2>
@@ -53,7 +53,7 @@ const BlocksRender = ({ data }) => {
                 return (
                   // <FadeIn>
                   <h3
-                    className={`block my-5 text-[30px] font-bold leading-[120%] text-inherit`}
+                    className={`block my-5 text-[20px] font-bold leading-[120%] text-inherit`}
                   >
                     {children}
                   </h3>
@@ -66,7 +66,7 @@ const BlocksRender = ({ data }) => {
                 return (
                   // <FadeIn>
                   <h4
-                    className={`block my-[18px] text-[25px] font-bold leading-[120%] text-inherit`}
+                    className={`block my-[18px] text-lg font-bold leading-[120%] text-inherit`}
                   >
                     {children}
                   </h4>
@@ -79,7 +79,7 @@ const BlocksRender = ({ data }) => {
                 return (
                   // <FadeIn>
                   <h5
-                    className={`block my-4 text-[20px] font-bold leading-[120%] text-inherit`}
+                    className={`block my-4 text-base font-bold leading-[120%] text-inherit`}
                   >
                     {children}
                   </h5>
@@ -89,7 +89,7 @@ const BlocksRender = ({ data }) => {
                 return (
                   // <FadeIn>
                   <h6
-                    className={`block my-[14px] text-lg font-bold leading-[120%] text-inherit`}
+                    className={`block my-[14px] text-base font-bold leading-[120%] text-inherit`}
                   >
                     {children}
                   </h6>
@@ -102,7 +102,7 @@ const BlocksRender = ({ data }) => {
                 return (
                   // <FadeIn>
                   <h6
-                    className={`block my-[14px] text-lg font-bold leading-[120%] text-inherit`}
+                    className={`block my-[14px] text-base font-bold leading-[120%] text-inherit`}
                   >
                     {children}
                   </h6>
@@ -150,7 +150,7 @@ const BlocksRender = ({ data }) => {
               default:
                 return (
                   // <FadeIn>
-                  <ul className={`list-disc pl-5 my-3 text-lg text-inherit`}>
+                  <ul className={`list-disc pl-5 my-3 text-base text-inherit`}>
                     {children}
                   </ul>
                 );
