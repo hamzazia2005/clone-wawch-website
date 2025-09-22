@@ -3,7 +3,7 @@
 //import { Suspense } from 'react';
 import Image from 'next/image';
 import { NavbarLinks, NavButtons, LangSelect } from '@/components';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import MobileNav from './mobile_nav';
@@ -77,13 +77,10 @@ const Header = ({ data, gcid }) => {
     </div>
   );
 };
-export default Header;
-
-// Wrapping the main component with Suspense
-// export default function HeaderWithSuspense(props) {
-//   return (
-//     <Suspense>
-//       <Header {...props} />
-//     </Suspense>
-//   );
-// }
+export default function HeaderWithSuspense(props) {
+  return (
+    <Suspense>
+      <Header {...props} />
+    </Suspense>
+  );
+}
