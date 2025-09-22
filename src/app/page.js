@@ -10,6 +10,7 @@ export async function metadata() {
       ? BASE_URL + resp?.favicon?.url
       : resp?.favicon?.url
     : null;
+
   return {
     title: resp?.title,
     description: resp?.description,
