@@ -23,7 +23,7 @@ export async function metadata() {
 const page = async () => {
   const urls = {
     banner: `api/author-banner`,
-    detail: `api/blog-details/?populate=*&sort=createdAt:DESC`,
+    detail: `api/blog-details/?populate=*&sort=publishedAt:DESC`,
     reviews: `api/customer-reviews/?populate=*`,
     authors: `api/authors/?populate=*`,
     reviews_banner: `api/customer-review-banner`,
