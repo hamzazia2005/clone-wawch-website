@@ -1,7 +1,8 @@
 import { Pricing, Cta } from "@/views/home";
 import Layout from "@/layout/page";
 import { getServerSideData } from "@/utils/get_api";
-import { TableCollapse, BulkPurchase } from "@/views/pricing";
+import { TableCollapse } from "@/views/pricing";
+// import { BulkPurchase } from "@/views/pricing";
 
 export async function metadata({ params }) {
   const languages = ["en", "fr", "ar", "pt", "ru"];
@@ -31,15 +32,15 @@ const Page = async ({ params }) => {
     faq: `api/faq/?locale=${paramLanguage}`,
     tableHead: `api/pricing-detail-head/?locale=${paramLanguage}`,
     tableData: `api/pricing-page-tables/?populate=*&locale=${paramLanguage}`,
-    enterpriseSection: `api/enterprise-section/?populate[enterprise][populate]=*&locale=${paramLanguage}`,
+    // enterpriseSection: `api/enterprise-section/?populate[enterprise][populate]=*&locale=${paramLanguage}`,
   };
-  const [pricing, faq, tableHead, tableData, enterpriseSection] =
+  const [pricing, faq, tableHead, tableData] =
     await Promise.all([
       getServerSideData(urls.pricing),
       getServerSideData(urls.faq),
       getServerSideData(urls.tableHead),
       getServerSideData(urls.tableData),
-      getServerSideData(urls.enterpriseSection),
+      // getServerSideData(urls.enterpriseSection),
     ]);
 
   const updatedPricing = {
@@ -91,10 +92,10 @@ const Page = async ({ params }) => {
               />
             ))}
           </div>
-          <div className="mt-10 flex justify-center gap-6" id="enterprise-card">
+          {/* <div className="mt-10 flex justify-center gap-6" id="enterprise-card">
             <BulkPurchase enterpriseSection={enterpriseSection} />
             {/* <PricingPage enterpriseSection={enterpriseSection} /> */}
-          </div>
+          {/* </div> */} 
           <div className="px-12 lg:px-36">
             <Cta data={faq} isPage={true} />
           </div>

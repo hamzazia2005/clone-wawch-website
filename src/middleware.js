@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { shouldRedirectToLanguage, shouldExcludeFromLanguageRedirect, detectLanguageFromIP } from './utils/ip-language-detection';
+import { shouldRedirectToLanguage, shouldExcludeFromLanguageRedirect, getLanguageFromCountry } from './utils/ip-language-detection';
 
 const deletedBlogSlugs = new Set([
   "whatsApp-tags-in-wawcd",
@@ -68,27 +68,51 @@ export async function middleware(request) {
     }
   }
   
+  // Get country from Cloudflare headers
+  const country = request.headers.get("cf-ipcountry") || "";
 
   try {
     // Skip if already on a language-specific route
     if (!pathname.match(/^\/[a-z]{2}\//)) {
       if (!shouldExcludeFromLanguageRedirect(pathname)) {
         //possible solution to detect language from cloudflare ip country
-        //const country = request.headers.get("cf-ipcountry") || "";
-        //const detectedLanguage = getLanguageFromCountry(country);
-        const detectedLanguage = await detectLanguageFromIP();
+        const detectedLanguage = getLanguageFromCountry(country);
+       // const detectedLanguage = await detectLanguageFromIP();
         const redirectPath = shouldRedirectToLanguage(pathname, detectedLanguage);
         
         if (redirectPath) {
-          return NextResponse.redirect(new URL(redirectPath, request.url));
+          const redirectResponse = NextResponse.redirect(new URL(redirectPath, request.url));
+          // Set country cookie on redirect too (only if changed)
+          const existingCountry = request.cookies.get('user-country')?.value;
+          if (existingCountry !== country) {
+            redirectResponse.cookies.set('user-country', country, {
+              httpOnly: false,
+              maxAge: 60 * 60 * 24, // 24 hours
+              sameSite: 'lax'
+            });
+          }
+          return redirectResponse;
         }
       }
     }
   } catch (error) {
     console.error('Error in language detection middleware:', error);
   }
+
+
+  const response = NextResponse.next();
+  const existingCountry = request.cookies.get('user-country')?.value;
   
-  return NextResponse.next();
+  // Only set cookie if country changed or doesn't exist
+  if (existingCountry !== country) {
+    response.cookies.set('user-country', country, {
+      httpOnly: false, // Allow client-side access
+      maxAge: 60 * 60 * 24, // 24 hours (updates immediately on country change)
+      sameSite: 'lax'
+    });
+  }
+  
+  return response;
 }
 
 export const config = {

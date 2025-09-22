@@ -1,10 +1,10 @@
 import { getServerSideData } from '@/utils/get_api';
 import { Header, Footer } from '.';
-import dynamic from 'next/dynamic';
+//import dynamic from 'next/dynamic';
 
-const LanguageDetector = dynamic(() => import('@/components/language-detector'), {
-  ssr: false
-});
+// const LanguageDetector = dynamic(() => import('@/components/language-detector'), {
+//   ssr: false
+// });
 
 // const Header = dynamic(() => import('./header'), {
 //   ssr: false
@@ -28,7 +28,7 @@ const Layout = async ({ children, params }) => {
   const gcid = await getServerSideData(urls.gcid, true);
   return (
     <div className='min-h-[100vh] flex flex-col justify-between'>
-      <LanguageDetector /> 
+      {/* <LanguageDetector />  */}
       <Header data={header} gcid={gcid?.data} />
       {children}
       <Footer data={footer} />

@@ -32,14 +32,14 @@ export const metadata = {
   title: 'WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more',
   description:
     'Maximize Your Impact with the Most Powerful WhatsApp Solution! Enjoy Privacy Features, Zero Inbox, Contact Saver for WhatsApp, Broadcasting, and Seamless Integration with ChatGPT, Hubspot, and More – All in One WhatsApp Solution.',
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: '/assets/logo.svg',
-  //       href: '/assets/logo.svg',
-  //     },
-  //   ],
-  // },
+  icons: {
+    icon: [
+      {
+        url: '/assets/logo.svg',
+        href: '/assets/logo.svg',
+      },
+    ],
+  },
 };
 
 export default function Layout({ children }) {
@@ -82,7 +82,8 @@ export default function Layout({ children }) {
         {/* {children} */}
 
         <ClientEnhancer>{children}</ClientEnhancer>
-        <Script
+        {/* Commented out these scripts as stripe (and associated code) is not required for now*/}
+        {/* <Script
           dangerouslySetInnerHTML={{
             __html: `
             window.updateButtonUrls = function updateButtonUrls() {
@@ -122,9 +123,9 @@ export default function Layout({ children }) {
             });
           `,
           }}
-        />
+        /> */}
 
-        <Script async src="https://js.stripe.com/v3/pricing-table.js"></Script>
+        {/* <Script async src="https://js.stripe.com/v3/pricing-table.js"></Script> */}
       </body>
       <GoogleAnalytics gaId="G-LEYYSF0TEL" />
     </html>

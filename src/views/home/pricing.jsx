@@ -1,7 +1,7 @@
 "use client";
 import { PricePlan, Button } from "@/components";
 import { useAppContext } from "@/context";
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Tabs, TabsHeader, Tab } from "@material-tailwind/react";
 import { BASE_URL, isLocal } from "@/utils/axios_instance";
 import Image from "next/image";
@@ -11,18 +11,20 @@ const Pricing = ({ data, isPage }) => {
   const [isMonthly, setIsMonthly] = useState(false);
   const { lang } = useAppContext();
 
-  useEffect(() => {
-    if (typeof window.updateButtonUrls === "function") {
-      window.updateButtonUrls();
-    }
-  }, [isMonthly]);
+  //Commented out this code as stripe (and associated code) is not required for this page
 
-  const scrollToEnterprise = useCallback(() => {
-    const enterpriseDiv = document.getElementById("enterprise-card");
-    if (enterpriseDiv) {
-      enterpriseDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window.updateButtonUrls === "function") {
+  //     window.updateButtonUrls();
+  //   }
+  // }, [isMonthly]);
+
+  // const scrollToEnterprise = useCallback(() => {
+  //   const enterpriseDiv = document.getElementById("enterprise-card");
+  //   if (enterpriseDiv) {
+  //     enterpriseDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  //   }
+  // }, []);
 
   const handleTabClick = useCallback(
     (index) => {
@@ -30,11 +32,13 @@ const Pricing = ({ data, isPage }) => {
         setIsMonthly(false);
       } else if (index === 1) {
         setIsMonthly(true);
-      } else if (index === 2) {
-        scrollToEnterprise();
-      }
+      } 
+      // else if (index === 2) {
+      //   scrollToEnterprise();
+      // }
     },
-    [scrollToEnterprise]
+    // [scrollToEnterprise]
+    []
   );
 
   const tabs = useMemo(
@@ -46,7 +50,7 @@ const Pricing = ({ data, isPage }) => {
             className: "bg-[#DCF6D4] rounded-full",
           }}
         >
-          {data?.type?.map((label, index) => (
+         {data?.type?.slice(0, 2).map((label, index) => (
             <Tab
               key={index}
               value={index}

@@ -20,8 +20,12 @@ export function AppWrapper({ children }) {
       const storedLang = localStorage.getItem("lang") || "";
       
       if (typeof document !== "undefined") {
+        
         const dir = storedLang.startsWith("ar") ? "rtl" : "ltr";
         document.documentElement.setAttribute("dir", dir);
+
+        const currentLang = storedLang ?? 'en';
+        document.documentElement.setAttribute('lang', currentLang);
       }
       setLang(storedLang);
     }

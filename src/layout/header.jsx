@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+//import { Suspense } from 'react';
 import Image from 'next/image';
 import { NavbarLinks, NavButtons, LangSelect } from '@/components';
 import { useEffect } from 'react';
@@ -77,12 +77,13 @@ const Header = ({ data, gcid }) => {
     </div>
   );
 };
+export default Header;
 
 // Wrapping the main component with Suspense
-export default function HeaderWithSuspense(props) {
-  return (
-    <Suspense>
-      <Header {...props} />
-    </Suspense>
-  );
-}
+// export default function HeaderWithSuspense(props) {
+//   return (
+//     <Suspense>
+//       <Header {...props} />
+//     </Suspense>
+//   );
+// }

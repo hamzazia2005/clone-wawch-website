@@ -10,6 +10,7 @@ export async function metadata() {
       ? BASE_URL + resp?.favicon?.url
       : resp?.favicon?.url
     : null;
+
   return {
     title: resp?.title,
     description: resp?.description,
@@ -23,7 +24,14 @@ export async function metadata() {
           href: faviconUrl,
         },
       ],
-    } : undefined,
+    } : {
+      icon: [
+        {
+          url: '/assets/logo.svg',
+          href: '/assets/logo.svg',
+        },
+      ],
+    },
     openGraph: {
       url: "https://wawcd.com/",
       title: resp?.title,

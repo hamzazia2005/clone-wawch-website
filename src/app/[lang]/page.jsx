@@ -28,7 +28,14 @@ export async function generateMetadata({ params }) {
           href: faviconUrl,
         },
       ],
-    } : undefined,
+    } : {
+      icon: [
+        {
+          url: '/assets/logo.svg',
+          href: '/assets/logo.svg',
+        },
+      ],
+    },
     openGraph: {
       url: `https://wawcd.com/${paramLanguage}/`,
       title: resp?.title,

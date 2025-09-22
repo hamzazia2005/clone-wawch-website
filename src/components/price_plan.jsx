@@ -74,13 +74,26 @@ const PricePlan = ({ i, item, isMonthly }) => {
   const [country, setCountry] = useState("");
 
   useEffect(() => {
+
+    // Commented out this code as ipinfo.io is not required for this page
     // Fetch the user's country
-    fetch(
-      `https://ipinfo.io/json?token=${process.env.NEXT_PUBLIC_IPINFO_TOKEN}`
-    )
-      .then((res) => res.json())
-      .then((data) => setCountry(data.country))
-      .catch(() => setCountry("")); // fallback to default
+    // fetch(
+    //   `https://ipinfo.io/json?token=${process.env.NEXT_PUBLIC_IPINFO_TOKEN}`
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => setCountry(data.country))
+    //   .catch(() => setCountry("")); // fallback to default
+    
+    // Get country from cookie set by middleware
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return '';
+    };
+    
+    const countryFromCookie = getCookie('user-country');
+    setCountry(countryFromCookie || '');
   }, []);
 
   // Determine price and currency based on country

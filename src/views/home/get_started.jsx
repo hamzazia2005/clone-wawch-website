@@ -22,7 +22,6 @@ const GetStarted = ({ data }) => {
         open={isModalOpen} 
         handleOpen={handleModalOpen} 
         videoId={videoId}
-        title={data?.modal_title || "Watch Demo Video"}
       />
       <div className="relative flex justify-center items-center mt-24">
       <Image

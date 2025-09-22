@@ -27,7 +27,7 @@ const Page = async ({ searchParams }) => {
 
   const urls = {
     blog: `api/blog?pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
-    detail: `api/blog-details/?populate=*&sort=createdAt:DESC&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+    detail: `api/blog-details/?populate=*&sort=publishedAt:DESC&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
     meta: `api/blog-meta`,
   };
 

@@ -3,7 +3,7 @@ import { getServerSideData } from "@/utils/get_api";
 import dynamic from "next/dynamic";
 import { Pricing } from "@/views/home";
 
-const BulkPurchase = dynamic(() => import("@/views/pricing").then((mod) => mod.BulkPurchase));
+//const BulkPurchase = dynamic(() => import("@/views/pricing").then((mod) => mod.BulkPurchase));
 const TableCollapse = dynamic(() => import("@/views/pricing").then((mod) => mod.TableCollapse));
 const Cta = dynamic(() => import("@/views/home").then((mod) => mod.Cta));
 
@@ -31,15 +31,15 @@ const Page = async () => {
     faq: `api/faq`,
     tableHead: `api/pricing-detail-head`,
     tableData: `api/pricing-page-tables/?populate=*`,
-    enterpriseSection: `api/enterprise-section/?populate[enterprise][populate]=*`,
+    // enterpriseSection: `api/enterprise-section/?populate[enterprise][populate]=*`,
   };
-  const [pricing, faq, tableHead, tableData, enterpriseSection] =
+  const [pricing, faq, tableHead, tableData] =
     await Promise.all([
       getServerSideData(urls.pricing),
       getServerSideData(urls.faq),
       getServerSideData(urls.tableHead),
       getServerSideData(urls.tableData),
-      getServerSideData(urls.enterpriseSection),
+      //getServerSideData(urls.enterpriseSection),
     ]);
 
   const updatedPricing = {
@@ -90,9 +90,9 @@ const Page = async () => {
               </div>
             ))}
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="mt-10 flex justify-center gap-6" id="enterprise-card">
+          {/* <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="mt-10 flex justify-center gap-6" id="enterprise-card">
             <BulkPurchase enterpriseSection={enterpriseSection} />
-          </div>
+          </div> */}
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="px-12 lg:px-36">
             <Cta data={faq} isPage={true} />
           </div>
