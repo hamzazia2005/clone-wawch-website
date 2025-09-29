@@ -7,22 +7,21 @@ export async function generateMetadata({ params }) {
     `api/blog-details/?filters[slug][$eq]=${params.slug}&populate=*`,
     true
   );
-
   return {
-    title: resp?.meta_title,
-    description: resp?.data?.meta_description,
+    title: resp?.data?.[0]?.meta_title,
+    description: resp?.data?.[0]?.meta_description,
     openGraph: {
       url: `https://wawcd.com/blog/${params.slug}/`,
-      title: resp?.data?.meta_title,
-      description: resp?.data?.meta_description,
+      title: resp?.data?.[0]?.meta_title,
+      description: resp?.data?.[0]?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
       images: [
         {
-          url: resp?.data?.image?.url,
+          url: resp?.data?.[0]?.image?.[0]?.url,
           width: 800,
           height: 600,
-          alt: resp?.title,
+          alt: resp?.data?.[0]?.title,
         },
       ],
     },
