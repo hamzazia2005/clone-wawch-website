@@ -7,14 +7,16 @@ import { redirect } from "next/navigation";
 import { getServerSideData } from "@/utils/get_api";
 
 export async function generateMetadata({ params }) {
-  const resp = await getServerSideData("api/category-banner");
+  const { slug } = params;
+  const resp = await getServerSideData(`api/categories?filters[slug][$eq]=${slug}&populate[blogs][populate]=image&populate=image`);
+
   return {
-    title: resp?.meta_title,
-    description: resp?.meta_description,
+    title: resp?.[0]?.meta_title,
+    description: resp?.[0]?.meta_description,
     openGraph: {
       url: `https://wawcd.com/resources/${params.slug}`,
-      title: resp?.meta_title,
-      description: resp?.meta_description,
+      title: resp?.[0]?.meta_title,
+      description: resp?.[0]?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
     },
