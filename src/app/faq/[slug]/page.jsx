@@ -8,12 +8,12 @@ export async function generateMetadata({ params }) {
   );
 
   return {
-    title: resp?.meta_title,
-    description: resp?.meta_description,
+    title: resp?.[0]?.meta_title,
+    description: resp?.[0]?.meta_description,
     openGraph: {
       url: `https://wawcd.com/faq/${params.slug}/`,
-      title: resp?.meta_title,
-      description: resp?.meta_description,
+      title: resp?.[0]?.meta_title,
+      description: resp?.[0]?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
     },
