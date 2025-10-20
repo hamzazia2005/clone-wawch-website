@@ -3,24 +3,24 @@ import { getServerSideData } from "@/utils/get_api";
 import Layout from "@/layout/page";
 
 export async function generateMetadata({ params }) {
-  const languages = ["en", "fr", "ar", "pt", "ru"];
+  const languages = ["en", "fr", "ar", "pt"];
   const paramLanguage = languages?.includes(params?.lang) ? params?.lang : "en";
   const resp = await getServerSideData(
     `api/features/?filters[slug][$eq]=${params.slug}&populate=*&locale=${paramLanguage}`
   );
-
+  const featureData = resp?.[0];
   return {
-    title: resp?.meta_title,
-    description: resp?.meta_description,
+    title: featureData?.meta_title,
+    description: featureData?.meta_description,
     openGraph: {
       url: `https://wawcd.com/${paramLanguage}/feature/${params.slug}/`,
-      title: resp?.resp?.meta_title,
-      description: resp?.meta_description,
+      title: featureData?.meta_title,
+      description: featureData?.meta_description,
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: `${paramLanguage}_${paramLanguage.toUpperCase()}`,
       images: [
         {
-          url: resp?.image?.url,
+          url: featureData?.image?.url,
           width: 800,
           height: 600,
           alt: resp?.title,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
 }
 
 const Page = async ({ params }) => {
-  const languages = ["en", "fr", "ar", "pt", "ru"];
+  const languages = ["en", "fr", "ar", "pt"];
   const paramLanguage = languages?.includes(params?.lang) ? params?.lang : "en";
   const urls = {
     detail: `api/features/?filters[slug][$eq]=${params.slug}&populate=*&locale=${paramLanguage}`,
