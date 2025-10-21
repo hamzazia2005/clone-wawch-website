@@ -7,7 +7,9 @@ const FaqCall = ({ getStarted, faqs, faq }) => {
   const [search, setSearch] = useState('');
   const router = useRouter();
   if (!faq) {
-    router.push('/404');
+    if (typeof window !== 'undefined') {
+      router.push('/404');
+    }
     return <div></div>;
   }
   return (

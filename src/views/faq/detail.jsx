@@ -7,7 +7,9 @@ const Detail = ({ data, faqs, related }) => {
   const router = useRouter();
   const params = useParams();
   if (!data) {
-    router.push('/404');
+    if (typeof window !== 'undefined') {
+      router.push('/404');
+    }
     return <div></div>;
   }
   return (

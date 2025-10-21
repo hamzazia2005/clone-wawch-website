@@ -77,19 +77,27 @@ export async function middleware(request) {
                    request.headers.get("x-real-ip") || 
                    "Unknown";
   
-  console.log('🌍 Cloudflare detected country:', country);
-  console.log('📍 Client IP:', clientIP);
-  console.log('🛣️ Request URL:', request.url);
+  // Beautified console logs with borders
+  console.log('╔══════════════════════════════════════════════════════════════╗');
+  console.log('║                    🌍 WAWCD MIDDLEWARE DEBUG                 ║');
+  console.log('╠══════════════════════════════════════════════════════════════╣');
+  console.log(`║ 🌍 Cloudflare detected country: ${country}`);
+  console.log(`║ 📍 Client IP: ${clientIP}`);
+  console.log(`║ 🛣️  Request URL: ${request.url}`);
+  console.log('╚══════════════════════════════════════════════════════════════╝');
   try {
     // Skip if already on a language-specific route
     if (!pathname.match(/^\/[a-z]{2}\//)) {
       if (!shouldExcludeFromLanguageRedirect(pathname)) {
         //possible solution to detect language from cloudflare ip country
         const detectedLanguage = getLanguageFromCountry(country);
-        console.log('Detected language:', detectedLanguage);
-       // const detectedLanguage = await detectLanguageFromIP();
+        console.log('╔══════════════════════════════════════════════════════════════╗');
+        console.log('║                    🗣️ LANGUAGE DETECTION                      ║');
+        console.log('╠══════════════════════════════════════════════════════════════╣');
+        console.log(`║ 🗣️ Detected language: ${detectedLanguage}`);
         const redirectPath = shouldRedirectToLanguage(pathname, detectedLanguage);
-        console.log('Redirect path:', redirectPath);
+        console.log(`║ 🔄 Redirect path: ${redirectPath || 'No redirect'}`);
+        console.log('╚══════════════════════════════════════════════════════════════╝');
         
         if (redirectPath) {
           const redirectResponse = NextResponse.redirect(new URL(redirectPath, request.url));

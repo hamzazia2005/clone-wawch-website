@@ -10,7 +10,7 @@ const GetStarted = ({ data, islarge }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!data) {
+    if (!data && typeof window !== 'undefined') {
       router.push('/404');
     }
   }, [data, router]);
