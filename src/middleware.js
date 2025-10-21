@@ -44,6 +44,59 @@ const deletedBlogSlugs = new Set([
   "Maximize-Customer-Engagement-with-HubSpot-integrated-Chrome-Extensions-for-WhatsApp-Web",
 ]);
 
+// 301 Redirect maps for slug changes
+const blogRedirects = {
+  // Blog redirects (old slug -> new slug)
+  "how-to-get-a-whatsApp-verification-code-by-email-everything-you-need-to-know": "how-to-get-a-whatsapp-verification-code-by-email",
+  "WAWCD-New-Airtable-Feature-Connect-WhatsApp-and-Streamline-Your-Data": "wawcd-new-airtable-feature-connect-whatsapp",
+  "Crafting-Engaging-Broadcast-Messages-Is-Important:-10-Tips-to-Improve-Them": "crafting-engaging-broadcast-messages-is-important-10-tips",
+  "Why-You-Should-Consider-Installing-a-WhatsApp-Privacy-Extension": "consider-installing-a-whatsapp-privacy-extension",
+  "how-to-send-whatsApp-messages-without-saving-the-number": "send-whatsapp-messages-without-saving-the-number",
+  "Efficiently-Organize-Your-Contacts-with-Contact-Saver-for-WhatsApp": "efficiently-organize-your-contacts-with-contact-saver-for-whatsapp",
+  "How-WAWCD-is-beneficial-for-Healthcare-Professionals": "how-wawcd-is-beneficial-for-healthcare-professionals",
+  "How-to-Build-a-WhatsApp-Web-Marketing-Funnel": "how-to-build-a-whatsapp-web-marketing-funnel",
+  "How-to-Automate-Chat-Labeling-with-WhatsApp-Web-for-Better-Organization": "how-to-automate-chat-labeling-with-whatsapp-web",
+  "How-to-create-a-WhatsApp-channel": "how-to-create-a-whatsapp-channel",
+  "WhatsApp-Business-for-B2B-Service-Providers%3A-Effective-Communication-Strategies": "whataspp-business-for-b2b-service-providers-effective-communication",
+  "WhatsApp-Business-for-B2B-Service-Providers:Effective-Communication-Strategies": "whataspp-business-for-b2b-service-providers-effective-communication",
+  "How-to-Share-Your-WhatsApp-Business-Link-On-Social-Media": "how-to-share-your-whatsapp-business-link-on-social-media",
+  "How-to-Prepare-for-the-Future-2025-of-Messaging-and-Communication": "how-to-prepare-for-the-future-2025-of-messaging",
+  "How-to-Maximize-Your-Earnings-with-WAWCD's-Affiliate-Program:": "how-to-maximize-your-earnings-with-wawcd-afiliate-program",
+  "Using-HubSpot-WhatsApp-integration-for-Better-Lead-Management ": "using-hubspot-whatsapp-integration-for-better-lead-management",
+  "Using-HubSpot-WhatsApp-integration-for-Better-Lead-Management": "using-hubspot-whatsapp-integration-for-better-lead-management",
+  "How-to-Rephrase-and-Correct-Grammar-in-1-Click-Using-WAWCD": "how-to-rephrase-and-correct-grammar-using-wawcd",
+  "Creating-a-Culture-of-WhatsApp-Automation-in-Your-Business": "creating-a-culture-of-whatsapp-automation-in-your-business",
+  "how-to-optimize-message-melivery-with-delayed-workflows-in-whatsApp-web": "how-to-optimize-message-melivery-with-delayed-workflows-in-whatsapp-web",
+  "A-Step-by-Step-Guide-to-Signing-Up-for-WAWCD's-Affiliate-Program": "step-by-step-guide-to-signing-up-for-wawcd-affiliate-program",
+  "How-to-Seamlessly-Access-WhatsApp-Web-Login-with-the-WAWCD-Chrome-Extension": "how-to-seamlessly-access-whatsapp-web-login-with-the-wawcd-chrome-extension",
+  "What-are-the-Most-Famous-WhatsApp-Chrome-Extensions-for-2025": "what-are-the-most-famous-whatsapp-chrome-extensions-for-2025",
+  "A-Complete-Guide-for-Automating-Conversations-Using-WAWCD-Workflows": "guide-for-automating-conversations-using-wawcd-workflows",
+  "WAWCD-Vs-Regular-WhatsApp-Business-Key-Differences": "wawcd-vs-regular-whatsapp-business-key-differences",
+  "How-to-Enhance-Your-E-commerce-with-WhatsApp-Marketing": "how-to-enhance-your-e-commerce-with-whatsapp-marketing",
+  "How-To-Use-WhatsApp-Web-for-Community-Engagement": "how-to-use-whatsapp-web-for-community-engagement",
+  " A-Complete-Guide-to-Customize-ChatGPT-WhatsApp-Messaging": "complete-guide-to-customize-chatgpt-whatsapp-messaging",
+  "A-Complete-Guide-to-Customize-ChatGPT-WhatsApp-Messaging": "complete-guide-to-customize-chatgpt-whatsapp-messaging",
+  "WhatsApp-Blur-Extension-An-Indispensable-Tool-For-Businesses-To-Ensure-Data-Protection": "whatsapp-blur-extension-an-indispensable-tool-for-data-protection",
+  "Top-5-Data-Backup-Solutions-for-Your-WhatsApp-Business-Account": "top-5-data-backup-solutions-for-your-whatsapp-business-account",
+  "Guide-on-Automated-ChatGPT-Responses-for-WhatsApp-Messaging": "guide-on-automated-chatgpt-responses-for-whatsapp-messaging",
+  "Top-5-WhatsApp-Marketing-Tools-You-Should-Be-Using-in-2025": "top-5-whatsapp-marketing-tools-you-should-be-using-in-2025",
+  "The-Benefit-of-Utilizing-Video-Content-in-WhatsApp-Web-Marketing": "benefit-of-utilizing-video-content-in-whatsapp-web-marketing",
+  "How-to-Unblock-Your-WhatsApp-Business-Account-A-Complete-Guide": "how-to-unblock-your-whatsapp-business-account",
+  "how-to-migrate-from-whatsApp-to-business-whatsapp-without-data-loss": "how-to-migrate-from-whatsapp-to-business-whatsapp-without-data-loss",
+  "Smart-Workflow-Automation-How-WAWCD-Handles-Keyword-Based-Messaging": "smart-workflow-automation-how-wawcd-handles-keyword-based-messaging",
+  "Transforming-Customer-Service-with-AI-Automation-Capabilities": "transforming-customer-service-with-ai-automation-capabilities",
+  "Using-AI-Powered-Replies-in-WhatsApp-Web-for-Personalized-Interactions": "using-ai-powered-replies-in-whatsapp-web-for-personalized-interactions",
+  "How-WhatsApp-Integrates-with-Other-Tools-for-Enhanced-Functionality": "how-whatsapp-integrates-with-other-tools-for-enhanced-functionality",
+  "automating-the-process-with-hubSpot-whatsapp-integration": "automating-the-process-with-hubspot-whatsapp-integration",
+  "whatsApp-translate-the-ultimate-tool-for-multilingual-instant-messaging": "whatsapp-translate-the-ultimate-tool-for-multilingual-instant-messaging",
+  "Business-Should-Adopt-Short-Form-Video-Messaging-on-WhatsApp-Web": "business-should-adopt-short-form-video-messaging-on-whatsapp-web",
+};
+
+// Feature page redirects (old slug -> new slug)
+const featureRedirects = {
+  "hubspot-integration-with-whatsApp": "hubspot-integration-with-whatsapp",
+};
+
 
 export async function middleware(request) {
   const { pathname, searchParams } = request.nextUrl;
@@ -58,13 +111,34 @@ export async function middleware(request) {
     }
   }
 
+  // Handle blog redirects
   if (pathname.startsWith("/blog/")) {
     const slug = pathname.replace("/blog/", "").replace(/\/$/, "");
+    
+    // Check for 301 redirects first
+    if (blogRedirects[slug]) {
+      const newUrl = new URL(`/blog/${blogRedirects[slug]}`, request.url);
+      return NextResponse.redirect(newUrl, 301);
+    }
+    
+    // Then check for deleted blogs
     if (deletedBlogSlugs.has(slug)) {
       return new NextResponse(
         "<h1>410 - This blog post has been removed</h1><p>Please visit our <a href='/blog'>blog</a> for latest posts.</p>",
         { status: 410, headers: { "Content-Type": "text/html" } }
       );
+    }
+  }
+
+  // Handle feature page redirects (with language support)
+  const featureMatch = pathname.match(/^(?:\/([a-z]{2}))?\/feature\/(.+?)(?:\/)?$/);
+  if (featureMatch) {
+    const [, lang, slug] = featureMatch;
+    
+    if (featureRedirects[slug]) {
+      const langPrefix = lang ? `/${lang}` : '';
+      const newUrl = new URL(`${langPrefix}/feature/${featureRedirects[slug]}`, request.url);
+      return NextResponse.redirect(newUrl, 301);
     }
   }
   
@@ -77,7 +151,6 @@ export async function middleware(request) {
                    request.headers.get("x-real-ip") || 
                    "Unknown";
   
-  // Beautified console logs with borders
   console.log('╔══════════════════════════════════════════════════════════════╗');
   console.log('║                    🌍 WAWCD MIDDLEWARE DEBUG                 ║');
   console.log('╠══════════════════════════════════════════════════════════════╣');
@@ -89,7 +162,6 @@ export async function middleware(request) {
     // Skip if already on a language-specific route
     if (!pathname.match(/^\/[a-z]{2}\//)) {
       if (!shouldExcludeFromLanguageRedirect(pathname)) {
-        //possible solution to detect language from cloudflare ip country
         const detectedLanguage = getLanguageFromCountry(country);
         console.log('╔══════════════════════════════════════════════════════════════╗');
         console.log('║                    🗣️ LANGUAGE DETECTION                      ║');
@@ -185,6 +257,7 @@ export const config = {
     // Dynamic routes
     '/f/:path*',
     '/feature/:path*',
+    '/:lang/feature/:path*',
     '/faq/:path*',
     '/blog/:path*',
     '/resources/:path*',
