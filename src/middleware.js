@@ -70,15 +70,18 @@ export async function middleware(request) {
   
   // Get country from Cloudflare headers
   const country = request.headers.get("cf-ipcountry") || "";
-
+  
+  console.log('Cloudflare detected country:', country);
   try {
     // Skip if already on a language-specific route
     if (!pathname.match(/^\/[a-z]{2}\//)) {
       if (!shouldExcludeFromLanguageRedirect(pathname)) {
         //possible solution to detect language from cloudflare ip country
         const detectedLanguage = getLanguageFromCountry(country);
+        console.log('Detected language:', detectedLanguage);
        // const detectedLanguage = await detectLanguageFromIP();
         const redirectPath = shouldRedirectToLanguage(pathname, detectedLanguage);
+        console.log('Redirect path:', redirectPath);
         
         if (redirectPath) {
           const redirectResponse = NextResponse.redirect(new URL(redirectPath, request.url));
