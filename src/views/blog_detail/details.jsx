@@ -10,7 +10,9 @@ const Detail = ({ data, detail, blog_headings }) => {
   const router = useRouter();
 
   if (!data) {
-    router.push('/404');
+   if (typeof window !== 'undefined') {
+      router.push('/404');
+    }
     return <div></div>;
   }
   const author = data?.author;

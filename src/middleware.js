@@ -71,7 +71,15 @@ export async function middleware(request) {
   // Get country from Cloudflare headers
   const country = request.headers.get("cf-ipcountry") || "";
   
-  console.log('Cloudflare detected country:', country);
+  // Get IP address for debugging
+  const clientIP = request.headers.get("cf-connecting-ip") || 
+                   request.headers.get("x-forwarded-for") || 
+                   request.headers.get("x-real-ip") || 
+                   "Unknown";
+  
+  console.log('🌍 Cloudflare detected country:', country);
+  console.log('📍 Client IP:', clientIP);
+  console.log('🛣️ Request URL:', request.url);
   try {
     // Skip if already on a language-specific route
     if (!pathname.match(/^\/[a-z]{2}\//)) {
@@ -114,6 +122,7 @@ export async function middleware(request) {
       sameSite: 'lax'
     });
   }
+  
   
   return response;
 }
