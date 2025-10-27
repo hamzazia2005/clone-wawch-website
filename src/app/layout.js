@@ -2,6 +2,7 @@
 import React from 'react';
 import { Plus_Jakarta_Sans, Poppins } from 'next/font/google';
 import './globals.css';
+import './blogGlobals.scss';
 //import { AppWrapper } from '@/context';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
