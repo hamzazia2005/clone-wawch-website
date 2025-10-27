@@ -12,12 +12,98 @@
       transform: translateY(0);
     }
   }
+  blockquote {
+    quotes: "\\201C""\\201D";
+    font-style: italic;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
   h1 {
-    font-size: 32px;
     color: #2C7744;
-    margin: 20px 0 15px;
     text-align: center;
     animation: slideIn 1s ease-out;
+
+    display: block;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 120%;
+  }
+  h2 {
+    color: #2C7744;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #E4EFE9;
+
+    display: block;
+    margin-bottom: 22px;
+    margin-top: 22px;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 120%;
+  }
+  h3 {
+    color: #5A3F37;
+
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 120%;
+  }
+  h4 {
+    color: #333;
+
+    display: block;
+    margin-bottom: 18px;
+    margin-top: 18px;
+    font-size: 18px;
+    line-height: 120%;
+    font-weight: 600;
+  }
+  h6 {
+    display: block;
+    margin-bottom: 14px;
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 600;
+  }
+
+  h5 {
+    display: block;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 600;
+  }
+  p {
+    display: block;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 160%;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  ul,
+  ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    list-style-type: disc;
+    font-size: 16px;
+    line-height: 150%;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  li {
+    font-size: 14px;
+    margin-bottom: 8px;
   }
   @keyframes slideIn {
     from {
@@ -28,27 +114,6 @@
       transform: translateX(0);
       opacity: 1;
     }
-  }
-  h2 {
-    font-size: 18px ;
-    color: #2C7744;
-    margin: 25px 0 15px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #E4EFE9;
-  }
-  h3 {
-    font-size: 16px ;
-    color: #5A3F37;
-    margin: 20px 0 12px;
-  }
-  h4 {
-    font-size: 14px ;
-    color: #333;
-    margin: 18px 0 10px;
-  }
-  p {
-    font-size: 12px ;
-    margin-bottom: 15px;
   }
   .tldr-box {
     background: #F8F9FA;
@@ -63,15 +128,6 @@
     border-radius: 6px;
     margin: 15px 0;
     border-left: 4px solid #FF9A3D;
-  }
-  ul,
-  ol {
-    padding-left: 20px;
-    margin-bottom: 20px;
-  }
-  li {
-    font-size: 14px;
-    margin-bottom: 8px;
   }
   table {
     width: 100%;
@@ -213,6 +269,14 @@
     background: #246235;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(44, 119, 68, 0.4);
+  }
+  a {
+    color: #38b36c;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #47b772;
   }
   @media (max-width: 768px) {
     .pros-cons {
