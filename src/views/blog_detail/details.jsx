@@ -64,7 +64,7 @@ const Detail = ({ data, detail, blog_headings }) => {
           <div className='md:w-[70%]'>
             {data?.is_html ? (
               // <FadeIn>
-                <div className='test-class'>
+                <div className='blog_content_wrapper'>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: data?.blog_detail_html,
