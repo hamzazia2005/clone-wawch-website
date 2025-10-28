@@ -35,7 +35,7 @@ const FeaturedBlogCard = ({ blog }) => {
               )}
             </span>
             <p className='text-sm text-gray-400 ml-auto'>
-              {FormatDate(blog?.publishedAt)}
+              {FormatDate(blog?.createdAt)}
             </p>
           </div>
           <Tooltip

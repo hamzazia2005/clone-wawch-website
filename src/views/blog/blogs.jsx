@@ -38,7 +38,7 @@ const Blogs = ({ data, detail }) => {
                   </Link>
                   <div className='flex md:flex-col justify-between items-center md:justify-start md:items-start'>
                     <p className='text-[#929EB8] md:mb-6'>
-                      {FormatDate(detail?.data?.[0]?.publishedAt)}
+                      {FormatDate(detail?.data?.[0]?.createdAt)}
                     </p>
                     <Link href={GenerateUrl(detail?.data?.[0]?.slug)}>
                       <button className='text-black font-medium border-b-2 hover:bg-primary hover:text-white hover:p-2 hover:border-none hover:hover:shadow-[6px_4px_14px_1px_#dcdcdc] scale-1 hover:scale-[1.025] hover:rounded-lg border-black py-2 transition-all duration-200'>

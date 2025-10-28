@@ -53,6 +53,18 @@ export default function Layout({ children }) {
       ></Script>
       <GoogleTagManager gtmId="GTM-N6RMD8BD" />
       <Script
+        id="apollo-tracking"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+            o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+            o.onload=function(){window.trackingFunctions.onLoad({appId:"682302507c8e8d0011c093a6"})},
+            document.head.appendChild(o)}initApollo();
+          `,
+        }}
+      />
+      <Script
         id="facebook-pixel"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
