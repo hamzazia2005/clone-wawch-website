@@ -42,6 +42,11 @@ const deletedBlogSlugs = new Set([
   "how-to-broadcast-to-1000-contacts-on-whatsapp!",
   "What-is-the-Process-of-WhatsApp-Green-Tick-Verification",
   "Maximize-Customer-Engagement-with-HubSpot-integrated-Chrome-Extensions-for-WhatsApp-Web",
+  "Using-HubSpot-WhatsApp-integration-for-Better-Lead-ManagementÂ ",
+  "Using-HubSpot-WhatsApp-integration-for-Better-Lead-Management%C3%82",
+  "Using-HubSpot-WhatsApp-integration-for-Better-Lead-Management%C3%82%20",
+  "How-WAWCD-Templates-Can-Be-Helpful-in-Customer-Support",
+  "%20A-Complete-Guide-to-Customize-ChatGPT-WhatsApp-Messaging",
 ]);
 
 // 301 Redirect maps for slug changes
