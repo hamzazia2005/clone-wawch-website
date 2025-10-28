@@ -5,7 +5,7 @@ import { ResourcesDetails } from "@/views/resources";
 
 export async function generateMetadata({ params }) {
   const { slug } = params;
-  const resp = await getServerSideData(`api/categories?filters[slug][$eq]=${slug}&populate[blogs][populate]=image&populate=image`);
+  const resp = await getServerSideData(`api/categories?filters[slug][$eq]=${slug}&populate[blogs][populate]=image&populate[blogs][sort][0]=createdAt:desc&populate=image`);
 
   return {
     title: resp?.[0]?.meta_title,
@@ -27,7 +27,7 @@ const Page = async ({ params }) => {
   const { slug } = params;
   const categoryBanner = await getServerSideData("api/category-banner");
 
-  const allCategoriesResponse = await getServerSideData("api/categories?populate[blogs][populate]=image&populate=image");
+  const allCategoriesResponse = await getServerSideData("api/categories?populate[blogs][populate]=image&populate[blogs][sort][0]=createdAt:desc&populate=image");
   const allCategories = allCategoriesResponse?.data || allCategoriesResponse || [];
   
 

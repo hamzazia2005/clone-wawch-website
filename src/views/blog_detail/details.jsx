@@ -36,7 +36,7 @@ const Detail = ({ data, detail, blog_headings }) => {
             {data?.title}
           </h1>
           <p className='text-gray1 text-lg font-poppins font-medium'>
-            {FormatDate(data?.publishedAt)}
+            {FormatDate(data?.createdAt)}
           </p>
         </div>
         {/* </FadeIn> */}

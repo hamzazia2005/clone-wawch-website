@@ -8,7 +8,6 @@ import { Tooltip } from "@material-tailwind/react";
 
 const BlogCard = ({ item, flag }) => {
   const data = item;
-  const date = FormatDate(item?.publishedAt);
 
   const truncateTitle = (title, maxLength) => {
     return title.length > maxLength
@@ -50,7 +49,7 @@ const BlogCard = ({ item, flag }) => {
             )}
           </div>
           <p className={`${flag ? "text-sm" : "text-xs"} text-gray-400`}>
-            {date}
+            {FormatDate(data?.createdAt)}
           </p>
         </div>
         <Link href={GenerateUrl(data?.slug)}>
