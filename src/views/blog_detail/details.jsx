@@ -2,6 +2,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { Category, BlogCard, Heading, BlocksRender } from '@/components';
 import Image from 'next/image';
+import Link from 'next/link';
 import { BASE_URL, isLocal } from '@/utils/axios_instance';
 import { FormatDate } from '@/utils';
 
@@ -84,7 +85,11 @@ const Detail = ({ data, detail, blog_headings }) => {
                 <div className='border-t border-b py-6 space-y-6'>
                   <Heading text={blog_headings?.author_heading} />
                   <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-6'>
-                    <div className='flex items-center gap-4 '>
+                    <Link
+                      href='/author'
+                      className='flex items-center gap-4 group'
+                      aria-label='View all authors'
+                    >
                       <Image
                         src={profileImage}
                         alt='Author Profile Picture'
@@ -94,14 +99,14 @@ const Detail = ({ data, detail, blog_headings }) => {
                       />
 
                       <div>
-                        <p className='font-plus font-bold text-base'>
+                        <p className='font-plus font-bold text-base group-hover:text-primary transition'>
                           {author?.title.slice(0, 20)}
                         </p>
                         <p className='font-poppins text-xs text-gray-600'>
                           {author?.designation}
                         </p>
                       </div>
-                    </div>
+                    </Link>
 
                     <div className='md:max-w-[70%]'>
                       <p className='font-poppins text-sm text-gray-600 leading-relaxed text-justify'>
