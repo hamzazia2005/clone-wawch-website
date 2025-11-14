@@ -47,6 +47,9 @@ const deletedBlogSlugs = new Set([
   "Using-HubSpot-WhatsApp-integration-for-Better-Lead-Management%C3%82%20",
   "How-WAWCD-Templates-Can-Be-Helpful-in-Customer-Support",
   "%20A-Complete-Guide-to-Customize-ChatGPT-WhatsApp-Messaging",
+  "wa-web-plus-and-9-other-chrome-extensions-for-improving-your-whatsapp-experience",
+  "wa-web-plus-6-alternatives",
+  "wa-web-plus",
 ]);
 
 // 301 Redirect maps for slug changes
