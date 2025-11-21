@@ -109,7 +109,7 @@ const Page = async ({ params }) => {
         "url": "https://wawcd.com/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://wawcd.com/wp-content/uploads/2025/01/logo.png"
+          "url": "https://wawcd.com/assets/logo.svg"
         },
         "address": {
           "@type": "PostalAddress",
