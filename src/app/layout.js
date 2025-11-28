@@ -1,43 +1,57 @@
 /* eslint-disable @next/next/inline-script-id */
-import React from 'react';
-import { Plus_Jakarta_Sans, Poppins } from 'next/font/google';
-import './globals.css';
-import './blogGlobals.scss';
+import React from "react";
+import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import "./globals.css";
+import "./blogGlobals.scss";
 //import { AppWrapper } from '@/context';
-import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
-import Script from 'next/script';
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 //import AOSinit from '@/animations/AOSinit';
-import NextTopLoader from 'nextjs-toploader';
-import ClientEnhancer from '@/components/client-wrapper';
+import NextTopLoader from "nextjs-toploader";
+import ClientEnhancer from "@/components/client-wrapper";
 // import Head from 'next/head';
 // import { Suspense } from 'react';
 // import Loader from '@/components/loader';
- //import WhatsAppButton from '@/components/whatsapp-button';
+//import WhatsAppButton from '@/components/whatsapp-button';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  style: ['normal'],
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal"],
+  display: "swap",
 });
 
 const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata = {
-  metadataBase: new URL('https://wawcd.com'),
-  title: 'WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more',
+  metadataBase: new URL("https://wawcd.com"),
+  title: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
   description:
-    'Maximize Your Impact with the Most Powerful WhatsApp Solution! Enjoy Privacy Features, Zero Inbox, Contact Saver for WhatsApp, Broadcasting, and Seamless Integration with ChatGPT, Hubspot, and More – All in One WhatsApp Solution.',
+    "Maximize Your Impact with the Most Powerful WhatsApp Solution! Enjoy Privacy Features, Zero Inbox, Contact Saver for WhatsApp, Broadcasting, and Seamless Integration with ChatGPT, Hubspot, and More – All in One WhatsApp Solution.",
   icons: {
     icon: [
       {
-        url: '/assets/logo.svg',
-        href: '/assets/logo.svg',
+        url: "/favicon.ico",
+        href: "/favicon.ico",
+        sizes: "16x16",
+        type: "image/x-icon",
+      },
+      {
+        url: "/favicon-32x32.ico",
+        href: "/favicon-32x32.ico",
+        sizes: "32x32",
+        type: "image/x-icon",
+      },
+      {
+        url: "/favicon-48x48.ico",
+        href: "/favicon-48x48.ico",
+        sizes: "48x48",
+        type: "image/x-icon",
       },
     ],
   },
@@ -77,7 +91,9 @@ export default function Layout({ children }) {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || 'YOUR_PIXEL_ID'}');
+            fbq('init', '${
+              process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || "YOUR_PIXEL_ID"
+            }');
             fbq('track', 'PageView');
           `,
         }}
@@ -90,7 +106,7 @@ export default function Layout({ children }) {
             {children}
             <WhatsAppButton />
           </AppWrapper>
-        </Suspense> */} 
+        </Suspense> */}
 
         {/* {children} */}
 
