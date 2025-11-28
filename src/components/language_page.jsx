@@ -1,5 +1,12 @@
 import Layout from "@/layout/page";
-import { About, GetStarted, Templates, Review, Faq } from "@/views/home";
+import {
+  About,
+  GetStarted,
+  Templates,
+  Review,
+  Faq,
+  PromoModal,
+} from "@/views/home";
 
 export default function Language({
   params,
@@ -14,6 +21,7 @@ export default function Language({
 }) {
   return (
     <Layout params={params}>
+      <PromoModal />
       <GetStarted data={getStarted} />
       <About data={about} />
       <Templates data={template} />
