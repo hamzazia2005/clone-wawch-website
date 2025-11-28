@@ -50,9 +50,10 @@ const PromoModal = () => {
       }
 
       // If no stored pathname exists, this is initial page load
-      // Store the pathname but DON'T show modal (only show on refresh)
+      // Show modal on initial load and store the pathname
       if (!storedPathname) {
         sessionStorage.setItem("promoModal_lastPathname", pathname);
+        setOpen(true);
         return;
       }
 
@@ -105,7 +106,7 @@ const PromoModal = () => {
         <div className="absolute top-3 right-3 z-30">
           <button
             onClick={handleOpen}
-            className="text-white hover:text-gray-300 transition-colors"
+            className="text-white hover:text-gray-300 transition-colors outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
