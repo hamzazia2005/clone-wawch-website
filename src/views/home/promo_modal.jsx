@@ -1,15 +1,78 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Dialog, DialogBody } from "@material-tailwind/react";
 
 const PromoModal = () => {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    setOpen(true);
-  }, []);
+    if (typeof window === "undefined") return;
+
+    // Check if this is a page refresh (not a client-side navigation)
+    const checkAndShowModal = () => {
+      const storedPathname = sessionStorage.getItem("promoModal_lastPathname");
+
+      // If pathname changed from stored value, it's definitely client-side navigation
+      if (storedPathname && storedPathname !== pathname) {
+        // Client-side navigation - don't show modal, just update stored pathname
+        sessionStorage.setItem("promoModal_lastPathname", pathname);
+        return;
+      }
+
+      // Modern Performance API - check for reload
+      let isReload = false;
+      try {
+        const navigation = performance.getEntriesByType("navigation")[0];
+        if (navigation && navigation.type === "reload") {
+          isReload = true;
+        }
+      } catch (e) {
+        // Fallback for older browsers
+        if (window.performance && window.performance.navigation) {
+          const navType = window.performance.navigation.type;
+          if (navType === 1) {
+            // TYPE_RELOAD
+            isReload = true;
+          }
+        }
+      }
+
+      // ONLY show modal if it's a reload (page refresh) AND pathname hasn't changed
+      if (isReload && (!storedPathname || storedPathname === pathname)) {
+        sessionStorage.setItem("promoModal_lastPathname", pathname);
+        setOpen(true);
+        return;
+      }
+
+      // If no stored pathname exists, this is initial page load
+      // Store the pathname but DON'T show modal (only show on refresh)
+      if (!storedPathname) {
+        sessionStorage.setItem("promoModal_lastPathname", pathname);
+        return;
+      }
+
+      // Same pathname and not a reload - component remounted for some reason
+      // Don't show modal
+    };
+
+    checkAndShowModal();
+  }, [pathname]);
 
   const handleOpen = () => setOpen(!open);
+
+  const handlePromoClick = () => {
+    const promoCode = "FRIDAY50";
+    navigator.clipboard
+      .writeText(promoCode)
+      .then(() => {
+        alert(`Promo code "${promoCode}" copied to clipboard!`);
+      })
+      .catch((err) => {
+        console.error("Failed to copy promo code: ", err);
+      });
+  };
 
   return (
     <Dialog
@@ -107,7 +170,10 @@ const PromoModal = () => {
             ))}
           </div>
 
-          <button className="bg-[#DB3A33] text-white font-semibold py-3 px-10 rounded-md text-lg hover:bg-[#b92b25] transition-colors shadow-lg uppercase tracking-wide">
+          <button
+            onClick={handlePromoClick}
+            className="bg-[#DB3A33] text-white font-semibold py-3 px-10 rounded-md text-lg hover:bg-[#b92b25] transition-colors shadow-lg uppercase tracking-wide"
+          >
             Use Promo - Code: FRIDAY50
           </button>
         </DialogBody>

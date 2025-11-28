@@ -5,7 +5,6 @@ import {
   Templates,
   Review,
   Faq,
-  PromoModal,
 } from "@/views/home";
 
 export default function Language({
@@ -21,7 +20,6 @@ export default function Language({
 }) {
   return (
     <Layout params={params}>
-      <PromoModal />
       <GetStarted data={getStarted} />
       <About data={about} />
       <Templates data={template} />

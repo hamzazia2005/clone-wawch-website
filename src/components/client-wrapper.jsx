@@ -4,9 +4,10 @@ import WhatsAppButton from "./whatsapp-button";
 import { AppWrapper } from "@/context";
 import Loader from "./loader";
 import dynamic from "next/dynamic";
+import { PromoModal } from "@/views/home";
 
-const AOSinit = dynamic(() => import('@/animations/AOSinit'), {
-  ssr: false
+const AOSinit = dynamic(() => import("@/animations/AOSinit"), {
+  ssr: false,
 });
 
 export default function ClientEnhancer({ children }) {
@@ -22,11 +23,12 @@ export default function ClientEnhancer({ children }) {
 
   return (
     <Suspense fallback={<Loader />}>
-      <AOSinit/>
+      <AOSinit />
       <AppWrapper>
         {children}
-        <WhatsAppButton /> 
-      </AppWrapper> 
+        <WhatsAppButton />
+        <PromoModal />
+      </AppWrapper>
     </Suspense>
   );
 }
