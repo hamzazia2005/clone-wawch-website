@@ -1,11 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Dialog, DialogBody } from "@material-tailwind/react";
+import { useAppContext } from "@/context";
 
 const PromoModal = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const { lang } = useAppContext();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -67,7 +70,17 @@ const PromoModal = () => {
     navigator.clipboard
       .writeText(promoCode)
       .then(() => {
-        alert(`Promo code "${promoCode}" copied to clipboard!`);
+        // alert(`Promo code "${promoCode}" copied to clipboard!`);
+
+        const isOnPricingPage = pathname.includes("/pricing");
+
+        if (!isOnPricingPage) {
+          const pricingPath =
+            lang && lang !== "en" ? `/${lang}/pricing` : "/pricing";
+          router.push(pricingPath);
+        }
+
+        setOpen(false);
       })
       .catch((err) => {
         console.error("Failed to copy promo code: ", err);
