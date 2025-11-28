@@ -1,5 +1,11 @@
 import Layout from "@/layout/page";
-import { About, GetStarted, Templates, Review, Faq } from "@/views/home";
+import {
+  About,
+  GetStarted,
+  Templates,
+  Review,
+  Faq,
+} from "@/views/home";
 
 export default function Language({
   params,
