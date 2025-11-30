@@ -7,15 +7,15 @@ import { Pricing } from "@/views/home";
 const TableCollapse = dynamic(() => import("@/views/pricing").then((mod) => mod.TableCollapse));
 const Cta = dynamic(() => import("@/views/home").then((mod) => mod.Cta));
 
-export async function metadata() {
+export async function generateMetadata() {
   const resp = await getServerSideData("api/price");
   return {
-    title: resp?.meta_title,
-    description: resp?.meta_description,
+    title: resp?.meta_title || "WAWCD Pricing - Choose Your Plan",
+    description: resp?.meta_description || "Choose the best WAWCD plan for your business needs.",
     openGraph: {
       url: `https://wawcd.com/pricing/`,
-      title: resp?.title,
-      description: resp?.description,
+      title: resp?.title || "WAWCD Pricing",
+      description: resp?.description || "Choose the best WAWCD plan for your business needs.",
       siteName: "WAWCD: WhatsApp CRM with Contact Saver, Broadcasting & more",
       locale: "en_US",
     },
@@ -42,12 +42,18 @@ const Page = async () => {
       //getServerSideData(urls.enterpriseSection),
     ]);
 
+  // Check if pricing data loaded successfully
+  if (!pricing) {
+    console.error('Failed to load pricing data from Strapi API');
+  }
+
   const updatedPricing = {
     ...pricing,
-    prices: pricing.prices.filter(
+    prices: pricing?.prices?.filter(
       (plan) => plan.new_price_yearly !== undefined
-    ),
+    ) || [],
   };
+  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -78,24 +84,42 @@ const Page = async () => {
       />
       <Layout>
         <div className="mt-24">
-          <Pricing data={updatedPricing} isPage={true} />
-          <div className="mt-10 flex flex-col items-center justify-center">
-            <TableCollapse data={tableData.tier} head={tableHead?.head} />
-            {tableData?.map((item, index) => (
-              <div data-aos="fade-up" data-aos-duration="1000" className="w-full" key={index}>
-              <TableCollapse
-                data={item?.pricing_page_data}
-                title={item?.table_title}
-              />
-              </div>
-            ))}
-          </div>
+          {!pricing && (
+            <div className="text-center py-16 px-4">
+              <h2 className="text-2xl font-bold text-red-600 mb-4">Unable to Load Pricing Data</h2>
+              <p className="text-gray-600 mb-2">We're having trouble connecting to our pricing service.</p>
+              <p className="text-gray-600 mb-4">Please check:</p>
+              <ul className="text-left max-w-md mx-auto text-gray-600 list-disc list-inside mb-6">
+                <li>Strapi backend is running</li>
+                <li>STRAPI_BE_URL environment variable is configured</li>
+                <li>STRAPI_ACCESS_TOKEN is valid</li>
+                <li>Pricing data exists in Strapi CMS</li>
+              </ul>
+              <p className="text-sm text-gray-500">Check the console for more details.</p>
+            </div>
+          )}
+          {pricing && <Pricing data={updatedPricing} isPage={true} />}
+          {(tableData || tableHead) && (
+            <div className="mt-10 flex flex-col items-center justify-center">
+              {tableData?.tier && <TableCollapse data={tableData.tier} head={tableHead?.head} />}
+              {tableData?.map((item, index) => (
+                <div data-aos="fade-up" data-aos-duration="1000" className="w-full" key={index}>
+                <TableCollapse
+                  data={item?.pricing_page_data}
+                  title={item?.table_title}
+                />
+                </div>
+              ))}
+            </div>
+          )}
           {/* <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="mt-10 flex justify-center gap-6" id="enterprise-card">
             <BulkPurchase enterpriseSection={enterpriseSection} />
           </div> */}
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="px-12 lg:px-36">
-            <Cta data={faq} isPage={true} />
-          </div>
+          {faq && (
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" className="px-12 lg:px-36">
+              <Cta data={faq} isPage={true} />
+            </div>
+          )}
         </div>
       </Layout>
     </>
