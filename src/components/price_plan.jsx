@@ -4,6 +4,10 @@ import { Button } from ".";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+// Dashboard URL - can be configured via environment variable
+const DASHBOARD_URL =
+  process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.wawcd.com";
+
 const countryPriceMap = {
   AE: {
     priceMonthly: "aed_price_monthly",
@@ -74,7 +78,6 @@ const PricePlan = ({ i, item, isMonthly }) => {
   const [country, setCountry] = useState("");
 
   useEffect(() => {
-
     // Commented out this code as ipinfo.io is not required for this page
     // Fetch the user's country
     // fetch(
@@ -83,17 +86,17 @@ const PricePlan = ({ i, item, isMonthly }) => {
     //   .then((res) => res.json())
     //   .then((data) => setCountry(data.country))
     //   .catch(() => setCountry("")); // fallback to default
-    
+
     // Get country from cookie set by middleware
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-      return '';
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return "";
     };
-    
-    const countryFromCookie = getCookie('user-country');
-    setCountry(countryFromCookie || '');
+
+    const countryFromCookie = getCookie("user-country");
+    setCountry(countryFromCookie || "");
   }, []);
 
   // Determine price and currency based on country
@@ -115,6 +118,69 @@ const PricePlan = ({ i, item, isMonthly }) => {
     : isMonthly
     ? item?.price_monthly
     : item?.price_yearly;
+
+  // Map plan titles to plan IDs for dashboard
+  const getPlanId = (title) => {
+    if (!title) return "basic";
+
+    const titleLower = title.toLowerCase().trim();
+
+    // Log for debugging
+    console.log("Plan title:", title, "→ lowercase:", titleLower);
+
+    // Check for basic/starter
+    if (
+      titleLower.includes("basic") ||
+      titleLower.includes("starter") ||
+      titleLower.includes("free")
+    ) {
+      console.log("Matched: basic");
+      return "basic";
+    }
+
+    // Check for premium/enterprise first (before pro, since "premium" contains no "pro")
+    if (
+      titleLower.includes("premium") ||
+      titleLower.includes("enterprise") ||
+      titleLower.includes("unlimited")
+    ) {
+      console.log("Matched: premium");
+      return "premium";
+    }
+
+    // Check for pro/professional
+    if (
+      titleLower.includes("pro") ||
+      titleLower.includes("professional") ||
+      titleLower.includes("standard")
+    ) {
+      console.log("Matched: pro");
+      return "pro";
+    }
+
+    // Default fallback
+    console.log("No match, defaulting to: basic");
+    return "basic";
+  };
+
+  // Generate dashboard payment-form URL with plan and billing period
+  const getDashboardCheckoutUrl = () => {
+    const planId = getPlanId(item?.title);
+    const billingPeriod = isMonthly ? "monthly" : "yearly";
+    const url = `${DASHBOARD_URL}/payment-form?plan=${planId}&billing=${billingPeriod}&price=${price}&currency=${currency}`;
+
+    // Log the generated URL for debugging
+    console.log("Generated URL:", url);
+    console.log("Plan details:", {
+      title: item?.title,
+      planId,
+      billingPeriod,
+      price,
+      currency,
+    });
+
+    return url;
+  };
 
   return (
     <div
@@ -187,7 +253,7 @@ const PricePlan = ({ i, item, isMonthly }) => {
       </div>
       <div className="flex flex-col gap-2 mt-8 sm:mt-auto mb-6">
         <Link
-          href={isMonthly ? item?.link_monthly : item?.link_yearly}
+          href={getDashboardCheckoutUrl()}
           target="_blank"
           rel="noreferrer"
           className="block w-full"
