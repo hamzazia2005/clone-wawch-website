@@ -2,7 +2,7 @@
  
 > **WAWCD** (WhatsApp CRM with Contact Saver, Broadcasting & more) - The most powerful WhatsApp solution for businesses. A comprehensive Chrome extension that transforms WhatsApp Web into a full-featured CRM with automation, broadcasting, contact management, and AI-powered features.
 
-## 🌟 About WAWCD
+## 🌟 About WAWCD 
 
 WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerful CRM features, making it the ultimate business communication tool. From contact management and broadcasting to AI-powered automation and integrations, WAWCD transforms your WhatsApp experience.
 
