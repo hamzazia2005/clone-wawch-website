@@ -125,16 +125,12 @@ const PricePlan = ({ i, item, isMonthly }) => {
 
     const titleLower = title.toLowerCase().trim();
 
-    // Log for debugging
-    console.log("Plan title:", title, "→ lowercase:", titleLower);
-
     // Check for basic/starter
     if (
       titleLower.includes("basic") ||
       titleLower.includes("starter") ||
       titleLower.includes("free")
     ) {
-      console.log("Matched: basic");
       return "basic";
     }
 
@@ -144,7 +140,6 @@ const PricePlan = ({ i, item, isMonthly }) => {
       titleLower.includes("enterprise") ||
       titleLower.includes("unlimited")
     ) {
-      console.log("Matched: premium");
       return "premium";
     }
 
@@ -154,12 +149,9 @@ const PricePlan = ({ i, item, isMonthly }) => {
       titleLower.includes("professional") ||
       titleLower.includes("standard")
     ) {
-      console.log("Matched: pro");
       return "pro";
     }
 
-    // Default fallback
-    console.log("No match, defaulting to: basic");
     return "basic";
   };
 
@@ -168,16 +160,6 @@ const PricePlan = ({ i, item, isMonthly }) => {
     const planId = getPlanId(item?.title);
     const billingPeriod = isMonthly ? "monthly" : "yearly";
     const url = `${DASHBOARD_URL}/payment-form?plan=${planId}&billing=${billingPeriod}&price=${price}&currency=${currency}`;
-
-    // Log the generated URL for debugging
-    console.log("Generated URL:", url);
-    console.log("Plan details:", {
-      title: item?.title,
-      planId,
-      billingPeriod,
-      price,
-      currency,
-    });
 
     return url;
   };
