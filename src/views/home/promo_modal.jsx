@@ -149,7 +149,6 @@ const PromoModal = () => {
               <div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#DB3A33] text-[149.8px] whitespace-nowrap pointer-events-none z-20"
                 style={{
-                  fontFamily: "var(--font-devonshire), cursive",
                   textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
                 }}
               >

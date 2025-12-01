@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/inline-script-id */
 import React from "react";
-import { Plus_Jakarta_Sans, Poppins, Devonshire } from "next/font/google";
+import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import "./blogGlobals.scss";
 //import { AppWrapper } from '@/context';
@@ -26,14 +26,6 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   display: "swap",
-});
-
-const devonshire = Devonshire({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal"],
-  display: "swap",
-  variable: "--font-devonshire",
 });
 
 export const metadata = {
@@ -106,9 +98,7 @@ export default function Layout({ children }) {
           `,
         }}
       />
-      <body
-        className={`${plusJakartaSans.className} ${poppins.className} ${devonshire.variable}`}
-      >
+      <body className={`${plusJakartaSans.className} ${poppins.className}`}>
         {/* <AOSinit/> */}
         <NextTopLoader color="#47b772" height={4} showSpinner={false} />
         {/* <Suspense fallback={<Loader />}>
