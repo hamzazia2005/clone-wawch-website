@@ -1,8 +1,8 @@
 # WAWCD - WhatsApp CRM Website
- 
+
 > **WAWCD** (WhatsApp CRM with Contact Saver, Broadcasting & more) - The most powerful WhatsApp solution for businesses. A comprehensive Chrome extension that transforms WhatsApp Web into a full-featured CRM with automation, broadcasting, contact management, and AI-powered features.
 
-## 🌟 About WAWCD 
+## 🌟 About WAWCD
 
 WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerful CRM features, making it the ultimate business communication tool. From contact management and broadcasting to AI-powered automation and integrations, WAWCD transforms your WhatsApp experience.
 
@@ -22,19 +22,21 @@ WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerf
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm, yarn, pnpm, or bun
 - Docker (for containerized deployment)
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd wawcd-website-frontend
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -44,8 +46,9 @@ WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerf
    ```
 
 3. **Environment Setup**
-   
+
    Create a `.env.local` file in the root directory:
+
    ```env
    STRAPI_BE_URL=http://localhost:1337
    STRAPI_ACCESS_TOKEN=your_strapi_token
@@ -54,6 +57,7 @@ WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerf
    ```
 
 4. **Run the development server**
+
    ```bash
    npm run dev
    # or
@@ -65,12 +69,13 @@ WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerf
    ```
 
 5. **Open your browser**
-   
+
    Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
 
 ## 🛠️ Technology Stack
 
 ### Frontend
+
 - **Framework**: Next.js 14 with App Router
 - **Styling**: Tailwind CSS
 - **UI Components**: Material Tailwind React
@@ -79,6 +84,7 @@ WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerf
 - **Forms**: Formik with Yup validation
 
 ### Key Libraries
+
 - **Icons**: Lucide React
 - **Carousels**: Swiper, React Slick
 - **Notifications**: React Hot Toast
@@ -87,6 +93,7 @@ WAWCD is a revolutionary Chrome extension that enhances WhatsApp Web with powerf
 - **Progress Indicators**: Next Top Loader
 
 ### Development Tools
+
 - **Language**: JavaScript/JSX
 - **Linting**: ESLint with Next.js config
 - **Type Checking**: TypeScript support
@@ -123,19 +130,21 @@ src/
 ### Docker Deployment
 
 1. **Build and run with Docker**
+
    ```bash
    # Development
    ./deploy.sh dev
-   
+
    # Production
    ./deploy.sh prod
    ```
 
 2. **Manual Docker commands**
+
    ```bash
    # Build image
    docker build -t wawcd-website .
-   
+
    # Run container
    docker run -d --name wawcd-website -p 3000:3000 wawcd-website
    ```
@@ -148,12 +157,92 @@ docker-compose up -d
 
 ### Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `STRAPI_BE_URL` | Strapi backend URL | Yes |
-| `STRAPI_ACCESS_TOKEN` | Strapi API access token | Yes |
-| `NEXT_PUBLIC_STRAPI_POST_TOKEN` | Public Strapi token | Yes |
-| `WAWCD_URL` | Main WAWCD website URL | Yes |
+| Variable                        | Description                      | Required | Default                  |
+| ------------------------------- | -------------------------------- | -------- | ------------------------ |
+| `STRAPI_BE_URL`                 | Strapi backend URL               | Yes      | -                        |
+| `STRAPI_ACCESS_TOKEN`           | Strapi API access token          | Yes      | -                        |
+| `NEXT_PUBLIC_STRAPI_POST_TOKEN` | Public Strapi token              | Yes      | -                        |
+| `WAWCD_URL`                     | Main WAWCD website URL           | Yes      | -                        |
+| `REDIS_URL`                     | Redis connection URL for caching | No       | `redis://localhost:6379` |
+| `CACHE_TTL_SECONDS`             | Cache TTL in seconds             | No       | `3600` (1 hour)          |
+| `CACHE_PURGE_SECRET`            | Secret key for cache purge API   | No       | `wawcd-cache-secret`     |
+
+## 🗄️ Redis Caching
+
+The website implements Redis caching for all Strapi CMS data to improve performance and reduce load on the Strapi backend.
+
+### How It Works
+
+1. **First Request**: Data is fetched from Strapi and cached in Redis with a configurable TTL
+2. **Subsequent Requests**: Data is served directly from Redis cache
+3. **Cache Expiry**: After TTL expires, the next request fetches fresh data from Strapi
+
+### Cache Configuration
+
+```env
+# Redis connection URL
+REDIS_URL=redis://localhost:6379
+
+# Cache TTL in seconds (default: 3600 = 1 hour)
+CACHE_TTL_SECONDS=3600
+
+# Secret for cache purge API (change this in production!)
+CACHE_PURGE_SECRET=your-secure-secret-key
+```
+
+### Cache Purge API
+
+The cache can be purged via the `/api/cache` endpoint:
+
+#### Get Cache Statistics
+
+```bash
+curl -X GET "https://your-domain.com/api/cache" \
+  -H "Authorization: Bearer your-cache-purge-secret"
+```
+
+#### Purge All Cache
+
+```bash
+curl -X DELETE "https://your-domain.com/api/cache" \
+  -H "Authorization: Bearer your-cache-purge-secret"
+```
+
+#### Purge by Pattern
+
+```bash
+curl -X POST "https://your-domain.com/api/cache" \
+  -H "Authorization: Bearer your-cache-purge-secret" \
+  -H "Content-Type: application/json" \
+  -d '{"pattern": "api/blog"}'
+```
+
+#### Purge Specific URL
+
+```bash
+curl -X POST "https://your-domain.com/api/cache" \
+  -H "Authorization: Bearer your-cache-purge-secret" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "api/price/?populate=*"}'
+```
+
+### Strapi Webhook Integration
+
+You can configure Strapi to automatically purge cache when content is updated:
+
+1. In Strapi, go to **Settings > Webhooks**
+2. Create a new webhook with:
+   - **URL**: `https://your-domain.com/api/cache`
+   - **Headers**: `Authorization: Bearer your-cache-purge-secret`
+   - **Events**: Select content types you want to trigger cache purge
+
+### Cache Behavior Without Redis
+
+If Redis is not configured or unavailable:
+
+- The website continues to work normally
+- Data is fetched directly from Strapi on every request
+- No errors are thrown, caching is simply bypassed
 
 ## 🔧 Available Scripts
 
@@ -168,6 +257,7 @@ npm run lint:fix     # Fix ESLint issues
 ## 📱 Features Overview
 
 ### Core Pages
+
 - **Home**: Landing page with feature highlights
 - **Features**: Detailed feature descriptions
 - **Pricing**: Subscription plans and pricing
@@ -177,6 +267,7 @@ npm run lint:fix     # Fix ESLint issues
 - **Comparison**: Feature comparisons with competitors
 
 ### Advanced Features
+
 - **SEO Optimized**: Meta tags, structured data, sitemap
 - **Performance**: Image optimization, lazy loading
 - **Analytics**: Google Analytics and Tag Manager integration
@@ -186,12 +277,14 @@ npm run lint:fix     # Fix ESLint issues
 ## 🔗 Integration
 
 ### Strapi CMS
+
 - Content management for all website content
 - Multi-language content support
 - Dynamic page generation
 - API-driven architecture
 
 ### Third-party Services
+
 - Google Analytics & Tag Manager
 - WhatsApp Business API
 - HubSpot CRM integration
