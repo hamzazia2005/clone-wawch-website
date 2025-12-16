@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  deploy-aws:
+  build:
     runs-on: ubuntu-latest
     env:
       WAWCD_URL: https://wawcd.com/
@@ -24,34 +24,26 @@ jobs:
           npm install
           npm run build
 
-      - name: Get SSH key and set permissions for wawcd-frontend-peach
+  deploy-blueberry:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get SSH key and set permissions
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY_FRONTEND_PEACH }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_AWS_MASTER_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
-      - name: Deploy to wawcd-frontend-peach
-        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_FRONTEND_PEACH }}@${{ secrets.SSH_HOST_FRONTEND_PEACH }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
+      - name: Deploy to wawcd-fe-blueberry
+        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_AWS_USER }}@${{ secrets.SSH_HOST_FE_BLUEBERRY }} "cd ~/wawcd-website && git fetch origin && git reset origin/main --hard && ./deploy.sh prod"
 
-      - name: Get SSH key and set permissions for wawcd-strapi-avacado
+  deploy-strawberry:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get SSH key and set permissions
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY_STRAPI_AVACADO }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_AWS_MASTER_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
-      - name: Deploy to wawcd-strapi-avacado
-        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_STRAPI_AVACADO }}@${{ secrets.SSH_HOST_STRAPI_AVACADO }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
-
-      - name: Get SSH key and set permissions for wawcd-strapi-coconut
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY_STRAPI_COCONUT }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-
-      - name: Deploy to wawcd-strapi-coconut
-        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_STRAPI_COCONUT }}@${{ secrets.SSH_HOST_STRAPI_COCONUT }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
-
-      # - name: Get SSH key and set permissions for wawcd-adminjs-server
-      #   run: |
-      #     mkdir -p ~/.ssh
-      #     echo "${{ secrets.SSH_PRIVATE_KEY_ADMINJS_SERVER }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-
-      # - name: Deploy to wawcd-adminjs-server
-      #   run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER_ADMINJS_SERVER }}@${{ secrets.SSH_HOST_ADMINJS_SERVER }} "cd ~/wawcd-website && git pull origin main --no-rebase && ./deploy.sh prod"
+      - name: Deploy to wawcd-fe-strawberry
+        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_AWS_USER }}@${{ secrets.SSH_HOST_FE_STRAWBERRY }} "cd ~/wawcd-website && git fetch origin && git reset origin/main --hard && ./deploy.sh prod"
