@@ -12,46 +12,54 @@ env:
   ECS_CLUSTER: wawcd-cluster
   ECS_SERVICE: wawcd-website-ecs
 
+  # Your app environment variables
+  WAWCD_URL: "https://wawcd.com/"
+  STRAPI_BE_URL_SERVER: "https://strapi.wawcd.com"
+  NEXT_PUBLIC_STRAPI_BE_URL_CLIENT: "https://strapi.wawcd.com"
+  STRAPI_ACCESS_TOKEN: ${{ secrets.STRAPI_ACCESS_TOKEN }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v2
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build & Push Docker image (latest)
+      - name: Build Docker image
         run: |
-          IMAGE_URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:latest
-          docker build -t $IMAGE_URI .
-          docker push $IMAGE_URI
+          docker build \
+            --build-arg WAWCD_URL="${{ env.WAWCD_URL }}" \
+            --build-arg STRAPI_BE_URL_SERVER="${{ env.STRAPI_BE_URL_SERVER }}" \
+            --build-arg NEXT_PUBLIC_STRAPI_BE_URL_CLIENT="${{ env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT }}" \
+            --build-arg STRAPI_ACCESS_TOKEN="${{ env.STRAPI_ACCESS_TOKEN }}" \
+            -t ${{ env.ECR_REPOSITORY }}:latest .
 
-      - name: Force ECS redeploy (pull latest image)
+      - name: Push Docker image to ECR
+        run: |
+          docker tag ${{ env.ECR_REPOSITORY }}:latest ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
+          docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
+
+      - name: Update ECS service
         run: |
           aws ecs update-service \
-            --cluster $ECS_CLUSTER \
-            --service $ECS_SERVICE \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ env.ECS_SERVICE }} \
             --force-new-deployment
 
-      - name: Wait for ECS stability
+      - name: Wait for ECS service stability
         run: |
           aws ecs wait services-stable \
-            --cluster $ECS_CLUSTER \
-            --services $ECS_SERVICE
-
-      - name: Show running tasks
-        run: |
-          aws ecs describe-services \
-            --cluster $ECS_CLUSTER \
-            --services $ECS_SERVICE \
-            --query "services[0].runningCount"
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --services ${{ env.ECS_SERVICE }}
