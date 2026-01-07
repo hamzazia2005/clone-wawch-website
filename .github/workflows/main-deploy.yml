@@ -12,14 +12,10 @@ env:
   ECS_CLUSTER: wawcd-cluster
   ECS_SERVICE: wawcd-website-ecs
 
-  # Your app environment variables
+  # App environment variables (non-sensitive)
   WAWCD_URL: "https://wawcd.com/"
   STRAPI_BE_URL_SERVER: "https://strapi.wawcd.com"
   NEXT_PUBLIC_STRAPI_BE_URL_CLIENT: "https://strapi.wawcd.com"
-  STRAPI_ACCESS_TOKEN: ${{ secrets.STRAPI_ACCESS_TOKEN }}
-
-  # Redis URL
-  REDIS_URL: ${{ secrets.REDIS_URL }}
 
 jobs:
   deploy:
@@ -46,8 +42,6 @@ jobs:
             --build-arg WAWCD_URL="${{ env.WAWCD_URL }}" \
             --build-arg STRAPI_BE_URL_SERVER="${{ env.STRAPI_BE_URL_SERVER }}" \
             --build-arg NEXT_PUBLIC_STRAPI_BE_URL_CLIENT="${{ env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT }}" \
-            --build-arg STRAPI_ACCESS_TOKEN="${{ env.STRAPI_ACCESS_TOKEN }}" \
-            --build-arg REDIS_URL="${{ env.REDIS_URL }}" \
             -t ${{ env.ECR_REPOSITORY }}:latest .
 
       - name: Push Docker image to ECR
@@ -55,7 +49,7 @@ jobs:
           docker tag ${{ env.ECR_REPOSITORY }}:latest ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
           docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
 
-      - name: Update ECS service
+      - name: Update ECS service (forces new deployment)
         run: |
           aws ecs update-service \
             --cluster ${{ env.ECS_CLUSTER }} \
@@ -67,5 +61,3 @@ jobs:
           aws ecs wait services-stable \
             --cluster ${{ env.ECS_CLUSTER }} \
             --services ${{ env.ECS_SERVICE }}
-
-            
