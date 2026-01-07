@@ -17,12 +17,7 @@ env:
   WAWCD_URL: "https://wawcd.com/"
   STRAPI_BE_URL_SERVER: "https://strapi.wawcd.com"
   NEXT_PUBLIC_STRAPI_BE_URL_CLIENT: "https://strapi.wawcd.com"
-
-  # Secrets / sensitive info directly in env
-  STRAPI_ACCESS_TOKEN: "c44fe70b3c8342680fd60825863191531464e51d207ec0dce1acdc5f849ea485f546025fc837d56bb2064c45eab5034e141fad0cf931e83bd313e512c63ae3d8cc8f666e2c800b4dbf79c9a845c218feced45e6685b49460aaec0c96f34e52e861412f3b10f5ec2db2c7873c77bd725dcfc40e53e8d2e8875faaa9afeb9e8806"
-
-  REDIS_URL: "redis://default:UQ9cudaIbvsvKSZ79sQf4EsgvY61DulM@redis-11282.fcrce171.ap-south-1-1.ec2.cloud.redislabs.com:11282"
-
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -49,8 +44,8 @@ jobs:
             --build-arg WAWCD_URL="${{ env.WAWCD_URL }}" \
             --build-arg STRAPI_BE_URL_SERVER="${{ env.STRAPI_BE_URL_SERVER }}" \
             --build-arg NEXT_PUBLIC_STRAPI_BE_URL_CLIENT="${{ env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT }}" \
-            --build-arg STRAPI_ACCESS_TOKEN="${{ env.STRAPI_ACCESS_TOKEN }}" \
-            --build-arg REDIS_URL="${{ env.REDIS_URL }}" \
+            --build-arg STRAPI_ACCESS_TOKEN="${{ secrets.STRAPI_ACCESS_TOKEN }}" \
+            --build-arg REDIS_URL="${{ secrets.REDIS_URL }}" \
             -t ${{ env.ECR_REPOSITORY }}:latest .
           echo "Docker build completed."
 
