@@ -18,6 +18,9 @@ env:
   NEXT_PUBLIC_STRAPI_BE_URL_CLIENT: "https://strapi.wawcd.com"
   STRAPI_ACCESS_TOKEN: ${{ secrets.STRAPI_ACCESS_TOKEN }}
 
+  # Redis URL
+  REDIS_URL: ${{ secrets.REDIS_URL }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -44,6 +47,7 @@ jobs:
             --build-arg STRAPI_BE_URL_SERVER="${{ env.STRAPI_BE_URL_SERVER }}" \
             --build-arg NEXT_PUBLIC_STRAPI_BE_URL_CLIENT="${{ env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT }}" \
             --build-arg STRAPI_ACCESS_TOKEN="${{ env.STRAPI_ACCESS_TOKEN }}" \
+            --build-arg REDIS_URL="${{ env.REDIS_URL }}" \
             -t ${{ env.ECR_REPOSITORY }}:latest .
 
       - name: Push Docker image to ECR
