@@ -17,7 +17,7 @@ Allow: /help/
 Allow: /guide/
 Allow: /affiliates/
 Allow: /contact-us/
-Allow: /road-map/
+# Allow: /road-map/
 Allow: /help/
 Disallow: /*?*
 Disallow: /*.php$

@@ -149,6 +149,14 @@ export async function middleware(request) {
       return NextResponse.redirect(newUrl, 301);
     }
   }
+
+  const roadMapMatch = pathname.match(/^(?:\/([a-z]{2}))?\/road-map\/?$/);
+  if (roadMapMatch) {
+    return new NextResponse(
+      "<h1>410 - This page has been removed</h1><p>The roadmap page is no longer available. Please visit our <a href='/'>homepage</a> for more information.</p>",
+      { status: 410, headers: { "Content-Type": "text/html" } }
+    );
+  }
   
   // Get country from Cloudflare headers
   const country = request.headers.get("cf-ipcountry") || "";
@@ -252,8 +260,8 @@ export const config = {
     '/resources/',
     '/privacy-policy',
     '/privacy-policy/',
-    '/road-map',
-    '/road-map/',
+    // '/road-map',
+    // '/road-map/',
     '/uninstall',
     '/uninstall/',
     '/affiliate',
