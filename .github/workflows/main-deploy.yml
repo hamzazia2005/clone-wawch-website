@@ -12,8 +12,7 @@ env:
   ECR_REPOSITORY: wawcd-website
   ECS_CLUSTER: wawcd-cluster
   ECS_SERVICE: wawcd-website-ecs
-
-  # App environment variables
+  # environment variables
   WAWCD_URL: "https://wawcd.com/"
   STRAPI_BE_URL_SERVER: "https://strapi.wawcd.com"
   NEXT_PUBLIC_STRAPI_BE_URL_CLIENT: "https://strapi.wawcd.com"
