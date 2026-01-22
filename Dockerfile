@@ -3,7 +3,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Build arguments
-ARG DISABLE_REDIS=false
+ARG DISABLE_REDIS=true
 
 # Copy package files
 COPY package.json package-lock.json ./
