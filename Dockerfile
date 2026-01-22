@@ -2,6 +2,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Build arguments
+ARG DISABLE_REDIS=false
+
 # Copy package files
 COPY package.json package-lock.json ./
 
@@ -10,6 +13,9 @@ RUN npm install
 
 # Copy the rest of the application
 COPY . .
+
+# Set environment variable for build process
+ENV DISABLE_REDIS=${DISABLE_REDIS}
 
 # Build the application
 RUN npm run build

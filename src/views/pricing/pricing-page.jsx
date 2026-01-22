@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 
-function PricingPage({ isMonthly }) {
+function PricingPage({ }) {
   // Note: This component previously used Stripe pricing tables.
   // Now redirects to dashboard for checkout via the PricePlan component.
   // The Stripe pricing tables have been removed in favor of the unified dashboard checkout flow.

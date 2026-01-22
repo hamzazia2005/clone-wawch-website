@@ -3,11 +3,27 @@ import "server-only";
 
 let redisClient = null;
 
+// Use a global flag to ensure we only log once across all contexts
+if (typeof global !== 'undefined') {
+  global.__REDIS_DISABLED_LOGGED = global.__REDIS_DISABLED_LOGGED || false;
+}
+
 /**
  * Get Redis client instance (singleton pattern)
  * @returns {Redis|null} Redis client or null if Redis is not configured
  */
 export function getRedisClient() {
+  // Check if Redis is explicitly disabled
+  if (process.env.DISABLE_REDIS === "true") {
+    // Only log during development or when explicitly requested
+    // Skip logging during build process to avoid noise
+    if (process.env.NODE_ENV !== 'production' && typeof global !== 'undefined' && !global.__REDIS_DISABLED_LOGGED) {
+      console.warn("[Redis] Redis disabled via DISABLE_REDIS environment variable");
+      global.__REDIS_DISABLED_LOGGED = true;
+    }
+    return null;
+  }
+
   if (!process.env.REDIS_URL && process.env.NODE_ENV === "development") {
     console.warn("[Redis] REDIS_URL not configured, caching disabled");
     return null;
