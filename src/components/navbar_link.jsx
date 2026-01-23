@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter, usePathname } from "next/navigation";
 import { useAppContext } from "@/context";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 const NavbarLinks = ({ navLinks }) => {
   const { lang } = useAppContext();
@@ -40,7 +41,15 @@ const NavbarLinks = ({ navLinks }) => {
         }
       }
 
-      if (item.links?.some((sub) => pathname.startsWith(sub.link))) {
+      if (item.links?.some((sub) => {
+        if (pathname.startsWith(sub.link)) {
+          return true;
+        }
+        if (sub.links?.some((nested) => pathname.startsWith(nested.link))) {
+          return true;
+        }
+        return false;
+      })) {
         return true;
       }
       return false;
@@ -80,7 +89,15 @@ const NavbarLinks = ({ navLinks }) => {
           open === index ||
           (item.link === "/" && (pathname === "/" || pathname === `/${params?.lang}`)) ||
           (item.link && item.link !== "/" && pathname.startsWith(item.link)) ||
-          item.links?.some((sub) => pathname.startsWith(sub.link));
+          item.links?.some((sub) => {
+            if (pathname.startsWith(sub.link)) {
+              return true;
+            }
+            if (sub.links?.some((nested) => pathname.startsWith(nested.link))) {
+              return true;
+            }
+            return false;
+          });
 
         return (
           <div key={index} className="relative group">
@@ -140,7 +157,60 @@ const NavbarLinks = ({ navLinks }) => {
 
                 <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-md rounded-md z-50 min-w-[150px]">
                   {item.links.map((subItem, subIndex) => {
-                    const isSubActive = pathname.startsWith(subItem.link);
+                    const isSubActive = pathname.startsWith(subItem.link) || 
+                      subItem.links?.some((nested) => pathname.startsWith(nested.link));
+                    
+                    if (subItem?.links && subItem?.links?.length > 0) {
+                      return (
+                        <div key={subIndex} className="relative group/submenu">
+                          {subItem.link ? (
+                            <Link
+                              href={localizeLink(subItem.link)}
+                              onClick={() => handleNavigate(subItem, index)}
+                              className={`flex items-center justify-between px-4 py-2 text-sm whitespace-nowrap ${
+                                isSubActive
+                                  ? "text-secondary font-semibold bg-gray-50"
+                                  : "text-primary hover:text-secondary hover:bg-gray-100"
+                              }`}
+                            >
+                              {subItem?.name || subItem?.title}
+                              <ChevronRight className="w-4 h-4 ml-1" />
+                            </Link>
+                          ) : (
+                            <div
+                              className={`flex items-center justify-between px-4 py-2 text-sm whitespace-nowrap ${
+                                isSubActive
+                                  ? "text-secondary font-semibold bg-gray-50"
+                                  : "text-primary hover:text-secondary hover:bg-gray-100"
+                              }`}
+                            >
+                              {subItem?.name || subItem?.title}
+                              <ChevronRight className="w-4 h-4 ml-1" />
+                            </div>
+                          )}
+                          <div className="absolute left-full top-0 hidden group-hover/submenu:flex flex-col bg-white shadow-md rounded-md z-50 min-w-[180px] ml-1">
+                            {subItem?.links?.map((nestedItem, nestedIndex) => {
+                              const isNestedActive = pathname.startsWith(nestedItem.link);
+                              return (
+                                <Link
+                                  key={nestedIndex}
+                                  href={localizeLink(nestedItem?.link)}
+                                  className={`block px-4 py-2 text-sm whitespace-nowrap ${
+                                    isNestedActive
+                                      ? "text-secondary font-semibold bg-gray-50"
+                                      : "text-primary hover:text-secondary hover:bg-gray-100"
+                                  }`}
+                                  onClick={() => handleNavigate(nestedItem, index)}
+                                >
+                                  {nestedItem.title}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    }
+                    
                     return (
                       <Link
                         key={subIndex}
