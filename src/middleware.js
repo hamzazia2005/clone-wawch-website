@@ -98,6 +98,13 @@ const blogRedirects = {
   "automating-the-process-with-hubSpot-whatsapp-integration": "automating-the-process-with-hubspot-whatsapp-integration",
   "whatsApp-translate-the-ultimate-tool-for-multilingual-instant-messaging": "whatsapp-translate-the-ultimate-tool-for-multilingual-instant-messaging",
   "Business-Should-Adopt-Short-Form-Video-Messaging-on-WhatsApp-Web": "business-should-adopt-short-form-video-messaging-on-whatsapp-web",
+  "10-tips-for-customer-service-on-whatsapp-in-2024": "10-tips-for-customer-service-on-whatsapp-in-2026",
+  "how-to-prepare-for-the-future-2025-of-messaging": "how-to-prepare-for-the-future-2026-of-messaging",
+  "how-to-use-whatsapp-web-login-in-2024": "how-to-use-whatsapp-web-login-in-2026",
+  "top-10-whatsapp-web-chrome-extensions-for-2025": "top-10-whatsapp-web-chrome-extensions-for-2026",
+  "top-5-whatsapp-marketing-tools-you-should-be-using-in-2025": "top-5-whatsapp-marketing-tools-you-should-be-using-in-2026",
+  "upgrade-your-whatsapp-usage-with-these-must-have-extensions-for-2023": "upgrade-your-whatsapp-usage-with-these-must-have-extensions-for-2026",
+  "what-are-the-most-famous-whatsapp-chrome-extensions-for-2025": "what-are-the-most-famous-whatsapp-chrome-extensions-for-2026",
 };
 
 // Feature page redirects (old slug -> new slug)
