@@ -21,11 +21,23 @@ fi
 if [ "$1" = "dev" ]; then
     # Stop any running containers
     docker rm -f wawcd-website 2>/dev/null && \
-    docker build -t wawcd-website . --network=host $DISABLE_REDIS_ARG && \
+    docker build -t wawcd-website . --network=host \
+      $DISABLE_REDIS_ARG \
+      --build-arg STRAPI_ACCESS_TOKEN="${STRAPI_ACCESS_TOKEN}" \
+      --build-arg WAWCD_URL="${WAWCD_URL}" \
+      --build-arg STRAPI_BE_URL_SERVER="${STRAPI_BE_URL_SERVER}" \
+      --build-arg NEXT_PUBLIC_STRAPI_BE_URL_CLIENT="${NEXT_PUBLIC_STRAPI_BE_URL_CLIENT}" \
+      --build-arg REDIS_URL="${REDIS_URL}" && \
     docker run -d --name wawcd-website -p 3000:3000 wawcd-website
 else
     echo "Starting WAWCD Website Container"
     sudo docker rm -f wawcd-website 2>/dev/null && \
-    sudo docker build -t wawcd-website . --network=host $DISABLE_REDIS_ARG && \
+    sudo docker build -t wawcd-website . --network=host \
+      $DISABLE_REDIS_ARG \
+      --build-arg STRAPI_ACCESS_TOKEN="${STRAPI_ACCESS_TOKEN}" \
+      --build-arg WAWCD_URL="${WAWCD_URL}" \
+      --build-arg STRAPI_BE_URL_SERVER="${STRAPI_BE_URL_SERVER}" \
+      --build-arg NEXT_PUBLIC_STRAPI_BE_URL_CLIENT="${NEXT_PUBLIC_STRAPI_BE_URL_CLIENT}" \
+      --build-arg REDIS_URL="${REDIS_URL}" && \
     sudo docker run -d --name wawcd-website -p 3000:3000 wawcd-website
 fi
