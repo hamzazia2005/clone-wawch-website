@@ -150,10 +150,11 @@ export async function middleware(request) {
     }
   }
 
-  const roadMapMatch = pathname.match(/^(?:\/([a-z]{2}))?\/road-map\/?$/);
-  if (roadMapMatch) {
+  const removedPagesMatch = pathname.match(/^(?:\/([a-z]{2}))?\/(road-map|coming-soon)\/?$/);
+  if (removedPagesMatch) {
+    const pageName = removedPagesMatch[2] === 'road-map' ? 'roadmap' : 'coming soon';
     return new NextResponse(
-      "<h1>410 - This page has been removed</h1><p>The roadmap page is no longer available. Please visit our <a href='/'>homepage</a> for more information.</p>",
+      `<h1>410 - This page has been removed</h1><p>The ${pageName} page is no longer available. Please visit our <a href='/'>homepage</a> for more information.</p>`,
       { status: 410, headers: { "Content-Type": "text/html" } }
     );
   }
@@ -268,8 +269,8 @@ export const config = {
     '/affiliate/',
     '/affiliates',
     '/affiliates/',
-    '/coming-soon',
-    '/coming-soon/',
+    // '/coming-soon',
+    // '/coming-soon/',
     // Dynamic routes
     '/f/:path*',
     '/feature/:path*',
