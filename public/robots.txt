@@ -1,4 +1,5 @@
 User-agent: *
+# Block sensitive / non-public areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /secure-data/
@@ -7,7 +8,13 @@ Disallow: /temp/
 Disallow: /login/
 Disallow: /cart/
 Disallow: /checkout/
-Allow: /$
+# Block parameters & unnecessary files
+Disallow: /*?*
+Disallow: /*.php$
+# Explicitly allow important public pages
+Allow: /
+Allow: /faqs/
+Allow: /resources/
 Allow: /features/
 Allow: /pricing/
 Allow: /about/
@@ -17,8 +24,11 @@ Allow: /help/
 Allow: /guide/
 Allow: /affiliates/
 Allow: /contact-us/
+Allow: /affiliates/
+Allow: /partner/
+Allow: /why-wawcd/
+Allow: /author/
+Allow: /changelog/
+Allow: /privacy-policy
 # Allow: /road-map/
-Allow: /help/
-Disallow: /*?*
-Disallow: /*.php$
 Sitemap: https://wawcd.com/sitemap.xml
