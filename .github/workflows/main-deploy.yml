@@ -8,7 +8,7 @@ on:
 env:
   # AWS configuration
   AWS_REGION: ap-southeast-1
-  AWS_ACCOUNT_ID: 030598234754
+  AWS_ACCOUNT_ID: 30598234754
   ECR_REPOSITORY: wawcd-website
   ECS_CLUSTER: wawcd-cluster
   ECS_SERVICE: wawcd-website-ecs
