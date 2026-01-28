@@ -217,6 +217,13 @@ export async function middleware(request) {
 
   const response = NextResponse.next();
   const existingCountry = request.cookies.get('user-country')?.value;
+
+  const languages = ["en", "fr", "ar", "pt"];
+  const langMatch = pathname.match(/^\/([a-z]{2})(?:\/|$)/);
+  const detectedLang = langMatch && languages.includes(langMatch[1]) ? langMatch[1] : "";
+  
+  response.headers.set('x-language', detectedLang);
+  response.headers.set('x-pathname', pathname);
   
   // Only set cookie if country changed or doesn't exist
   if (existingCountry !== country) {

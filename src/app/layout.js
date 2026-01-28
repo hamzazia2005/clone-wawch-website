@@ -9,6 +9,7 @@ import Script from "next/script";
 //import AOSinit from '@/animations/AOSinit';
 import NextTopLoader from "nextjs-toploader";
 import ClientEnhancer from "@/components/client-wrapper";
+import { headers } from "next/headers";
 // import Head from 'next/head';
 // import { Suspense } from 'react';
 // import Loader from '@/components/loader';
@@ -57,9 +58,45 @@ export const metadata = {
   },
 };
 
-export default function Layout({ children }) {
+export default async function Layout({ children }) {
+  const headersList = await headers();
+  const langFromHeader = headersList.get('x-language') || '';
+  const lang = langFromHeader || 'en';
+  const dir = lang.startsWith('ar') ? 'rtl' : 'ltr';
+  
+  const pathname = headersList.get('x-pathname') || '';
+  const currentPath = pathname || '/';
+  
+  const englishOnlyPaths = ['/blog', '/resources', '/author'];
+  const isEnglishOnlyPage = englishOnlyPaths.some(path => 
+    currentPath === path || currentPath.startsWith(`${path}/`)
+  );
+  
+  const supportedLanguages = ['en', 'fr', 'ar', 'pt'];
+  const baseUrl = 'https://wawcd.com';
+  
+  const pathWithoutLang = isEnglishOnlyPage 
+    ? currentPath 
+    : currentPath.replace(/^\/(en|fr|ar|pt)(\/|$)/, '/') || '/';
+  const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang;
+  
   return (
-    <html lang="en">
+    <html lang={lang} dir={dir}>
+      <head>
+        {!isEnglishOnlyPage && supportedLanguages.map((langCode) => (
+          <link
+            key={langCode}
+            rel="alternate"
+            hrefLang={langCode}
+            href={`${baseUrl}/${langCode}${cleanPath}`}
+          />
+        ))}
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href={`${baseUrl}${cleanPath || '/'}`}
+        />
+      </head>
       <Script
         async
         src="https://cdn.tolt.io/tolt.js"
