@@ -11,8 +11,8 @@ env:
   ECR_REPOSITORY: wawcd-website
   ECS_CLUSTER: wawcd-cluster
   ECS_SERVICE: wawcd-website-ecs
-  # default release tag for automatic (push to main) deployments
-  RELEASE_TAG: v2.0
+  # release tag prefix (tags will be v2.01, v2.02, ...)
+  RELEASE_TAG_PREFIX: v2
   # build-time behavior
   DISABLE_REDIS: "true"
   # environment variables
@@ -52,7 +52,9 @@ jobs:
         id: meta
         shell: bash
         run: |
-          TAG="${{ env.RELEASE_TAG }}"
+          # Each run increments: v2.01, v2.02, ...
+          # (uses GitHub run number, zero-padded to 2 digits)
+          TAG="${{ env.RELEASE_TAG_PREFIX }}.$(printf '%02d' "${{ github.run_number }}")"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "Using image tag: $TAG"
 
