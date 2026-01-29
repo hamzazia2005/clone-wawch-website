@@ -25,7 +25,7 @@ const Page = async () => {
   const urls = {
     changelogStarter: `api/changelog-starter`,
     teamMembers: `api/team-members/?populate=*&sort=id`,
-    version: `api/changelog-versions/?sort=id:desc`,
+    version: `api/changelog-versions?sort=createdAt:desc`,
   };
   const [changelogStarter, teamMembers, version] = await Promise.all([
     getServerSideData(urls.changelogStarter),
