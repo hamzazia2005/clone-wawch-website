@@ -50,6 +50,16 @@ const deletedBlogSlugs = new Set([
   "wa-web-plus-and-9-other-chrome-extensions-for-improving-your-whatsapp-experience",
   "wa-web-plus-6-alternatives",
   "wa-web-plus",
+  "How-to-Share-Your-WhatsApp-Business-Link-On-Social-Media",
+  "what-should-we-know-about-personalized-broadcast",
+  "creating-a-culture-of-whatsapp-automation-in-your-business",
+  "whatsapp-marketing-to-grow-your-business",
+  "how-chatgpt-whatsapp-can-save-you-hours",
+  "how-whatsapp-integrates-with-other-tools-for-enhanced-functionality",
+  "step-by-step-guide-to-signing-up-for-wawcd-affiliate-program",
+  "how-to-create-an-effective-rsvp-process-using-wawcd",
+  "how-live-support-in-whatsapp-extensions-enhances",
+  "whatsApp-translate-the-ultimate-tool-for-multilingual-instant-messaging"
 ]);
 
 // 301 Redirect maps for slug changes
