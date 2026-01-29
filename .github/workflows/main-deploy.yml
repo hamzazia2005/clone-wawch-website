@@ -8,10 +8,13 @@ on:
 env:
   # AWS configuration
   AWS_REGION: ap-southeast-1
-  AWS_ACCOUNT_ID: 30598234754
   ECR_REPOSITORY: wawcd-website
   ECS_CLUSTER: wawcd-cluster
   ECS_SERVICE: wawcd-website-ecs
+  # default release tag for automatic (push to main) deployments
+  RELEASE_TAG: v2.0
+  # build-time behavior
+  DISABLE_REDIS: "true"
   # environment variables
   WAWCD_URL: "https://wawcd.com/"
   STRAPI_BE_URL_SERVER: "https://strapi.wawcd.com"
@@ -32,35 +35,106 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Verify AWS identity (debug)
+        run: |
+          aws sts get-caller-identity
+
       - name: Login to Amazon ECR
         id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Verify ECR registry and repository (debug)
         run: |
-          aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
-          echo "Successfully logged into ECR"
+          echo "ECR registry: ${{ steps.ecr-login.outputs.registry }}"
+          aws ecr describe-repositories --repository-names "${{ env.ECR_REPOSITORY }}" --region "${{ env.AWS_REGION }}"
+
+      - name: Compute image tag
+        id: meta
+        shell: bash
+        run: |
+          TAG="${{ env.RELEASE_TAG }}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Using image tag: $TAG"
 
       - name: Build Docker image
         run: |
           echo "Starting Docker build..."
           docker build \
+            --build-arg DISABLE_REDIS="${{ env.DISABLE_REDIS }}" \
             --build-arg WAWCD_URL="${{ env.WAWCD_URL }}" \
             --build-arg STRAPI_BE_URL_SERVER="${{ env.STRAPI_BE_URL_SERVER }}" \
             --build-arg NEXT_PUBLIC_STRAPI_BE_URL_CLIENT="${{ env.NEXT_PUBLIC_STRAPI_BE_URL_CLIENT }}" \
             --build-arg STRAPI_ACCESS_TOKEN="${{ secrets.STRAPI_ACCESS_TOKEN }}" \
             --build-arg REDIS_URL="${{ secrets.REDIS_URL }}" \
-            -t ${{ env.ECR_REPOSITORY }}:latest .
+            -t ${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.tag }} .
           echo "Docker build completed."
 
       - name: Push Docker image to ECR
         run: |
-          docker tag ${{ env.ECR_REPOSITORY }}:latest ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
-          docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
+          docker tag ${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.tag }} ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.tag }}
+          docker push ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.tag }}
 
-      - name: Update ECS service (forces new deployment)
+      - name: Also push :latest
         run: |
+          docker tag ${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.tag }} ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+          docker push ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+
+      - name: Register new task definition revision + deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          IMAGE_URI="${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.tag }}"
+          echo "Deploying image: $IMAGE_URI"
+
+          # Get current task definition from the service
+          TASK_DEF_ARN="$(aws ecs describe-services \
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --services "${{ env.ECS_SERVICE }}" \
+            --query "services[0].taskDefinition" \
+            --output text)"
+          echo "Current task definition: $TASK_DEF_ARN"
+
+          # Fetch current task definition JSON
+          aws ecs describe-task-definition \
+            --task-definition "$TASK_DEF_ARN" \
+            --query "taskDefinition" \
+            --output json > taskdef.json
+
+          # Create a new task definition JSON with updated image
+          # - Remove read-only fields that register-task-definition rejects
+          # - Update any container whose current image references this repository
+          jq --arg IMAGE_URI "$IMAGE_URI" --arg REPO "${{ env.ECR_REPOSITORY }}" '
+            del(
+              .taskDefinitionArn,
+              .revision,
+              .status,
+              .requiresAttributes,
+              .compatibilities,
+              .registeredAt,
+              .registeredBy
+            )
+            | .containerDefinitions |= (map(
+                if (.image | contains($REPO)) then
+                  .image = $IMAGE_URI
+                else
+                  .
+                end
+              ))
+          ' taskdef.json > taskdef-new.json
+
+          # Register new revision
+          NEW_TASK_DEF_ARN="$(aws ecs register-task-definition \
+            --cli-input-json file://taskdef-new.json \
+            --query "taskDefinition.taskDefinitionArn" \
+            --output text)"
+          echo "New task definition: $NEW_TASK_DEF_ARN"
+
+          # Update service to the new revision
           aws ecs update-service \
-            --cluster ${{ env.ECS_CLUSTER }} \
-            --service ${{ env.ECS_SERVICE }} \
-            --force-new-deployment
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --service "${{ env.ECS_SERVICE }}" \
+            --task-definition "$NEW_TASK_DEF_ARN"
 
       - name: Wait for ECS service stability
         run: |
@@ -71,4 +145,4 @@ jobs:
       - name: Logout from Amazon ECR
         if: always()
         run: |
-          docker logout ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
+          docker logout ${{ steps.ecr-login.outputs.registry }}
