@@ -234,7 +234,7 @@ export default function WhatsAppButton() {
 
   return (
     <FloatingWhatsApp
-      phoneNumber="+923087547136"
+      phoneNumber="+923205430945"
       accountName="WAWCD Support"
       statusMessage="Replies in 15 minutes"
       chatMessage={chatMessage}
