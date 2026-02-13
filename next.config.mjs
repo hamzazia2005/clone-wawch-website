@@ -1,6 +1,7 @@
 const nextConfig = {
   images: {
     remotePatterns: [
+      // Local development (Strapi)
       {
         protocol: "http",
         hostname: "localhost",
@@ -11,15 +12,21 @@ const nextConfig = {
         hostname: "localhost",
         port: "1337",
       },
+      // AWS S3 bucket for static images
       {
         protocol: "https",
-        hostname: "*",
-        port: "",
+        hostname: "wawcd-website.s3.ap-south-1.amazonaws.com",
       },
+      // Cloudinary CDN
       {
-        protocol: "http",
-        hostname: "*",
-        port: "",
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/dno9rw4ax/**",
+      },
+      // Strapi backend (production)
+      {
+        protocol: "https",
+        hostname: "strapi.wawcd.com",
       },
     ],
   },
@@ -31,7 +38,7 @@ const nextConfig = {
     NEXT_PUBLIC_DASHBOARD_URL: process.env.NEXT_PUBLIC_DASHBOARD_URL,
   },
   trailingSlash: true,
-  reactStrictMode: false,
+  reactStrictMode: true,
   //Added this code to fix the issue of the PRICING VIOLATION error
   async headers() {
     return [

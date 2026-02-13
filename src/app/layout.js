@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/inline-script-id */
+
 import React from "react";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import "./globals.css";
@@ -136,62 +136,8 @@ export default async function Layout({ children }) {
         }}
       />
       <body className={`${plusJakartaSans.className} ${poppins.className}`}>
-        {/* <AOSinit/> */}
         <NextTopLoader color="#47b772" height={4} showSpinner={false} />
-        {/* <Suspense fallback={<Loader />}>
-          <AppWrapper>
-            {children}
-            <WhatsAppButton />
-          </AppWrapper>
-        </Suspense> */}
-
-        {/* {children} */}
-
         <ClientEnhancer>{children}</ClientEnhancer>
-        {/* Commented out these scripts as stripe (and associated code) is not required for now*/}
-        {/* <Script
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.updateButtonUrls = function updateButtonUrls() {
-              var buttons = document.querySelectorAll('a[href^="https://buy.stripe.com"]');
-              var toltReferral = window.tolt_referral;
-              var gclid = localStorage.getItem("gclid");
-
-              if (toltReferral || gclid) {
-                for (var i = 0; i < buttons.length; i++) {
-                  var btn = buttons[i];
-                  var urlParams = [];
-
-                  if (toltReferral && btn.href.indexOf("client_reference_id") === -1) {
-                    localStorage.setItem("toltId", toltReferral);
-                    urlParams.push('client_reference_id=' + toltReferral);
-                  }
-
-                  if (gclid && btn.href.indexOf("gclid") === -1) {
-                    urlParams.push('gclid=' + gclid);
-                  }
-
-                  if (urlParams.length > 0) {
-                    var separator = btn.href.indexOf('?') === -1 ? '?' : '&';
-                    btn.href = btn.href + separator + urlParams.join('&');
-                  }
-                }
-              }
-            };
-
-            setTimeout(updateButtonUrls, 1000);
-            setTimeout(updateButtonUrls, 1900);
-            setTimeout(updateButtonUrls, 2600);
-            window.addEventListener("tolt_referral_ready", function() {
-              if (window.tolt_referral) {
-                updateButtonUrls();
-              }
-            });
-          `,
-          }}
-        /> */}
-
-        {/* <Script async src="https://js.stripe.com/v3/pricing-table.js"></Script> */}
       </body>
       <GoogleAnalytics gaId="G-LEYYSF0TEL" />
     </html>
