@@ -1,20 +1,16 @@
 import { serverAxios } from "@/utils/axios_clients";
-import { withCache } from "@/utils/cache";
 import "server-only";
 
 /**
- * Fetch data from Strapi API with Redis caching
+ * Fetch data from Strapi API.
+ * Cache is disabled for Edge (Cloudflare) compatibility; use skipCache on Node if needed.
  *
  * @param {string} url - The API endpoint URL
  * @param {boolean} check - If true, returns raw response, otherwise returns data property
- * @param {Object} options - Additional options
- * @param {boolean} options.skipCache - Skip cache and always fetch fresh data
- * @param {number} options.ttl - Custom TTL in seconds (default: from env CACHE_TTL_SECONDS or 3600)
+ * @param {Object} options - Additional options (skipCache, ttl kept for API compatibility)
  * @returns {Promise<any>} - The fetched data
  */
 export async function getServerSideData(url = "", check = false, options = {}) {
-  const { skipCache = false, ttl } = options;
-
   const fetchFromStrapi = async () => {
     try {
       const response = await serverAxios.get(url);
@@ -27,21 +23,7 @@ export async function getServerSideData(url = "", check = false, options = {}) {
     }
   };
 
-  if (skipCache) {
-    return fetchFromStrapi();
-  }
-
-  try {
-    const cacheKey = check ? `${url}:check` : url;
-    const data = await withCache(cacheKey, fetchFromStrapi, ttl);
-    return data;
-  } catch (error) {
-    console.error(
-      `Cache error for ${url}, falling back to direct fetch:`,
-      error
-    );
-    return fetchFromStrapi();
-  }
+  return fetchFromStrapi();
 }
 
 /**
