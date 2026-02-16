@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
 
+export const runtime = "edge";
+
 export async function GET() {
   try {
-    // Basic health check - can be expanded with database/service checks
+    // Basic health check - Edge has no process.uptime()
     return NextResponse.json(
-      { 
-        status: 'ok', 
+      {
+        status: 'ok',
         timestamp: new Date().toISOString(),
-        uptime: process.uptime()
       },
       { status: 200 }
     );

@@ -1,13 +1,6 @@
 import { NextResponse } from "next/server";
-import {
-  purgeAllCache,
-  purgeCacheByPattern,
-  getCacheStats,
-  deleteFromCache,
-  generateCacheKey,
-} from "@/utils/cache";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 const CACHE_SECRET = process.env.CACHE_PURGE_SECRET || "wawcd-cache-secret";
 
@@ -29,20 +22,7 @@ function verifyAuth(request) {
 
 /**
  * GET /api/cache - Get cache statistics
- *
- * Headers:
- *   Authorization: Bearer <CACHE_PURGE_SECRET>
- *
- * Response:
- * {
- *   "success": true,
- *   "stats": {
- *     "totalKeys": 10,
- *     "keys": [...],
- *     "prefix": "wawcd:strapi:website:",
- *     "defaultTtl": 3600
- *   }
- * }
+ * On Edge (e.g. Cloudflare), Redis is not available; returns 503.
  */
 export async function GET(request) {
   if (!verifyAuth(request)) {
@@ -53,6 +33,7 @@ export async function GET(request) {
   }
 
   try {
+    const { getCacheStats } = await import("@/utils/cache");
     const stats = await getCacheStats();
     return NextResponse.json({
       success: true,
@@ -60,37 +41,19 @@ export async function GET(request) {
     });
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500 }
+      {
+        success: false,
+        error:
+          "Cache is not available in this environment (e.g. Edge). Redis is required.",
+      },
+      { status: 503 }
     );
   }
 }
 
 /**
  * POST /api/cache - Purge cache
- *
- * Headers:
- *   Authorization: Bearer <CACHE_PURGE_SECRET>
- *   Content-Type: application/json
- *
- * Body (optional):
- * {
- *   "pattern": "api/blog"  // Purge only keys matching this pattern
- * }
- *
- * Or:
- * {
- *   "url": "api/blog?pagination[page]=1"  // Purge specific URL cache
- * }
- *
- * Or empty body to purge all cache
- *
- * Response:
- * {
- *   "success": true,
- *   "message": "Cache purged successfully",
- *   "deletedCount": 10
- * }
+ * On Edge (e.g. Cloudflare), Redis is not available; returns 503.
  */
 export async function POST(request) {
   if (!verifyAuth(request)) {
@@ -101,6 +64,13 @@ export async function POST(request) {
   }
 
   try {
+    const {
+      purgeAllCache,
+      purgeCacheByPattern,
+      deleteFromCache,
+      generateCacheKey,
+    } = await import("@/utils/cache");
+
     let body = {};
     try {
       body = await request.json();
@@ -131,8 +101,8 @@ export async function POST(request) {
         message: pattern
           ? `Cache purged for pattern: ${pattern}`
           : url
-          ? `Cache purged for URL: ${url}`
-          : "All cache purged successfully",
+            ? `Cache purged for URL: ${url}`
+            : "All cache purged successfully",
         deletedCount: result.deletedCount,
       });
     } else {
@@ -143,24 +113,19 @@ export async function POST(request) {
     }
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500 }
+      {
+        success: false,
+        error:
+          "Cache is not available in this environment (e.g. Edge). Redis is required.",
+      },
+      { status: 503 }
     );
   }
 }
 
 /**
- * DELETE /api/cache - Purge all cache (alternative to POST with empty body)
- *
- * Headers:
- *   Authorization: Bearer <CACHE_PURGE_SECRET>
- *
- * Response:
- * {
- *   "success": true,
- *   "message": "All cache purged successfully",
- *   "deletedCount": 10
- * }
+ * DELETE /api/cache - Purge all cache
+ * On Edge (e.g. Cloudflare), Redis is not available; returns 503.
  */
 export async function DELETE(request) {
   if (!verifyAuth(request)) {
@@ -171,6 +136,7 @@ export async function DELETE(request) {
   }
 
   try {
+    const { purgeAllCache } = await import("@/utils/cache");
     const result = await purgeAllCache();
 
     if (result.success) {
@@ -187,8 +153,12 @@ export async function DELETE(request) {
     }
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500 }
+      {
+        success: false,
+        error:
+          "Cache is not available in this environment (e.g. Edge). Redis is required.",
+      },
+      { status: 503 }
     );
   }
 }

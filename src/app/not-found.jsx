@@ -2,6 +2,8 @@ import Layout from "@/layout/page";
 import { getServerSideData } from "@/utils/get_api";
 import { PageNotFound } from "@/views/page_not_found.jsx";
 
+export const runtime = "edge";
+
 export async function metadata() {
   const [resp, data] = await Promise.all([
     getServerSideData("api/page-not-found-meta"),
