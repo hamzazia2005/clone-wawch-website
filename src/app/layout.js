@@ -16,6 +16,9 @@ import { headers } from "next/headers";
 //import WhatsAppButton from '@/components/whatsapp-button';
 
 export const runtime = "edge";
+// Force request-time rendering so Strapi data is always fetched on the Edge (with env vars),
+// never from a build-time pre-render that may have run without STRAPI_ACCESS_TOKEN.
+export const dynamic = "force-dynamic";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
