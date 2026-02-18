@@ -10,7 +10,7 @@ import "server-only";
  * @param {Object} options - Additional options (skipCache, ttl kept for API compatibility)
  * @returns {Promise<any>} - The fetched data
  */
-export async function getServerSideData(url = "", check = false, options = {}) {
+export async function getServerSideData(url = "", check = false, _options = {}) {
   const fetchFromStrapi = async () => {
     try {
       const response = await serverAxios.get(url);
