@@ -39,6 +39,11 @@ const nextConfig = {
   },
   trailingSlash: true,
   reactStrictMode: true,
+  // Disable webpack filesystem cache so .next/cache stays under Cloudflare's 25 MiB file limit
+  webpack: (config, { dev }) => {
+    if (!dev) config.cache = false;
+    return config;
+  },
   //Added this code to fix the issue of the PRICING VIOLATION error
   async headers() {
     return [
